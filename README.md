@@ -1,3 +1,5 @@
+## ER図リンク
+https://gyazo.com/bec6af253b7e8add308a7e7085af5a75
 ## 画面遷移図(figma)
 https://www.figma.com/design/H44ccmTepqsom5FopkMFus/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C?node-id=0-1&t=Ov61CgIhPLcyqUrH-1
 
