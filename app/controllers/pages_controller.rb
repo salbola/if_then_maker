@@ -1,4 +1,4 @@
 class PagesController < ApplicationController
-  def home
+  def landing_page
   end
 end
