@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user)
-      redirect_to dash_boards_path
+      redirect_to dash_boards_path, notice: "ユーザー登録が成功しました"
     else
+      flash.now[:alert] = "ユーザー登録が失敗しました"
       render :new, status: :unprocessable_content
     end
   end

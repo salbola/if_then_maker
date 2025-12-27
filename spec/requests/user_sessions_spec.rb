@@ -20,6 +20,7 @@ RSpec.describe "UserSessions", type: :request do
         expect(response).to redirect_to(dash_boards_path)
         follow_redirect!
         expect(response.body).to include("ダッシュボード")
+        expect(response.body).to include("ログインが成功しました")
       end
     end
 
@@ -32,6 +33,7 @@ RSpec.describe "UserSessions", type: :request do
 
         expect(response).to have_http_status(:unprocessable_content)
         expect(response.body).to include("ログインする")
+        expect(response.body).to include("ログインが失敗しました")
       end
     end
   end
@@ -48,6 +50,7 @@ RSpec.describe "UserSessions", type: :request do
       expect(response).to redirect_to(root_path)
       follow_redirect!
       expect(response.body).to include("仮のランディングページ")
+      expect(response.body).to include("ログアウトしました")
     end
   end
 end
