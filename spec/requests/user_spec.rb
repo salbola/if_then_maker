@@ -25,7 +25,7 @@ RSpec.describe "Users", type: :request do
         expect {
           post users_path, params: {
             user: {
-              
+
               email: "",
               password: "password",
               password_confirmation: "password"
