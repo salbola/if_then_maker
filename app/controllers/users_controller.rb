@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # 後でSorceryの自動ログイン処理を入れるauto_login?
+      auto_login(@user)
       redirect_to dash_boards_path
     else
       render :new, status: :unprocessable_content
