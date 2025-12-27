@@ -5,7 +5,7 @@ RSpec.describe "DashBoards", type: :request do
     context "ログインせずにdash_boardsにアクセスする" do
       it "リダイレクトする" do
       get dash_boards_path
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(login_path)
       end
     end
   end
