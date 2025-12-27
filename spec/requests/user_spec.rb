@@ -18,6 +18,7 @@ RSpec.describe "Users", type: :request do
         follow_redirect!
 
         expect(response.body).to include("ダッシュボード")
+        expect(response.body).to include("ユーザー登録が成功しました")
       end
     end
           context "異常系" do
@@ -35,6 +36,7 @@ RSpec.describe "Users", type: :request do
 
         expect(response).to have_http_status(:unprocessable_content)
         expect(response.body).to include("新規登録")
+        expect(response.body).to include("ユーザー登録が失敗しました")
       end
     end
   end
