@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       # 後でSorceryの自動ログイン処理を入れるauto_login?
       redirect_to dash_boards_path
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

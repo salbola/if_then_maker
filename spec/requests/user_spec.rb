@@ -25,6 +25,7 @@ RSpec.describe "Users", type: :request do
         expect {
           post users_path, params: {
             user: {
+              
               email: "",
               password: "password",
               password_confirmation: "password"
@@ -32,7 +33,7 @@ RSpec.describe "Users", type: :request do
           }
         }.not_to change(User, :count)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.body).to include("新規登録")
       end
     end
