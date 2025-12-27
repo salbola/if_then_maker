@@ -5,8 +5,24 @@ class UserSessionsController < ApplicationController
   end
 
   def create
+    @user = login(params[:email], params[:password])
+    if @user
+      redirect_to dash_boards_path
+    else
+      render :new, status: :unprocessable_content
+    end
   end
 
   def destroy
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(
+      :email,
+      :password,
+      :password_confirmation
+    )
   end
 end
