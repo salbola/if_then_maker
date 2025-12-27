@@ -14,7 +14,7 @@
       </h1>
 
 
-      <%= form_with model: @user, local: true, class: "space-y-4" do |f| %>
+      <%= form_with model: @user, url: login_path, local: true, class: "space-y-4" do |f| %>
 
         <!-- Email -->
         <div class="form-control">
@@ -22,11 +22,6 @@
           <%= f.email_field :email,
                 class: "input input-bordered w-full",
                 placeholder: "example@example.com" %>
-          <% if @user.errors[:email].any? %>
-            <p class="text-error text-sm mt-1">
-              <%= @user.errors[:email].first %>
-            </p>
-          <% end %>
         </div>
 
         <!-- Password -->
@@ -35,11 +30,6 @@
           <%= f.password_field :password,
                 class: "input input-bordered w-full",
                 placeholder: "3文字以上" %>
-          <% if @user.errors[:password].any? %>
-            <p class="text-error text-sm mt-1">
-              <%= @user.errors[:password].first %>
-            </p>
-          <% end %>
         </div>
 
         <!-- Submit -->
