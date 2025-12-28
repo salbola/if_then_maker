@@ -36,7 +36,9 @@
       <% end %>
     </div>
       <div class="mt-12 flex flex-col gap-3">
-        <a href="#" class="btn btn-primary"> 新しくメモを作成する</a>
+        <%= link_to "新しくメモを作成する",
+            new_memo_path,
+            class: "btn btn-primary" %>
       </div>
   <% else %>
     <div class="text-center text-base-content/60">
