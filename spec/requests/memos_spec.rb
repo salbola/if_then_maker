@@ -70,7 +70,6 @@ RSpec.describe "Memos", type: :request do
             expect(response.body).to include("メモの作成")
           end
         end
-
       end
   end
   describe "PATCH /memos/:id(edit->updateのテスト)" do
