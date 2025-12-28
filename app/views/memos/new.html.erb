@@ -1,0 +1,44 @@
+<div class="max-w-2xl mx-auto mt-10 px-4">
+  <h1 class="text-2xl font-bold mb-6">新しいメモを作成</h1>
+
+  <%= form_with model: @memo, local: true do |f| %>
+    <!-- タイトル -->
+    <div class="form-control mb-4">
+      <%= f.label :title, "タイトル", class: "label font-semibold" %>
+      <%= f.text_field :title,
+            class: "input input-bordered w-full",
+            placeholder: "タイトル" %>
+
+      <% if @memo.errors[:title].any? %>
+        <p class="text-error text-sm mt-1">
+          <%= @memo.errors[:title].first %>
+        </p>
+      <% end %>
+    </div>
+
+    <!-- 本文 -->
+    <div class="form-control mb-6">
+      <%= f.label :body, "メモ内容", class: "label font-semibold" %>
+      <%= f.text_area :body,
+            rows: 6,
+            class: "textarea textarea-bordered w-full",
+            placeholder: "目標やこうすると良いことがあるという工夫などを自由に書いてください" %>
+
+      <% if @memo.errors[:body].any? %>
+        <p class="text-error text-sm mt-1">
+          <%= @memo.errors[:body].first %>
+        </p>
+      <% end %>
+    </div>
+
+    <!-- ボタン -->
+    <div class="flex justify-end gap-3">
+      <%= link_to "キャンセル",
+            memos_path,
+            class: "btn btn-ghost" %>
+
+      <%= f.submit "保存する",
+            class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

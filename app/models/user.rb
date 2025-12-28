@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-
+  has_many :memos, dependent: :destroy
   validates :email, presence: true, uniqueness: true
 
   validates :password,
