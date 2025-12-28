@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Memo, type: :model do
   describe "バリデーション" do
-    let(:user) { User.create}
+    let(:user) { User.create }
 
     it "title があれば有効" do
       memo = build(:memo, title: "テストメモ", user: user)
