@@ -22,6 +22,22 @@ RSpec.describe "Memos", type: :request do
     end
   end
   describe "POST /memos(new->createのテスト)" do
+    context "未ログインの場合" do
+      it "新規作成画面(#new)へのアクセスでlogin_pathにリダイレクトされる" do
+        get new_memo_path
+        expect(response).to redirect_to(login_path)
+      end
+      it "新規作成処理(#create)へのアクセスでlogin_pathにリダイレクトされる" do
+        post memos_path, params: {
+            memo: {
+              title: "テストメモ",
+              body: "本文"
+            }
+          }
+
+        expect(response).to redirect_to(login_path)
+      end
+    end
     context "正常系" do
       it "メモを作成できる" do
         login_as(user)
@@ -39,19 +55,22 @@ RSpec.describe "Memos", type: :request do
       end
     end
       context "異常系" do
-        it "作成に失敗しnewを再表示する" do
-          login_as(user)
+        context "ログインしている場合" do
+          it "作成に失敗しnewを再表示する" do
+            login_as(user)
 
-          post memos_path, params: {
-            memo: {
-              title: "",
-              body: "本文"
+            post memos_path, params: {
+              memo: {
+                title: "",
+                body: "本文"
+              }
             }
-          }
 
-          expect(response).to have_http_status(:unprocessable_content)
-          expect(response.body).to include("メモの作成")
+            expect(response).to have_http_status(:unprocessable_content)
+            expect(response.body).to include("メモの作成")
+          end
         end
+
       end
   end
   describe "PATCH /memos/:id(edit->updateのテスト)" do
