@@ -1,2 +1,39 @@
-<h1>Memos#edit</h1>
-<p>Find me in app/views/memos/edit.html.erb</p>
+<div class="max-w-2xl mx-auto mt-10">
+  <div class="card bg-base-100 shadow">
+    <div class="card-body">
+      <h1 class="card-title text-xl mb-4">メモを編集</h1>
+
+      <%= form_with model: @memo, local: true do |f| %>
+        <!-- タイトル -->
+        <div class="form-control mb-4">
+          <%= f.label :title, "タイトル", class: "label" %>
+          <%= f.text_field :title,
+                class: "input input-bordered w-full" %>
+
+          <% if @memo.errors[:title].any? %>
+            <p class="text-error text-sm mt-1">
+              <%= @memo.errors[:title].first %>
+            </p>
+          <% end %>
+        </div>
+
+        <!-- 本文 -->
+        <div class="form-control mb-6">
+          <%= f.label :body, "内容", class: "label" %>
+          <%= f.text_area :body,
+                rows: 6,
+                class: "textarea textarea-bordered w-full" %>
+        </div>
+
+        <!-- ボタン -->
+        <div class="flex justify-between">
+          <%= link_to "戻る", memo_path(@memo), class: "btn btn-ghost" %>
+
+          <div class="flex gap-2">
+            <%= f.submit "更新する", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
