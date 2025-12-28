@@ -18,7 +18,7 @@
                   edit_memo_path(@memo),
                   class: "btn btn-outline btn-primary" %>
 
-      <%= button_to "削除",
+      <%= link_to "削除",
                     memo_path(@memo),
                     data: {
                       turbo_method: :delete,
