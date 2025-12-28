@@ -1,0 +1,52 @@
+<main class="hero min-h-[70vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-4xl font-bold">メモ一覧</h1>
+
+  <% if @memos.any? %>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <% @memos.each do |memo| %>
+        <div class="card bg-base-100 shadow-md">
+          <div class="card-body">
+            <h2 class="card-title">
+              <%= memo.title %>
+            </h2>
+
+            <% if memo.body.present? %>
+              <p class="text-sm text-base-content/80 line-clamp-3">
+                <%= memo.body %>
+              </p>
+            <% else %>
+              <p class="text-sm text-base-content/50 italic">
+                本文はありません
+              </p>
+            <% end %>
+
+            <div class="card-actions justify-end mt-4">
+              <%= link_to "詳細",
+                    memo_path(memo),
+                    class: "btn btn-sm btn-outline btn-primary" %>
+
+              <%= link_to "編集",
+                    edit_memo_path(memo),
+                    class: "btn btn-sm btn-outline" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+      <div class="mt-12 flex flex-col gap-3">
+        <a href="#" class="btn btn-primary"> 新しくメモを作成する</a>
+      </div>
+  <% else %>
+    <div class="text-center text-base-content/60">
+      <p class="mb-4">まだメモがありません</p>
+      <%= link_to "最初のメモを作成する",
+            new_memo_path,
+            class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+    </div>
+  </div>
+</main>
