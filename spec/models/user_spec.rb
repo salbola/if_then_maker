@@ -77,4 +77,12 @@ RSpec.describe User, type: :model do
     expect(user.salt).to be_present
     end
   end
+  describe 'Userを削除するとアソシエーションにより対応するものも削除される' do
+    it "userを削除するとmemosも削除される" do
+      user = create(:user)
+      create(:memo, user: user)
+
+      expect { user.destroy }.to change(Memo, :count).by(-1)
+    end
+  end
 end
