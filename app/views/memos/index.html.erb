@@ -30,6 +30,13 @@
               <%= link_to "編集",
                     edit_memo_path(memo),
                     class: "btn btn-sm btn-outline" %>
+
+              <%= link_to "削除",
+                    memo_path(memo),
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "このメモを削除しますか？" },
+                    class: "btn btn-sm btn-outline btn-error" %>
             </div>
           </div>
         </div>
