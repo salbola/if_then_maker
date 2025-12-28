@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  before_action :redirect_if_logged_in, only: [:new, :create]
+  before_action :redirect_if_logged_in, only: [ :new, :create ]
   def new
     @user = User.new
   end
@@ -29,7 +29,7 @@ class UserSessionsController < ApplicationController
       :password_confirmation
     )
   end
-  
+
   def redirect_if_logged_in
     redirect_to dash_boards_path if logged_in?
   end
