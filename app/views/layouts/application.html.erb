@@ -18,6 +18,11 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <%= render "shared/header_logged_in" %>
+    <% else %>
+      <%= render "shared/header_guest" %>
+    <% end %>
     <% flash.each do |type, message| %>
       <div class="alert <%= flash_class(type) %> mb-4">
         <span><%= message %></span>
