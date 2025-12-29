@@ -2,12 +2,11 @@ class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :redirect_if_logged_in, only: [ :new, :create ]
   def new
-    @user = User.new
   end
 
   def create
-    @user = login(params[:email], params[:password])
-    if @user
+    user = login(params[:email], params[:password])
+    if user
       redirect_to dash_boards_path, notice: "ログインが成功しました"
     else
       flash.now[:alert] = "ログインが失敗しました"
@@ -21,14 +20,6 @@ class UserSessionsController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(
-      :email,
-      :password,
-      :password_confirmation
-    )
-  end
 
   def redirect_if_logged_in
     redirect_to dash_boards_path if logged_in?
