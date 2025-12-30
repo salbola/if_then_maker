@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_30_032926) do
   enable_extension "plpgsql"
 
   create_table "if_then_rules", force: :cascade do |t|
-    t.text "situation"
-    t.text "action"
+    t.text "if_condition"
+    t.text "then_action"
     t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "memo_id", null: false
