@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe IfThenRule, type: :model do
-  let(:user) { create(:user)}
+  let(:user) { create(:user) }
   let(:memo) { create(:memo, user: user) }
   describe "statusがactiveかdraft含めてバリデーションの確認" do
     context "statusがdraftの時" do
