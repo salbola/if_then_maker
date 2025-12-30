@@ -2,7 +2,7 @@
   <div>
     <div class="flex gap-4 bg-configtest">
       <%= link_to "ダッシュボード", dash_boards_path, class:"link link-hover" %>
-      <a href="#" class="link link-hover">習慣一覧</a>
+      <%= link_to "習慣一覧", if_then_rules_path, class:"link link-hover" %>
       <a href=<%= memos_path %> class="link link-hover">メモ一覧</a>
       <a href="#" class="link link-hover">振り返り一覧</a>
     </div>
