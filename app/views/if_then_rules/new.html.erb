@@ -1,0 +1,17 @@
+<h1>If-Thenルール作成</h1>
+
+<%= form_with model: @if_then_rule do |f| %>
+  <%= f.hidden_field :memo_id %>
+
+  <div>
+    <%= f.label :if_condition, "IF（きっかけ）" %><br>
+    <%= f.text_field :if_condition %>
+  </div>
+
+  <div>
+    <%= f.label :then_action, "THEN（行動）" %><br>
+    <%= f.text_field :then_action %>
+  </div>
+
+  <%= f.submit "作成する" %>
+<% end %>
