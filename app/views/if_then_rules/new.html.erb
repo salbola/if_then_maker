@@ -1,17 +1,26 @@
-<h1>If-Thenルール作成</h1>
+<h1 class="text-xl font-semibold mb-6">
+  If-Thenルール作成
+</h1>
 
-<%= form_with model: @if_then_rule do |f| %>
+<%= form_with model: @if_then_rule, class: "max-w-md space-y-6" do |f| %>
   <%= f.hidden_field :memo_id %>
 
-  <div>
-    <%= f.label :if_condition, "IF（きっかけ）" %><br>
-    <%= f.text_field :if_condition %>
+  <div class="form-control">
+    <%= f.label :if_condition, "IF（きっかけ）", class: "label" %>
+    <%= f.text_field :if_condition,
+                     class: "input input-bordered",
+                     placeholder: "例：朝7時に起きたら" %>
   </div>
 
-  <div>
-    <%= f.label :then_action, "THEN（行動）" %><br>
-    <%= f.text_field :then_action %>
+  <div class="form-control">
+    <%= f.label :then_action, "THEN（行動）", class: "label" %>
+    <%= f.text_field :then_action,
+                     class: "input input-bordered",
+                     placeholder: "例：コップ一杯の水を飲む" %>
   </div>
 
-  <%= f.submit "作成する" %>
+  <div class="pt-4">
+    <%= f.submit "作成する",
+                 class: "btn btn-primary w-full" %>
+  </div>
 <% end %>

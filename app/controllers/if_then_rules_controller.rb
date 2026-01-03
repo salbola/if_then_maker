@@ -1,8 +1,10 @@
 class IfThenRulesController < ApplicationController
   def index
+    @if_then_rules = current_user.if_then_rules.includes(:memo)
   end
 
   def show
+    @if_then_rule = current_user.if_then_rules.find(params[:id])
   end
 
   def new
