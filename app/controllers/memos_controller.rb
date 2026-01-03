@@ -10,7 +10,7 @@ class MemosController < ApplicationController
   def create
     @memo = current_user.memos.build(memo_params)
     if @memo.save
-      redirect_to memos_path, notice: "メモの作成が成功しました"
+      redirect_to @memo, notice: "メモの作成が成功しました"
     else
       flash.now[:alert] = "メモの作成が失敗しました"
       render :new, status: :unprocessable_content
