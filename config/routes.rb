@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   namespace :if_then_rules do
     resource :flow do
       get :step1
-      post :step1, action: :step1_submit
-      get :step2
-      post :step2, action: :step2_submit
-      get :step3
-      post :step3, action: :step3_submit
+      # post :step1, action: :step1_submit
+      # get :step2
+      # post :step2, action: :step2_submit
+      # get :step3
+      # post :step3, action: :step3_submit
     end
   end
 
