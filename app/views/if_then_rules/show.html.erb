@@ -23,6 +23,12 @@
         </p>
       </div>
 
+      <div>
+        <p class="tag bg-accent text-white inline">
+          <%= @if_then_rule.status %>
+        </p>
+      </div>
+
       <% if @if_then_rule.memo.present? %>
         <div class="pt-4 border-t">
           <h2 class="text-sm font-medium text-gray-500 mb-1">

@@ -20,6 +20,11 @@
           <p class="mb-4">
             <%= rule.then_action %>
           </p>
+          <div>
+            <p class="tag bg-accent text-white inline-block mr-2 px-2.5 py-0.5">
+              <%= rule.status %>
+            </p>
+          </div>
 
           <% if rule.memo.present? %>
             <p class="text-xs text-gray-400 mb-2">
