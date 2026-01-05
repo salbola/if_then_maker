@@ -8,8 +8,23 @@ Rails.application.routes.draw do
   get  "/login",  to: "user_sessions#new"
   post "/login",  to: "user_sessions#create"
   delete "/logout", to: "user_sessions#destroy"
-  # メモの作成機能->memos
+  # メモの機能->memos
   resources :memos
+  # ifthenの表示機能->if_then_rules
+  resources :if_then_rules, only: %i[ index show new create]
+  # ifthenの作成機能(ステップUI)->if_then_rules/flows
+  namespace :if_then_rules do
+    resource :flow do
+      get :step1
+      # post :step1, action: :step1_submit
+      # get :step2
+      # post :step2, action: :step2_submit
+      # get :step3
+      # post :step3, action: :step3_submit
+    end
+  end
+
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

@@ -1,0 +1,41 @@
+<main class="hero min-h-[70vh] bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-4xl font-bold">ステップ１-メモの選択</h1>
+
+<p class="mb-6 text-gray-600">
+  元にするメモを選択してください
+</p>
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <% @memos.each do |memo| %>
+    <div class="card bg-base-100 shadow-sm border">
+      <div class="card-body">
+        <h2 class="card-title text-base">
+          <%= memo.title %>
+        </h2>
+
+        <% if memo.body.present? %>
+          <p class="text-sm text-gray-500 line-clamp-3">
+            <%= memo.body %>
+          </p>
+        <% end %>
+
+        <div class="card-actions justify-end mt-4">
+          <%= link_to "このメモから作る",
+                      new_if_then_rule_path(memo_id: memo.id),
+                      class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+もしくは
+      <div class="mt-12 flex flex-col gap-3">
+        <%= link_to "新しくメモを作成する", new_memo_path, class:"btn btn-primary" %>
+      </div>
+
+    </div>
+  </div>
+</main>

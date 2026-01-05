@@ -1,0 +1,48 @@
+<h1 class="text-xl font-semibold mb-6">
+  If-Thenルール一覧
+</h1>
+
+<% if @if_then_rules.any? %>
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <% @if_then_rules.each do |rule| %>
+      <div class="card bg-base-100 border shadow-sm">
+        <div class="card-body">
+          <h2 class="text-sm font-medium text-gray-500">
+            IF
+          </h2>
+          <p class="mb-2">
+            <%= rule.if_condition %>
+          </p>
+
+          <h2 class="text-sm font-medium text-gray-500">
+            THEN
+          </h2>
+          <p class="mb-4">
+            <%= rule.then_action %>
+          </p>
+          <div>
+            <p class="tag bg-accent text-white inline-block mr-2 px-2.5 py-0.5">
+              <%= rule.status %>
+            </p>
+          </div>
+
+          <% if rule.memo.present? %>
+            <p class="text-xs text-gray-400 mb-2">
+              元メモ：<%= rule.memo.title.presence || "（無題）" %>
+            </p>
+          <% end %>
+
+          <div class="card-actions justify-end">
+            <%= link_to "詳細を見る",
+                        if_then_rule_path(rule),
+                        class: "btn btn-outline btn-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-gray-500">
+    まだIf-Thenルールはありません。
+  </p>
+<% end %>

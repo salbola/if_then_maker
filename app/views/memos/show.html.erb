@@ -29,8 +29,8 @@
 
     <!-- 習慣化ボタン -->
     <div>
-      <%= button_to "このメモを習慣にする",
-                    "#",
+      <%= link_to "このメモを習慣にする",
+                    new_if_then_rule_path(memo_id: @memo.id) ,
                     class: "btn btn-primary w-full" %>
     </div>
   </div>
