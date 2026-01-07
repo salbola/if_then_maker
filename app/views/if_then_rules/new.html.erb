@@ -7,7 +7,9 @@
   <p class="text-yellow-600">
     注意がありますが、保存できます。
   </p>
-
+  <% @if_then_rule_form.warnings.each do |warn_message|%>
+   <p class="text-yellow-600"> <%= warn_message %> </p>
+  <% end %>
   <%= hidden_field_tag :ignore_warnings, true %>
 <% end %>
   <%= f.hidden_field :memo_id %>
