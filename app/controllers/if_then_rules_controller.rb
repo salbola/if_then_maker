@@ -16,6 +16,8 @@ class IfThenRulesController < ApplicationController
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
 
     if @if_then_rule_form.save
+      puts "warningsを表示！！！！！！！！"
+      p @if_then_rule_form.warnings
       redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
     else
       p @if_then_rule_form.errors

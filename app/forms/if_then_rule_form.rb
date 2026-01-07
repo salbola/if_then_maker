@@ -40,10 +40,10 @@ class IfThenRuleForm
   end
 
 
-  private
+
   
   def build_warnings
     @warnings = []
-    @warnings += ["なんかエラーがあります"]
+    @warnings += ::IfConditionWarningChecker.check(if_condition)
   end
 end
