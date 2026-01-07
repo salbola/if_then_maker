@@ -6,28 +6,44 @@ class IfThenRuleForm
   attribute :if_condition, :string
   attribute :then_action, :string
 
-  validate :if_condition, :then_action, presence: true
+  validates :if_condition, :then_action, presence: true
   
   attr_reader :warnings
+  attr_reader :user
 
-  def initialize(attributes = {})
-    super
+  def initialize(attributes = {}, user:)
+    super(attributes)
     @warnings = []
+    @current_user = user
   end
 
   def valid?(context = nil)
     result = super
+    build_warnings
     result
   end
 
   def save
     return false unless valid?
 
-    IfThenRule.create!(
-      memo_id: memo_id,
+      record=@current_user.if_then_rules.create(
+      memo_id: 16,
       if_condition: if_condition,
       then_action: then_action
     )
+    if record.persisted?
+        true
+      else
+        false
+    end
+
   end
 
+
+  private
+  
+  def build_warnings
+    @warnings = []
+    @warnings += ["なんかエラーがあります"]
+  end
 end

@@ -2,7 +2,7 @@
   If-Thenルール作成
 </h1>
 
-<%= form_with model: @if_then_rule, class: "max-w-md space-y-6" do |f| %>
+<%= form_with model: @if_then_rule_form, url: if_then_rules_path,class: "max-w-md space-y-6" do |f| %>
   <%= f.hidden_field :memo_id %>
 
   <div class="form-control">

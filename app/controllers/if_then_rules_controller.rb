@@ -8,15 +8,17 @@ class IfThenRulesController < ApplicationController
   end
 
   def new
-  @if_then_rule = current_user.if_then_rules.build(memo_id: params[:memo_id])
+    @if_then_rule_form = IfThenRuleForm.new({memo_id: params[:memo_id]}, user: current_user)
   end
 
   def create
-    @if_then_rule = current_user.if_then_rules.build(if_then_rule_params)
+    
+    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
 
-    if @if_then_rule.save
-      redirect_to @if_then_rule, notice: "If-Thenルールを作成しました"
+    if @if_then_rule_form.save
+      redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
     else
+      p @if_then_rule_form.errors
       flash.now[:alert] = "If-Thenルールの作成が失敗しました"
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +27,7 @@ class IfThenRulesController < ApplicationController
   private
 
   def if_then_rule_params
-    params.require(:if_then_rule)
+    params.require(:if_then_rule_form)
           .permit(:memo_id, :if_condition, :then_action)
   end
 end
