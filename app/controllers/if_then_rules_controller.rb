@@ -15,17 +15,25 @@ class IfThenRulesController < ApplicationController
     
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
 
-    if @if_then_rule_form.valid? && (@if_then_rule_form.warnings.blank? || params[:commit_type] == "ignore_warnings")
-      @if_then_rule_form.save
-      redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
+    # if @if_then_rule_form.valid? && (@if_then_rule_form.warnings.blank? || params[:commit_type] == "ignore_warnings")
+    #   @if_then_rule_form.save
+    #   redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
 
-    else
-      p params[:ignore_warnings]
-      p @if_then_rule_form.errors
-      flash.now[:alert] = "If-Thenルールの作成が失敗しました"
+    # else
+    #   p params[:ignore_warnings]
+    #   p @if_then_rule_form.errors
+    #   flash.now[:alert] = "If-Thenルールの作成が失敗しました"
 
-      render :new, status: :unprocessable_entity
-    end
+    #   render :new, status: :unprocessable_entity
+    # end
+      if @if_then_rule_form.save(
+       ignore_warnings: params[:commit_type] == "ignore_warnings"
+     )
+    redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
+  else
+    flash.now[:alert] = "If-Thenルールの作成が失敗しました"
+    render :new, status: :unprocessable_entity
+  end
   end
 
   private

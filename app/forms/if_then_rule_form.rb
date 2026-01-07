@@ -23,15 +23,20 @@ class IfThenRuleForm
     result
   end
 
-  def save
-    return false unless valid?
+  def savable?(ignore_warnings: false)
+    valid? && (warnings.blank? || ignore_warnings)
+  end
+
+  def save(ignore_warnings: false)
+    return false unless savable?(ignore_warnings: ignore_warnings)
 
       record=@current_user.if_then_rules.create(
-      memo_id: 16,
+      memo_id: memo_id,
       if_condition: if_condition,
       then_action: then_action
     )
     if record.persisted?
+      #一応trueかfalseを返す形式に整えておく
         true
       else
         false
