@@ -50,5 +50,9 @@ class IfThenRuleForm
   def build_warnings
     @warnings = []
     @warnings += ::IfConditionWarningChecker.check(if_condition)
+    @warnings += ::IfConditionDuplicateChecker.check(
+      user: @current_user,
+      if_condition: if_condition
+    )
   end
 end
