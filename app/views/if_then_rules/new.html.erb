@@ -3,6 +3,13 @@
 </h1>
 
 <%= form_with model: @if_then_rule_form, url: if_then_rules_path,class: "max-w-md space-y-6" do |f| %>
+  <% if @if_then_rule_form.warnings.present? %>
+  <p class="text-yellow-600">
+    注意がありますが、保存できます。
+  </p>
+
+  <%= hidden_field_tag :ignore_warnings, true %>
+<% end %>
   <%= f.hidden_field :memo_id %>
 
   <div class="form-control">
@@ -20,7 +27,7 @@
   </div>
 
   <div class="pt-4">
-    <%= f.submit "作成する",
+    <%= f.submit @if_then_rule_form.warnings.present? ?  "無視して保存する" : "保存する",
                  class: "btn btn-primary w-full" %>
   </div>
 <% end %>

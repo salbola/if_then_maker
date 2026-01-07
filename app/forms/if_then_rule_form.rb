@@ -40,7 +40,7 @@ class IfThenRuleForm
   end
 
 
-
+  private
   
   def build_warnings
     @warnings = []

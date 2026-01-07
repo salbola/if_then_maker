@@ -15,13 +15,15 @@ class IfThenRulesController < ApplicationController
     
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
 
-    if @if_then_rule_form.save
-      puts "warningsを表示！！！！！！！！"
-      p @if_then_rule_form.warnings
+    if @if_then_rule_form.valid? && (@if_then_rule_form.warnings.blank? || params[:ignore_warnings])
+      @if_then_rule_form.save
       redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
+
     else
+      p params[:ignore_warnings]
       p @if_then_rule_form.errors
       flash.now[:alert] = "If-Thenルールの作成が失敗しました"
+
       render :new, status: :unprocessable_entity
     end
   end
