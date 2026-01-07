@@ -2,7 +2,16 @@
   If-Thenルール作成
 </h1>
 
-<%= form_with model: @if_then_rule, class: "max-w-md space-y-6" do |f| %>
+<%= form_with model: @if_then_rule_form, url: if_then_rules_path,class: "max-w-md space-y-6" do |f| %>
+  <% if @if_then_rule_form.warnings.present? %>
+  <p class="text-yellow-600">
+    注意がありますが、保存できます。
+  </p>
+  <% @if_then_rule_form.warnings.each do |warn_message|%>
+   <p class="text-yellow-600"> <%= warn_message %> </p>
+  <% end %>
+
+<% end %>
   <%= f.hidden_field :memo_id %>
 
   <div class="form-control">
@@ -19,8 +28,20 @@
                      placeholder: "例：コップ一杯の水を飲む" %>
   </div>
 
-  <div class="pt-4">
-    <%= f.submit "作成する",
+  <div class="pt-4 space-y-3">
+  <% if @if_then_rule_form.warnings.present? %>
+    <%= f.button "無視して保存する",
+                 name: "commit_type",
+                 value: "ignore_warnings",
                  class: "btn btn-primary w-full" %>
-  </div>
+
+    <%= f.button "もう一度確認する",
+                 name: "commit_type",
+                 value: "review",
+                 class: "btn btn-secondary w-full" %>
+  <% else %>
+    <%= f.button "保存する",
+                 class: "btn btn-primary w-full" %>
+  <% end %>
+</div>
 <% end %>
