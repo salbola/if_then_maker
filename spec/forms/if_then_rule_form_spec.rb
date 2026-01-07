@@ -39,7 +39,7 @@ RSpec.describe IfThenRuleForm, type: :model do
         expect(form.warnings).to eq([])
       end
     end
-    context "ifがおかしい場合" do 
+    context "ifがおかしい場合" do
       it "if_condition によくない文字'常に'があるとwarningsに追加される" do
         form = IfThenRuleForm.new(
           { if_condition: "常に", then_action: "水を飲む" },
@@ -51,7 +51,7 @@ RSpec.describe IfThenRuleForm, type: :model do
       it "if_condition に同じユーザーですでに同じものがあるとwarningsに追加される" do
         create(:if_then_rule, user: user, memo: memo, if_condition: "常に", then_action: "水を飲む")
         form = IfThenRuleForm.new(
-          { if_condition: "常に", then_action: "水を吐く"},
+          { if_condition: "常に", then_action: "水を吐く" },
           user: user
         )
         form.valid?
@@ -59,5 +59,4 @@ RSpec.describe IfThenRuleForm, type: :model do
       end
     end
   end
-
 end

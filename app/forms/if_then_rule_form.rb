@@ -7,7 +7,7 @@ class IfThenRuleForm
   attribute :then_action, :string
 
   validates :if_condition, :then_action, presence: true
-  
+
   attr_reader :warnings
   attr_reader :user
 
@@ -36,17 +36,16 @@ class IfThenRuleForm
       then_action: then_action
     )
     if record.persisted?
-      #一応trueかfalseを返す形式に整えておく
+        # 一応trueかfalseを返す形式に整えておく
         true
-      else
+    else
         false
     end
-
   end
 
 
   private
-  
+
   def build_warnings
     @warnings = []
     @warnings += ::IfConditionWarningChecker.check(if_condition)
