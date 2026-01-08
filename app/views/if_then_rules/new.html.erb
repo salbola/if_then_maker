@@ -22,12 +22,34 @@
                       placeholder: "例：朝7時に起きたら" %>
     </div>
 
+    <details class="mt-2 group">
+      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
+        <span class="transition-transform group-open:rotate-90">▶</span>
+        IFのヒント
+      </summary>
+
+      <div class="mt-2 text-sm text-gray-600 bg-red-50 p-3 rounded">
+        「いつ・どこで起きるか」が分かる条件にすると、気づきやすくなります。
+      </div>
+    </details>
+
     <div class="form-control">
       <%= f.label :then_action, "THEN（行動）", class: "label" %>
       <%= f.text_field :then_action,
                       class: "input input-bordered",
                       placeholder: "例：コップ一杯の水を飲む" %>
     </div>
+
+    <details class="mt-2 group">
+      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
+        <span class="transition-transform group-open:rotate-90">▶</span>
+        THENのヒント
+      </summary>
+
+      <div class="mt-2 text-sm text-gray-600 bg-green-50 p-3 rounded">
+        20秒以内に終わる最初の一歩に分けると、実行しやすくなります。
+      </div>
+    </details>
 
     <div class="pt-4 space-y-3">
     <% if @if_then_rule_form.warnings.present? %>
@@ -48,19 +70,7 @@
   <% end %>
 
 <div class="max-w-md mx-auto">
-<div class="mt-4 p-3 bg-gray-50 rounded text-sm text-gray-600">
-   <strong>💡  ヒント</strong><br>
- 具体的な「タイミング」や「状況」を入れると、気づきやすくなります。
-  <br>
-  （例：「朝7時に起きたら」「会社に着いたら」）
-</div>
 
-<div class="mt-4 p-3 bg-gray-50 rounded text-sm text-gray-600">
-   <strong>💡  ヒント</strong><br>
-  20秒以内にできる最初の一歩に分けると、実行しやすくなります。
-  <br>
-  （例：「勉強する」→「ノートを開く」）
-</div>
 <div class="mt-4 p-3 text-sm text-gray-700  bg-gray-50">
   <p class="font-semibold mb-2">✅  作成前にチェック</p>
 
