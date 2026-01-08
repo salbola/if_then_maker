@@ -17,10 +17,14 @@ class IfThenRulesController < ApplicationController
       if @if_then_rule_form.save(
        ignore_warnings: params[:commit_type] == "ignore_warnings"
      )
-    redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
+        redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
       else
-    flash.now[:alert] = "If-Thenルールの作成が失敗しました"
-    render :new, status: :unprocessable_entity
+        if @if_then_rule_form.valid? && @if_then_rule_form.warnings.present?
+          flash.now[:warning] = "改善できそうな点があります。内容を確認してみてください。"
+        elsif @if_then_rule_form.errors.any?
+          flash.now[:alert] = "入力内容に問題があります。"
+        end
+        render :new, status: :unprocessable_entity
       end
   end
 
