@@ -53,5 +53,6 @@ class IfThenRuleForm
       user: @current_user,
       if_condition: if_condition
     )
+    @warnings += ::ThenActionWarningChecker.check(then_action)
   end
 end
