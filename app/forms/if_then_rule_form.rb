@@ -6,7 +6,8 @@ class IfThenRuleForm
   attribute :if_condition, :string
   attribute :then_action, :string
 
-  validates :if_condition, :then_action, presence: true
+  validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }
+  validates :then_action, presence: { message: "THEN（行動）を入力してください" }
 
   attr_reader :warnings
   attr_reader :user
