@@ -20,9 +20,9 @@ class IfThenRulesController < ApplicationController
         redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
       else
         flash.now[:alert] = "入力内容に問題があります。" if @if_then_rule_form.errors.any?
-          
-        flash.now[:warning] = "改善できそうな点があります。内容を確認してみてください。"if @if_then_rule_form.warnings.any?
-          
+
+        flash.now[:warning] = "改善できそうな点があります。内容を確認してみてください。" if @if_then_rule_form.warnings.any?
+
         render :new, status: :unprocessable_entity
       end
   end
