@@ -1,15 +1,16 @@
+    <% if @if_then_rule_form.warnings.present? %>
+    <div class="max-w-md mx-auto space-y-2">
+      <% @if_then_rule_form.warnings.each do |warn_message|%>
+      <p class="text-yellow-600 bg-yellow-50"> <%= warn_message %> </p>
+      <% end %>
+    </div>
+    <% end %>
 
-  <h1 class="text-4xl font-semi-bold text-center">
+  <h1 class="text-4xl font-semi-bold text-center my-6">
     If-Thenルール作成
   </h1>
 
   <%= form_with model: @if_then_rule_form, url: if_then_rules_path,class: "max-w-md mx-auto space-y-6" do |f| %>
-    <% if @if_then_rule_form.warnings.present? %>
-      <% @if_then_rule_form.warnings.each do |warn_message|%>
-      <p class="text-yellow-600"> <%= warn_message %> </p>
-      <% end %>
-
-    <% end %>
     <%= f.hidden_field :memo_id %>
   <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
     <div class="form-control">
@@ -36,6 +37,7 @@
 
       <div class="mt-2 text-sm text-gray-600  p-3 rounded">
         💡  「いつ・どこで起きるか」が分かる条件にすると、気づきやすくなります。
+        （例：「朝7時に起きたら」「会社に着いたら」）
       </div>
     </details>
   </div>
@@ -59,7 +61,8 @@
       </summary>
 
       <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        💡  20秒以内に終わる最初の一歩に分けると、実行しやすくなります。
+        💡  20秒以内にできる最初の一歩に分けると、実行しやすくなります。
+        （例：「勉強する」→「ノートを開く」）
       </div>
     </details>
   </div>
@@ -84,7 +87,7 @@
 <div class="max-w-md mx-auto">
 
 <div class="mt-4 p-3 text-sm text-gray-700  bg-gray-50">
-  <p class="font-semibold mb-2">✅  作成前にチェック</p>
+  <p class="font-semibold mb-2">✅  thenに関して作成前にチェック(機能には影響しません)</p>
 
   <label class="flex items-center gap-2">
     <input type="checkbox">
