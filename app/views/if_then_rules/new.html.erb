@@ -68,15 +68,18 @@
   </div>
     <div class="pt-4 space-y-3">
     <% if @if_then_rule_form.warnings.present? %>
-      <%= f.button "無視して保存する",
-                  name: "commit_type",
-                  value: "ignore_warnings",
-                  class: "btn btn-primary w-full" %>
+      <% if @if_then_rule_form.errors.empty? %>
+        <%= f.button "無視して保存する",
+                    name: "commit_type",
+                    value: "ignore_warnings",
+                    class: "btn btn-primary w-full" %>
+      <% end %>
 
-      <%= f.button "もう一度確認する",
+      <%= f.button "もう一度確認して保存する",
                   name: "commit_type",
                   value: "review",
                   class: "btn btn-secondary w-full" %>
+
     <% else %>
       <%= f.button "保存する",
                   class: "btn btn-primary w-full" %>
