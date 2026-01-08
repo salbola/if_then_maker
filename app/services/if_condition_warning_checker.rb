@@ -35,11 +35,11 @@ class IfConditionWarningChecker
   "様子を見て" => "『様子を見て』は行動開始の条件が定義されていません。"
   }.freeze
 
-  def self.check(text)
-    return [] if text.blank?
+  def self.check(check_text)
+    return [] if check_text.blank?
 
-    WARNING_KEYWORDS.filter_map do |warning_keyword, warning_message|
-      warning_message if text.include?(warning_keyword)
+    WARNING_KEYWORDS.filter_map do |keyword, message|
+      message if check_text.include?(keyword)
     end
   end
 end
