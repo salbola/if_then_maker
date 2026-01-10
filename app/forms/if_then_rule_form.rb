@@ -11,11 +11,17 @@ class IfThenRuleForm
 
   attr_reader :warnings
   attr_reader :user
+  attr_reader :if_then_rule_of_model
 
-  def initialize(attributes = {}, user:)
+  def initialize(attributes = {}, user:, if_then_rule_of_model: nil)
     super(attributes)
     @warnings = []
-    @current_user = user
+    @if_then_rule_of_model = if_then_rule_of_model
+      if if_then_rule_of_model
+        self.memo_id      ||= if_then_rule_of_model.memo_id
+        self.if_condition ||= if_then_rule_of_model.if_condition
+        self.then_action  ||= if_then_rule_of_model.then_action
+      end
   end
 
   def valid?(context = nil)

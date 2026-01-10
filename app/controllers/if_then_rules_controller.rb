@@ -28,7 +28,9 @@ class IfThenRulesController < ApplicationController
   end
 
   def edit
-    @if_then_rule_form = IfThenRuleForm.new( user: current_user)
+    @if_then_rule = current_user.if_then_rules.find(params[:id])
+
+    @if_then_rule_form = IfThenRuleForm.new(user: current_user,if_then_rule_of_model: @if_then_rule )
   end
 
   def update
