@@ -27,6 +27,14 @@ class IfThenRulesController < ApplicationController
       end
   end
 
+  def edit
+    @if_then_rule_form = IfThenRuleForm.new( user: current_user)
+  end
+
+  def update
+    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
+  end
+
   private
 
   def if_then_rule_params
