@@ -5,7 +5,8 @@ class IfThenRuleForm
   attribute :memo_id, :integer
   attribute :if_condition, :string
   attribute :then_action, :string
-
+  attribute :status, :string
+  #モデルにおいてstatusはintだがenum
   validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }
   validates :then_action, presence: { message: "THEN（行動）を入力してください" }
 
@@ -49,6 +50,7 @@ class IfThenRuleForm
       self.memo_id      ||= if_then_rule_of_model.memo_id
       self.if_condition ||= if_then_rule_of_model.if_condition
       self.then_action  ||= if_then_rule_of_model.then_action
+      self.status  ||= if_then_rule_of_model.status
   end
 
 
@@ -79,7 +81,8 @@ class IfThenRuleForm
     @if_then_rule_of_model.update(
       memo_id: memo_id,
       if_condition: if_condition,
-      then_action: then_action
+      then_action: then_action,
+      status: status
     )
   end
 end

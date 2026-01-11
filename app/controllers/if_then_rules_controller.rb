@@ -49,6 +49,6 @@ class IfThenRulesController < ApplicationController
 
   def if_then_rule_params
     params.require(:if_then_rule_form)
-          .permit(:memo_id, :if_condition, :then_action)
+          .permit(:memo_id, :if_condition, :then_action, :status)
   end
 end
