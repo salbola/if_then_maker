@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # メモの機能->memos
   resources :memos
   # ifthenの表示機能->if_then_rules
-  resources :if_then_rules, only: %i[ index show new create edit update]
+  resources :if_then_rules, only: %i[ index show new create edit update destroy]
   # ifthenの作成機能(ステップUI)->if_then_rules/flows
   namespace :if_then_rules do
     resource :flow do

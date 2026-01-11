@@ -45,6 +45,11 @@ class IfThenRulesController < ApplicationController
     end
   end
 
+  def destroy
+  current_user.if_then_rules.find(params[:id]).destroy!
+  redirect_to if_then_rules_path, notice: "If-Thenルールを削除しました", status: :see_other
+  end
+
   private
 
   def if_then_rule_params
