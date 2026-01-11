@@ -28,6 +28,11 @@
           <%= @if_then_rule.status %>
         </p>
       </div>
+      <div class="card-actions justify-end">
+            <%= link_to "編集をする",
+                        edit_if_then_rule_path(@if_then_rule),
+                        class: "btn btn-outline btn-sm" %>
+      </div>
 
       <% if @if_then_rule.memo.present? %>
         <div class="pt-4 border-t">
