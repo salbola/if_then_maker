@@ -31,10 +31,13 @@ class IfThenRulesController < ApplicationController
     @if_then_rule = current_user.if_then_rules.find(params[:id])
 
     @if_then_rule_form = IfThenRuleForm.new(user: current_user,if_then_rule_of_model: @if_then_rule )
+    @if_then_rule_form.apply_model_to_form
   end
 
   def update
-    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
+    @if_then_rule = current_user.if_then_rules.find(params[:id])
+    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user,if_then_rule_of_model: @if_then_rule)
+
   end
 
   private

@@ -17,11 +17,7 @@ class IfThenRuleForm
     super(attributes)
     @warnings = []
     @if_then_rule_of_model = if_then_rule_of_model
-      if if_then_rule_of_model
-        self.memo_id      ||= if_then_rule_of_model.memo_id
-        self.if_condition ||= if_then_rule_of_model.if_condition
-        self.then_action  ||= if_then_rule_of_model.then_action
-      end
+
   end
 
   def valid?(context = nil)
@@ -43,11 +39,14 @@ class IfThenRuleForm
       then_action: then_action
     )
     if record.persisted?
-        # 一応trueかfalseを返す形式に整えておく
-        true
-    else
-        false
-    end
+  end
+
+  def apply_model_to_form
+      #モデルが渡されている場合は属性の値入っていなければモデルのものになる(edit表示用にコントローラーで使う)
+      return false unless @if_then_rule_of_model
+      self.memo_id      ||= if_then_rule_of_model.memo_id
+      self.if_condition ||= if_then_rule_of_model.if_condition
+      self.then_action  ||= if_then_rule_of_model.then_action
   end
 
 
