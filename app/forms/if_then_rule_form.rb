@@ -17,7 +17,7 @@ class IfThenRuleForm
     super(attributes)
     @warnings = []
     @if_then_rule_of_model = if_then_rule_of_model
-
+    @current_user = user
   end
 
   def valid?(context = nil)
@@ -33,12 +33,14 @@ class IfThenRuleForm
   def save(ignore_warnings: false)
     return false unless savable?(ignore_warnings: ignore_warnings)
 
-      record=@current_user.if_then_rules.create(
-      memo_id: memo_id,
-      if_condition: if_condition,
-      then_action: then_action
-    )
-    if record.persisted?
+    if @if_then_rule_of_model
+      #モデルが渡されている場合はeditからの文脈なのでupdateの処理
+      update_rule
+    else
+      #モデルが渡されてない場合はnewからの文脈なのでupdateの処理
+      create_rule
+  end
+    
   end
 
   def apply_model_to_form
@@ -60,5 +62,22 @@ class IfThenRuleForm
       if_condition: if_condition
     )
     @warnings += ::ThenActionWarningChecker.check(then_action)
+  end
+
+  def create_rule
+      record = @current_user.if_then_rules.create(
+      memo_id: memo_id,
+      if_condition: if_condition,
+      then_action: then_action
+    )
+     record.persisted?
+  end
+
+  def update_rule
+    @if_then_rule_of_model.update(
+      memo_id: memo_id,
+      if_condition: if_condition,
+      then_action: then_action
+    )
   end
 end
