@@ -9,6 +9,20 @@ module ApplicationHelper
   end
 
   def if_then_rule_board_view(rule_object)
-    "もし#{rule_object.if_condition}なら#{rule_object.then_action}する"
+    "もし#{rule_object.if_condition}なら#{rule_object.then_action}"
   end
+
+  #今後以下のような表現方法を切り替える機能があると良いかもしれない
+  # def if_then_rule_board_view(rule, style: :default)
+  # case style
+  # when :default
+  #   "もし#{rule.if_condition}なら、#{rule.then_action}"
+  # when :monologue
+  #   "#{rule.if_condition}になったら、#{rule.then_action}しよう"
+  # when :question
+  #   "#{rule.if_condition}のとき、#{rule.then_action}する？"
+  # end
+  # end
+
+
 end
