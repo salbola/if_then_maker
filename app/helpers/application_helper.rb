@@ -10,8 +10,8 @@ module ApplicationHelper
 
   def if_then_rule_board_view(rule)
     safe_join([
-      tag.span(rule.if_condition, class: "font-semibold"),
-      tag.span(rule.then_action, class: "font-semibold text-primary")
+      tag.p(rule.if_condition, class: "font-semibold"),
+      tag.p(rule.then_action, class: "font-semibold text-primary mt-4")
     ])
   end
 
