@@ -7,4 +7,8 @@ module ApplicationHelper
     else "alert-info"
     end
   end
+
+  def if_then_rule_board_view(rule_object)
+    "もし#{rule_object.if_condition}なら#{rule_object.then_action}する"
+  end
 end
