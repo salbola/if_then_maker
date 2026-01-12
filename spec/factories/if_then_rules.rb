@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :if_then_rule do
-    if_condition { "test_condition" }
+    sequence(:if_condition) { |n| "test_condition_#{n}" }
     then_action { "test_action" }
   end
 end
