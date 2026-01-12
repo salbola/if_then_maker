@@ -14,9 +14,7 @@ class IfThenRulesController < ApplicationController
   def create
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
 
-      if @if_then_rule_form.save(
-       ignore_warnings: params[:commit_type] == "ignore_warnings"
-     )
+      if @if_then_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
         redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
       else
         flash.now[:alert] = "入力内容に問題があります。" if @if_then_rule_form.errors.any?
@@ -27,10 +25,35 @@ class IfThenRulesController < ApplicationController
       end
   end
 
+  def edit
+    @if_then_rule = current_user.if_then_rules.find(params[:id])
+
+    @if_then_rule_form = IfThenRuleForm.new(user: current_user, if_then_rule_of_model: @if_then_rule)
+    @if_then_rule_form.apply_model_to_form
+  end
+
+  def update
+    @if_then_rule = current_user.if_then_rules.find(params[:id])
+    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user, if_then_rule_of_model: @if_then_rule)
+
+    if @if_then_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
+      redirect_to if_then_rule_path(@if_then_rule), notice: "If-Thenルールを編集しました"
+    else
+      flash.now[:alert]  = "入力内容に問題があります。" if @if_then_rule_form.errors.any?
+      flash.now[:warning] = "改善できそうな点があります。" if @if_then_rule_form.warnings.any?
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+  current_user.if_then_rules.find(params[:id]).destroy!
+  redirect_to if_then_rules_path, notice: "If-Thenルールを削除しました", status: :see_other
+  end
+
   private
 
   def if_then_rule_params
     params.require(:if_then_rule_form)
-          .permit(:memo_id, :if_condition, :then_action)
+          .permit(:memo_id, :if_condition, :then_action, :status)
   end
 end
