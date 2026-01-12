@@ -28,14 +28,14 @@ class IfThenRulesController < ApplicationController
   def edit
     @if_then_rule = current_user.if_then_rules.find(params[:id])
 
-    @if_then_rule_form = IfThenRuleForm.new(user: current_user,if_then_rule_of_model: @if_then_rule )
+    @if_then_rule_form = IfThenRuleForm.new(user: current_user, if_then_rule_of_model: @if_then_rule)
     @if_then_rule_form.apply_model_to_form
   end
 
   def update
     @if_then_rule = current_user.if_then_rules.find(params[:id])
-    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user,if_then_rule_of_model: @if_then_rule)
-    
+    @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user, if_then_rule_of_model: @if_then_rule)
+
     if @if_then_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
       redirect_to if_then_rule_path(@if_then_rule), notice: "If-Thenルールを編集しました"
     else

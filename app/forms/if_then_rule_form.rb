@@ -6,7 +6,7 @@ class IfThenRuleForm
   attribute :if_condition, :string
   attribute :then_action, :string
   attribute :status, :string
-  #モデルにおいてstatusはintだがenum
+  # モデルにおいてstatusはintだがenum
   validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }
   validates :then_action, presence: { message: "THEN（行動）を入力してください" }
 
@@ -35,17 +35,16 @@ class IfThenRuleForm
     return false unless savable?(ignore_warnings: ignore_warnings)
 
     if @if_then_rule_of_model
-      #モデルが渡されている場合はeditからの文脈なのでupdateの処理
+      # モデルが渡されている場合はeditからの文脈なのでupdateの処理
       update_rule
     else
-      #モデルが渡されてない場合はnewからの文脈なのでupdateの処理
+      # モデルが渡されてない場合はnewからの文脈なのでupdateの処理
       create_rule
-  end
-    
+    end
   end
 
   def apply_model_to_form
-      #モデルが渡されている場合は属性の値入っていなければモデルのものになる(edit表示用にコントローラーで使う)
+      # モデルが渡されている場合は属性の値入っていなければモデルのものになる(edit表示用にコントローラーで使う)
       return false unless @if_then_rule_of_model
       self.memo_id      = if_then_rule_of_model.memo_id
       self.if_condition = if_then_rule_of_model.if_condition
@@ -62,7 +61,7 @@ class IfThenRuleForm
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
-      #編集時=>モデルが渡されている時=>@if_then_rule_of_modelがある時はそのidを無視するため
+      # 編集時=>モデルが渡されている時=>@if_then_rule_of_modelがある時はそのidを無視するため
       exclude_id: @if_then_rule_of_model&.id
     )
     @warnings += ::ThenActionWarningChecker.check(then_action)

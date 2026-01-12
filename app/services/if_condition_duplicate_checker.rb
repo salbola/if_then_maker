@@ -3,7 +3,7 @@ class IfConditionDuplicateChecker
     return [] if if_condition.blank?
 
     scope = user.if_then_rules.where(if_condition: if_condition)
-    #無視するべきIDを取り除く
+    # 無視するべきIDを取り除く
     scope = scope.where.not(id: exclude_id) if exclude_id
 
     if scope.exists?
