@@ -47,10 +47,10 @@ class IfThenRuleForm
   def apply_model_to_form
       #モデルが渡されている場合は属性の値入っていなければモデルのものになる(edit表示用にコントローラーで使う)
       return false unless @if_then_rule_of_model
-      self.memo_id      ||= if_then_rule_of_model.memo_id
-      self.if_condition ||= if_then_rule_of_model.if_condition
-      self.then_action  ||= if_then_rule_of_model.then_action
-      self.status  ||= if_then_rule_of_model.status
+      self.memo_id      = if_then_rule_of_model.memo_id
+      self.if_condition = if_then_rule_of_model.if_condition
+      self.then_action  = if_then_rule_of_model.then_action
+      self.status  = if_then_rule_of_model.status
   end
 
 
