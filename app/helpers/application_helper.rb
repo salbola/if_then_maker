@@ -8,8 +8,11 @@ module ApplicationHelper
     end
   end
 
-  def if_then_rule_board_view(rule_object)
-    "もし#{rule_object.if_condition}なら#{rule_object.then_action}"
+  def if_then_rule_board_view(rule)
+    safe_join([
+      tag.span(rule.if_condition, class: "font-semibold"),
+      tag.span(rule.then_action, class: "font-semibold text-primary")
+    ])
   end
 
   #今後以下のような表現方法を切り替える機能があると良いかもしれない
