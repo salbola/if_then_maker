@@ -9,6 +9,7 @@ class IfThenRulesController < ApplicationController
 
   def new
     @if_then_rule_form = IfThenRuleForm.new({ memo_id: params[:memo_id] }, user: current_user)
+    @active_if_then_rules = current_user.if_then_rules.active
   end
 
   def create
