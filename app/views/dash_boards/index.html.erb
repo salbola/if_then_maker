@@ -10,12 +10,18 @@
         </h2>
 
         <div class="space-y-2">
-          <% @if_then_rules.each do |rule| %>
+          <% @if_then_rules.active.each do |rule| %>
             <div class="card bg-base-100 shadow border border-base-300 p-4">
               <%= if_then_rule_board_view(rule) %>
             </div>
           <% end %>
         </div>
+        <p class="text-sm text-gray-500 mb-2">
+          実行中 <span class="font-normal"><%= "#{@if_then_rules.active.length} / #{@if_then_rules.length}" %></span>
+        </p>
+        <p class="text-sm text-gray-500 mb-2">
+          完了済み <span class="font-normal"><%= "#{@if_then_rules.done.length} / #{@if_then_rules.length}" %></span>
+        </p>
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
       <% end %>
