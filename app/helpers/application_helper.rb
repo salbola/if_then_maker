@@ -15,7 +15,7 @@ module ApplicationHelper
     ])
   end
 
-  #今後以下のような表現方法を切り替える機能があると良いかもしれない
+  # 今後以下のような表現方法を切り替える機能があると良いかもしれない
   # def if_then_rule_board_view(rule, style: :default)
   # case style
   # when :default
@@ -26,6 +26,4 @@ module ApplicationHelper
   #   "#{rule.if_condition}のとき、#{rule.then_action}する？"
   # end
   # end
-
-
 end
