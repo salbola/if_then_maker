@@ -14,13 +14,12 @@ module ApplicationHelper
       tag.p(rule.then_action, class: "font-semibold text-primary mt-4")
     ])
   end
-#新規作成でその時のactiveなルールの個数でステータスのフォームとしてのデフォルト値を変える
-  def change_default_status(active_if_then_rules,setted_status:nil)
-    #もしすでに設定済みの値があればそれを返す(warningやerrorによる再表示用)
+  # 新規作成でその時のactiveなルールの個数でステータスのフォームとしてのデフォルト値を変える
+  def change_default_status(active_if_then_rules, setted_status: nil)
+    # もしすでに設定済みの値があればそれを返す(warningやerrorによる再表示用)
     return setted_status if setted_status
-    #activeなルールの個数が3つ以上あれば初期値をdraftにする
+    # activeなルールの個数が3つ以上あれば初期値をdraftにする
     active_if_then_rules.length >= 3 ? "draft" : "active"
-
   end
 
   # 今後以下のような表現方法を切り替える機能があると良いかもしれない
