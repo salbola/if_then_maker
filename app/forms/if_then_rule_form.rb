@@ -72,7 +72,8 @@ class IfThenRuleForm
       record = @current_user.if_then_rules.create(
       memo_id: memo_id,
       if_condition: if_condition,
-      then_action: then_action
+      then_action: then_action,
+      status: status
     )
      record.persisted?
   end
