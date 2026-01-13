@@ -17,10 +17,7 @@
           <% end %>
         </div>
         <p class="text-sm text-gray-500 mb-2">
-          実行中 <span class="font-normal"><%= "#{@if_then_rules.active.length} / #{@if_then_rules.length}" %></span>
-        </p>
-        <p class="text-sm text-gray-500 mb-2">
-          完了済み <span class="font-normal"><%= "#{@if_then_rules.done.length} / #{@if_then_rules.length}" %></span>
+          完了済み <span class="font-normal"><%= "#{@if_then_rules.done.length} " %></span>
         </p>
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
