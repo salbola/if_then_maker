@@ -1,17 +1,21 @@
 <main class="hero min-h-[70vh] bg-base-200">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-4xl font-bold">ダッシュボード</h1>
+      <h1 class="text-4xl font-bold mb-4">ダッシュボード</h1>
 
 
       <% if @if_then_rules.any? %>
-        <ul class="list bg-base-100 rounded-box shadow my-6">
+        <h2 class="text-lg font-bold ">
+          今日のルール
+        </h2>
+
+        <div class="space-y-2">
           <% @if_then_rules.each do |rule| %>
-            <li class="list-row">
+            <div class="card bg-base-100 shadow border border-base-300 p-4">
               <%= if_then_rule_board_view(rule) %>
-            </li>
+            </div>
           <% end %>
-        </ul>
+        </div>
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
       <% end %>
