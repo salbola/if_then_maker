@@ -93,11 +93,11 @@ end
           {
             memo_id: memo.id,
             if_condition: "朝起きたら",
-            then_action: "水を飲む"
+            then_action: "水を飲む",
+            status: :active
           },
           user: user
         )
-
         expect {
           form.save
         }.to change { user.if_then_rules.count }.by(1)
@@ -110,7 +110,8 @@ end
           {
             memo_id: memo.id,
             if_condition: "",
-            then_action: "水を飲む"
+            then_action: "水を飲む",
+            status: :active
           },
           user: user
         )
@@ -125,7 +126,8 @@ end
           {
             memo_id: memo.id,
             if_condition: "常に",
-            then_action: "水を飲む"
+            then_action: "水を飲む",
+            status: :active
           },
           user: user
         )
@@ -138,7 +140,8 @@ end
           {
             memo_id: memo.id,
             if_condition: "常に",
-            then_action: "水を飲む"
+            then_action: "水を飲む",
+            status: :active
           },
           user: user
         )
