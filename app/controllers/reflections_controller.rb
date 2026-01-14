@@ -5,7 +5,7 @@ class ReflectionsController < ApplicationController
     reflection = rule.reflections.find_or_create_by!(
       user: current_user,
       reflected_on: Date.current
-
-    redirect_to :dash_boards
+    )
+    redirect_back fallback_location: dash_boards_path
   end
 end
