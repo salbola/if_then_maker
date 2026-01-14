@@ -13,12 +13,16 @@
           <% @if_then_rules.active.each do |rule| %>
             <div class="card bg-base-100 shadow border border-base-300 p-4">
               <%= if_then_rule_board_view(rule) %>
+              <%= button_to "✔️",
+                if_then_rule_reflections_path(rule),
+                method: :post,
+                class: "btn btn-sm btn-outline" %>
             </div>
           <% end %>
         </div>
-        <p class="text-sm text-gray-500 mb-2">
+        <!--<p class="text-sm text-gray-500 mb-2">
           完了済み <span class="font-normal"><%= "#{@if_then_rules.done.length} " %></span>
-        </p>
+        </p>-->
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
       <% end %>
