@@ -7,7 +7,7 @@ class CreateReflections < ActiveRecord::Migration[7.2]
 
       t.timestamps
 
-      t.index [:user_id, :if_then_rule_id, :reflected_on],
+      t.index [ :user_id, :if_then_rule_id, :reflected_on ],
       unique: true,
       name: "index_reflections_on_user_rule_and_date"
     end
