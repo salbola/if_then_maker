@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_30_032926) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_14_062507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_30_032926) do
     t.index ["user_id"], name: "index_memos_on_user_id"
   end
 
+  create_table "reflections", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "if_then_rule_id", null: false
+    t.date "reflected_on", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["if_then_rule_id"], name: "index_reflections_on_if_then_rule_id"
+    t.index ["user_id", "if_then_rule_id", "reflected_on"], name: "index_reflections_on_user_rule_and_date", unique: true
+    t.index ["user_id"], name: "index_reflections_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -47,4 +58,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_30_032926) do
   add_foreign_key "if_then_rules", "memos"
   add_foreign_key "if_then_rules", "users"
   add_foreign_key "memos", "users"
+  add_foreign_key "reflections", "if_then_rules"
+  add_foreign_key "reflections", "users"
 end
