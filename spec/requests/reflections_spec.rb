@@ -4,7 +4,7 @@ RSpec.describe "Reflections", type: :request do
   let(:memo) { create(:memo, user: user) }
   let(:rule) { create(:if_then_rule, user: user, memo: memo, status: 1) }
   include LoginHelper
-  before {login_as(user)}
+  before { login_as(user) }
 
   it "チェックボタンで今日の日付でreflectionが作成できる" do
     expect {
