@@ -22,6 +22,7 @@
                 method: :post,
                 class: "btn btn-sm btn-outline" %>
               <% end %>
+              
             </div>
           <% end %>
         </div>
@@ -32,7 +33,24 @@
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
       <% end %>
 
-      
+
+      <div>
+        <%= "今日やったルールの数:#{@if_then_rules.active.count}" %>
+      </div>
+<% total = @if_then_rules.active.count %>
+<% done  = @if_then_rules.active.count(&:reflected_today?) %>
+<% percent = total.zero? ? 0 : (done * 100 / total) %>
+
+<div class="w-full bg-gray-300 rounded-full h-2 mt-2">
+  <div
+    class="bg-primary h-2 rounded-full transition-all"
+    style="width: <%= percent %>%">
+  </div>
+</div>
+
+<p class="text-xs text-gray-500 mt-1">
+  <%= done %> / <%= total %>
+</p>
 
       <div class="mt-12 flex flex-col gap-3">
         <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
