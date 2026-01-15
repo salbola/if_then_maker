@@ -13,10 +13,15 @@
           <% @if_then_rules.active.each do |rule| %>
             <div class="card bg-base-100 shadow border border-base-300 p-4">
               <%= if_then_rule_board_view(rule) %>
+              <% if rule.reflected_today? %>
+                <p>完了！</p>
+
+              <% else %>
               <%= button_to "✔️",
                 if_then_rule_reflections_path(rule),
                 method: :post,
                 class: "btn btn-sm btn-outline" %>
+              <% end %>
             </div>
           <% end %>
         </div>

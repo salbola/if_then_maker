@@ -42,4 +42,28 @@ RSpec.describe IfThenRule, type: :model do
       expect(if_then_rule.errors[:status]).to include("can't be blank")
     end
   end
+
+  describe "#reflected_today?メソッドの確認" do
+    let(:rule) { create(:if_then_rule, user: user, memo: memo) }
+
+    context "今日のreflectionがある場合" do
+      before do
+        create(:reflection,
+          user: user,
+          if_then_rule: rule,
+          reflected_on: Date.current
+        )
+      end
+
+      it "trueを返す" do
+        expect(rule.reflected_today?).to be true
+      end
+    end
+
+    context "今日のreflectionがない場合" do
+      it "falseを返す" do
+        expect(rule.reflected_today?).to be false
+      end
+    end
+  end
 end
