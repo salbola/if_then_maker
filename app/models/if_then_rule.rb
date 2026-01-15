@@ -7,4 +7,8 @@ class IfThenRule < ApplicationRecord
   validates :if_condition, presence: true, if: :active?
   validates :then_action, presence: true, if: :active?
   validates :status, presence: true
+
+  def reflected_today?
+  reflections.exists?(reflected_on: Date.current)
+  end
 end
