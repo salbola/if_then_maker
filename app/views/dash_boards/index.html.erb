@@ -14,7 +14,7 @@
             <div class="card bg-base-100 shadow border border-base-300 p-4">
               <%= if_then_rule_board_view(rule) %>
               <% if rule.reflected_today? %>
-                <p>完了！</p>
+                <p>完了済み！</p>
 
               <% else %>
               <%= button_to "✔️",
