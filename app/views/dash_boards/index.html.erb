@@ -35,7 +35,7 @@
 
 
       <div>
-        <%= "今日やったルールの数:#{@if_then_rules.active.count}" %>
+        <%= "今日やったルールの数:#{@if_then_rules.active.count(&:reflected_today?)}" %>
       </div>
 <% total = @if_then_rules.active.count %>
 <% done  = @if_then_rules.active.count(&:reflected_today?) %>
