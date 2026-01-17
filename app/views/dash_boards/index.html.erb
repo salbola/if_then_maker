@@ -1,13 +1,11 @@
 <main class="hero min-h-[70vh] bg-base-200">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-4xl font-bold mb-4">ダッシュボード</h1>
 
 
       <% if @if_then_rules.any? %>
-        <h2 class="text-lg font-bold ">
-          今日のルール
-        </h2>
+        <h1 class="text-4xl font-bold mb-4">今日のルール</h1>
+
 
         <div class="space-y-2">
           <% @if_then_rules.active.each do |rule| %>
