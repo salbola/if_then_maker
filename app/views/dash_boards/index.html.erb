@@ -10,6 +10,7 @@
         <div class="space-y-2">
           <% @if_then_rules.active.each do |rule| %>
             <div class="card bg-base-100 shadow border border-base-300 p-4">
+                <%= link_to "✏️", edit_if_then_rule_path(rule), class: "btn btn-outline  btn-sm " %>
               <%= if_then_rule_board_view(rule) %>
               <% if rule.reflected_today? %>
                 <p>完了済み！</p>
@@ -24,9 +25,7 @@
             </div>
           <% end %>
         </div>
-        <!--<p class="text-sm text-gray-500 mb-2">
-          完了済み <span class="font-normal"><%= "#{@if_then_rules.done.length} " %></span>
-        </p>-->
+
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
       <% end %>
