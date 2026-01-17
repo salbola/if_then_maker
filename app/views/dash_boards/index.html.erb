@@ -35,24 +35,11 @@
             </div>
           <% end %>
         </div>
+
         <!-- カードの下の今日やったルールなどの集計表示 -->
-              <div>
-        <%= "今日やったルールの数:#{@if_then_rules.active.count(&:reflected_today?)}" %>
-      </div>
-<% total = @if_then_rules.active.count %>
-<% done  = @if_then_rules.active.count(&:reflected_today?) %>
-<% percent = total.zero? ? 0 : (done * 100 / total) %>
+        <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
 
-<div class="w-full bg-gray-300 rounded-full h-2 mt-2">
-  <div
-    class="bg-primary h-2 rounded-full transition-all"
-    style="width: <%= percent %>%">
-  </div>
-</div>
 
-<p class="text-xs text-gray-500 mt-1">
-  <%= done %> / <%= total %>
-</p>
 
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
