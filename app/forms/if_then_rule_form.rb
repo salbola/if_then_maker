@@ -56,12 +56,12 @@ class IfThenRuleForm
   private
 
   def build_warnings
+    # 編集時と新規作成で挙動が変化するものは編集前の元のルールである@if_then_rule_of_modelを渡す。
     @warnings = []
     @warnings += ::IfConditionWarningChecker.check(if_condition)
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
-      # 編集時=>モデルが渡されている時=>@if_then_rule_of_modelがある時はそのidを無視するため
       exclude_id: @if_then_rule_of_model&.id
     )
     @warnings += ::ThenActionWarningChecker.check(then_action)
