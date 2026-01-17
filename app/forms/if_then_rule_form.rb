@@ -65,7 +65,7 @@ class IfThenRuleForm
       exclude_id: @if_then_rule_of_model&.id
     )
     @warnings += ::ThenActionWarningChecker.check(then_action)
-    @warnings += add_active_limit_warning
+    @warnings += ::ActiveLimitWarningChecker.check(user:@current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 
   def create_rule
@@ -86,18 +86,4 @@ class IfThenRuleForm
       status: status
     )
   end
-
-  def add_active_limit_warning
-  return [] unless status == "active"
-
-  # 編集時：元々が active ならスキップ(activeのレコードの時にactiveを送信することによる意図しないwarningの発生を防ぐ)
-
-    return [] if  @if_then_rule_of_model&.status == "active"
-
-
-  active_count = @current_user.if_then_rules.active.count
-  return [] unless active_count >= 3
-
-  [{field: :status, message: "実行中（active）のルールがすでに3つあります。負担が大きくなっていないか確認してみてください。"}]
-end
 end
