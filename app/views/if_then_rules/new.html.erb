@@ -81,10 +81,19 @@
    <%= f.label :status, "状態", class: "label" %>
    <%= f.select :status, [ ["実行中", "active"],["下書き", "draft"]], {selected: change_default_status(@active_if_then_rules,setted_status:@if_then_rule_form.status)} %>
 
+
+<% if @if_then_rule_form.warnings.any? %>
+        <% @if_then_rule_form.warnings
+            .filter { |w| w[:field] == :status }
+            .each do |warning| %>
+          <p class="text-yellow-600 text-sm">
+            <%= warning[:message] %>
+          </p>
+        <% end %>
+      <% end %>
    <p class="text-sm text-gray-500 mt-1">
   現在、実行中のルールは <%= @active_if_then_rules.length %> 件です
 </p>
-
     <div class="pt-4 space-y-3">
     <% if @if_then_rule_form.warnings.present? %>
       <% if @if_then_rule_form.errors.empty? %>
