@@ -1,0 +1,29 @@
+<!--ダッシュボードで使用する今日のルール一覧のパーシャル-->
+<div class="space-y-2">
+  <% rules.active.each do |rule| %>
+    <div class="card bg-base-100 shadow border border-base-300">
+      <!-- header -->
+      <div class="flex justify-end px-4 pt-2">
+        <%= link_to "✏️",
+          edit_if_then_rule_path(rule),
+          class: "btn btn-ghost btn-sm btn-circle"
+        %>
+      </div>
+
+      <!-- body -->
+      <div class="px-4 pb-4 space-y-2">
+        <%= if_then_rule_board_view(rule) %>
+
+        <% if rule.reflected_today? %>
+          <p>完了済み！</p>
+        <% else %>
+          <%= button_to "✔️",
+            if_then_rule_reflections_path(rule),
+            method: :post,
+            class: "btn btn-sm btn-outline"
+          %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,56 +1,23 @@
 <main class="hero min-h-[70vh] bg-base-200">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-4xl font-bold mb-4">ダッシュボード</h1>
 
 
-      <% if @if_then_rules.any? %>
-        <h2 class="text-lg font-bold ">
-          今日のルール
-        </h2>
+      <% if @if_then_rules.active.any? %>
+        <h1 class="text-4xl font-bold mb-4">今日のルール</h1>
+        <!--今日のルール一覧-->
+        <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
+        <!-- カードの下の今日やったルールなどの集計表示 -->
+        <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
 
-        <div class="space-y-2">
-          <% @if_then_rules.active.each do |rule| %>
-            <div class="card bg-base-100 shadow border border-base-300 p-4">
-              <%= if_then_rule_board_view(rule) %>
-              <% if rule.reflected_today? %>
-                <p>完了済み！</p>
 
-              <% else %>
-              <%= button_to "✔️",
-                if_then_rule_reflections_path(rule),
-                method: :post,
-                class: "btn btn-sm btn-outline" %>
-              <% end %>
-              
-            </div>
-          <% end %>
-        </div>
-        <!--<p class="text-sm text-gray-500 mb-2">
-          完了済み <span class="font-normal"><%= "#{@if_then_rules.done.length} " %></span>
-        </p>-->
+
       <% else %>
         <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
       <% end %>
 
 
-      <div>
-        <%= "今日やったルールの数:#{@if_then_rules.active.count(&:reflected_today?)}" %>
-      </div>
-<% total = @if_then_rules.active.count %>
-<% done  = @if_then_rules.active.count(&:reflected_today?) %>
-<% percent = total.zero? ? 0 : (done * 100 / total) %>
 
-<div class="w-full bg-gray-300 rounded-full h-2 mt-2">
-  <div
-    class="bg-primary h-2 rounded-full transition-all"
-    style="width: <%= percent %>%">
-  </div>
-</div>
-
-<p class="text-xs text-gray-500 mt-1">
-  <%= done %> / <%= total %>
-</p>
 
       <div class="mt-12 flex flex-col gap-3">
         <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
