@@ -5,37 +5,8 @@
 
       <% if @if_then_rules.active.any? %>
         <h1 class="text-4xl font-bold mb-4">今日のルール</h1>
-
-
-        <div class="space-y-2">
-          <% @if_then_rules.active.each do |rule| %>
-            <div class="card bg-base-100 shadow border border-base-300">
-              <!-- header -->
-              <div class="flex justify-end px-4 pt-2">
-                <%= link_to "✏️",
-                  edit_if_then_rule_path(rule),
-                  class: "btn btn-ghost btn-sm btn-circle"
-                %>
-              </div>
-
-              <!-- body -->
-              <div class="px-4 pb-4 space-y-2">
-                <%= if_then_rule_board_view(rule) %>
-
-                <% if rule.reflected_today? %>
-                  <p>完了済み！</p>
-                <% else %>
-                  <%= button_to "✔️",
-                    if_then_rule_reflections_path(rule),
-                    method: :post,
-                    class: "btn btn-sm btn-outline"
-                  %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
+        <!--今日のルール一覧-->
+        <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
         <!-- カードの下の今日やったルールなどの集計表示 -->
         <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
 
