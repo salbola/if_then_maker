@@ -56,16 +56,16 @@ class IfThenRuleForm
   private
 
   def build_warnings
+    # 編集時と新規作成で挙動が変化するものは編集前の元のルールである@if_then_rule_of_modelを渡す。
     @warnings = []
     @warnings += ::IfConditionWarningChecker.check(if_condition)
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
-      # 編集時=>モデルが渡されている時=>@if_then_rule_of_modelがある時はそのidを無視するため
       exclude_id: @if_then_rule_of_model&.id
     )
     @warnings += ::ThenActionWarningChecker.check(then_action)
-    add_active_limit_warning
+    @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 
   def create_rule
@@ -86,18 +86,4 @@ class IfThenRuleForm
       status: status
     )
   end
-
-  def add_active_limit_warning
-  return unless status == "active"
-
-  # 編集時：すでに active ならスキップ(activeのレコードの時にactiveを送信することによる意図しないwarningの発生を防ぐ)
-  if @if_then_rule_of_model
-    return if @if_then_rule_of_model.status == "active"
-  end
-
-  active_count = @current_user.if_then_rules.active.count
-  return unless active_count >= 3
-
-  @warnings << "実行中（active）のルールがすでに3つあります。負担が大きくなっていないか確認してみてください。"
-end
 end

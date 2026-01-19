@@ -21,7 +21,7 @@ class IfThenRulesController < ApplicationController
     else
       flash.now[:alert] = "入力内容に問題があります。" if @if_then_rule_form.errors.any?
 
-      flash.now[:warning] = "改善できそうな点があります。内容を確認してみてください。" if @if_then_rule_form.warnings.any?
+      flash.now[:warning] = "改善のヒント💡：改善できそうな点があります。内容を確認した上で、このまま保存することもできます。" if @if_then_rule_form.warnings.any?
 
       render :new, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class IfThenRulesController < ApplicationController
       redirect_to if_then_rule_path(@if_then_rule), notice: "If-Thenルールを編集しました"
     else
       flash.now[:alert]  = "入力内容に問題があります。" if @if_then_rule_form.errors.any?
-      flash.now[:warning] = "改善できそうな点があります。" if @if_then_rule_form.warnings.any?
+      flash.now[:warning] = "改善のヒント💡：改善できそうな点があります。内容を確認した上で、このまま保存することもできます。" if @if_then_rule_form.warnings.any?
       render :edit, status: :unprocessable_entity
     end
   end

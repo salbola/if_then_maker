@@ -7,7 +7,10 @@ class IfConditionDuplicateChecker
     scope = scope.where.not(id: exclude_id) if exclude_id
 
     if scope.exists?
-      [ "すでに同じ IF 条件の習慣が存在します。" ]
+      [ {
+        field: :if_condition,
+        message: "すでに同じ IF 条件の習慣が存在します。"
+      } ]
     else
       []
     end
