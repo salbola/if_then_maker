@@ -63,11 +63,33 @@ WARNING_KEYWORDS = {
   "様子を見て" => "『様子を見て』は行動開始の条件が定義されていません。"
 }.freeze
 
-  def self.check(check_text)
-    return [] if check_text.blank?
+  # def self.check(check_text)
+  #   return [] if check_text.blank?
 
-    WARNING_KEYWORDS.filter_map do |keyword, message|
-      { field: :if_condition, message: message } if check_text.include?(keyword)
+  #   WARNING_KEYWORDS.filter_map do |keyword, message|
+  #     { field: :if_condition, message: message } if check_text.include?(keyword)
+  #   end
+  # end
+  def self.check(text)
+      return [] if text.blank?
+
+      warnings = []
+
+      concept_key = :ambiguous_trigger_expression
+      concept = WarningConcepts::AMBIGUOUS_TRIGGER_EXPRESSION
+
+      concept[:patterns].each do |pattern_key, pattern|
+        matched = pattern[:matchers].select { |w| text.include?(w) }
+        next if matched.empty?
+
+        warnings << {
+          field: :if_condition,
+          concept: concept_key,
+          pattern: pattern_key,
+          matches: matched
+        }
+      end
+
+      warnings
     end
-  end
 end
