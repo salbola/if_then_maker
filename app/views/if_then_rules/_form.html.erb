@@ -30,12 +30,35 @@
     <details class="mt-2 group">
       <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
         <span class="transition-transform group-open:rotate-90">▶</span>
-        IFのヒント
+        💡 実行しやすいIFのチェックポイント
       </summary>
 
       <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        💡  「いつ・どこで起きるか」が分かる条件にすると、気づきやすくなります。
-        （例：「朝7時に起きたら」「会社に着いたら」）
+        <ul class="space-y-3 list-disc list-inside">
+          <li>
+            「いつも・そのうち」など曖昧な言葉を使っていない
+            <span class="ml-1 text-xs text-gray-400">（曖昧表現の回避）</span>
+          </li>
+
+          <li>
+            「いつ・どこで」が自然に思い浮かぶ条件になっている
+            <span class="ml-1 text-xs text-gray-400">（状況の具体化）</span>
+          </li>
+
+          <li>
+            自分がその瞬間に気づける出来事になっている
+            <span class="ml-1 text-xs text-gray-400">（自己検知トリガー）</span>
+          </li>
+
+          <li>
+            場所・物・動作など、物理的な環境と結びついたシンプルな条件になっている
+            <span class="ml-1 text-xs text-gray-400">（環境トリガー）</span>
+          </li>
+        </ul>
+
+        <p class="mt-2 text-xs text-gray-500">
+          例：「やる気が出たら」→「机に座ったら」
+        </p>
       </div>
     </details>
   </div>
@@ -61,15 +84,39 @@
       <% end %>
     </div>
 
-    <details class="mt-2 group">
+    <details class="mt-2 group ">
       <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
         <span class="transition-transform group-open:rotate-90">▶</span>
-        THENのヒント
+        💡 実行しやすいTHENのチェックポイント
       </summary>
 
       <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        💡  20秒以内にできる最初の一歩に分けると、実行しやすくなります。
-        （例：「勉強する」→「ノートを開く」）
+        <ul class="space-y-3 list-disc list-inside">
+          <li>
+            20秒以内に始められる行動になっている
+            <span class="ml-1 text-xs text-gray-400">（スモールスタート）</span>
+          </li>
+
+          <li>
+            終わったかどうかが自分で分かる
+            <span class="ml-1 text-xs text-gray-400">（完了条件の明確化）</span>
+          </li>
+
+          <li>
+            実際に体を動かす行動が含まれている
+            <span class="ml-1 text-xs text-gray-400">（行動ベース）</span>
+          </li>
+
+          <li>
+            「〜しない」ではなく、やる行動で書かれている
+            <span class="ml-1 text-xs text-gray-400">（代替IF-THENプランニング）</span>
+          </li>
+        </ul>
+
+        <p class="mt-2 text-xs text-gray-500">
+          例：「勉強する」→「ノートを開く」<br>
+          例2：「スマホを見ない」→「スマホの代わりに本を1ページ読む」
+        </p>
       </div>
     </details>
   </div>
@@ -92,7 +139,7 @@
     <div class="pt-4 space-y-3">
     <% if if_then_rule_form.warnings.present? %>
       <% if if_then_rule_form.errors.empty? %>
-        <%= f.button "無視して保存する",
+        <%= f.button "このまま保存する",
                     name: "commit_type",
                     value: "ignore_warnings",
                     class: "btn btn-primary w-full" %>
@@ -110,24 +157,3 @@
   </div>
   <% end %>
 
-<div class="max-w-md mx-auto">
-
-<div class="mt-4 p-3 text-sm text-gray-700  bg-gray-50">
-  <p class="font-semibold mb-2">✅  thenに関して作成前にチェック(機能には影響しません)</p>
-
-  <label class="flex items-center gap-2">
-    <input type="checkbox">
-    20秒以内にできる行動になっている
-  </label>
-
-  <label class="flex items-center gap-2">
-    <input type="checkbox">
-    終わったかどうかが分かる
-  </label>
-
-  <label class="flex items-center gap-2">
-    <input type="checkbox">
-    実際に体を動かす行動が含まれている
-  </label>
-</div>
-</div>
