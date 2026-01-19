@@ -65,7 +65,7 @@ class IfThenRuleForm
       exclude_id: @if_then_rule_of_model&.id
     )
     @warnings += ::ThenActionWarningChecker.check(then_action)
-    @warnings += ::ActiveLimitWarningChecker.check(user:@current_user, status: status, current_rule: @if_then_rule_of_model)
+    @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 
   def create_rule

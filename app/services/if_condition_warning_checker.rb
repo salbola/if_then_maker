@@ -67,7 +67,7 @@ WARNING_KEYWORDS = {
     return [] if check_text.blank?
 
     WARNING_KEYWORDS.filter_map do |keyword, message|
-      {field: :if_condition, message: message} if check_text.include?(keyword)
+      { field: :if_condition, message: message } if check_text.include?(keyword)
     end
   end
 end
