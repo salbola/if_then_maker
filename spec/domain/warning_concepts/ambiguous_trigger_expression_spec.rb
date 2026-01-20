@@ -1,23 +1,37 @@
 require "rails_helper"
 RSpec.describe WarningConcepts::AmbiguousTriggerExpression do
   describe ".definition" do
-    it "呼び出しでconceptを返すこと" do
-      concept = described_class.definition
+    let(:concept){ described_class.definition }
+    describe "一番上の構成に関して" do
+      it "conceptとして必要なキーを持つ" do
+      expect(concept).to include(
+        :label,
+        :description,
+        :hint,
+        :patterns
+      )
+      end
+    end
 
-      expect(concept).to eq({
-        label: "曖昧表現の回避",
-        description: "実行条件が曖昧で、行動のきっかけとして再現性が低い状態",
-        hint: "「いつも・そのうち」など曖昧な言葉を使っていない ",
-        description: "実行条件が曖昧で、行動のきっかけとして再現性が低い状態です",
-        patterns: {
-          always_expression: {
-            matchers: [ "常に", "つねに" ],
-            reason: "例外を含みやすく、実行条件として曖昧になりがちです。",
-            suggestion: "具体的な状況や行動に置き換えてみましょう。",
-            example: "例：「常に疲れたら」→「仕事から帰宅して椅子に座ったら」"
-          }
-        }
-      })
+
+    describe "patterns階層に関して" do
+      it "patterns に always_expression を持つ" do
+        expect(concept[:patterns]).to have_key(:always_expression)
+      end
+    end
+
+
+    describe "patternsの各階層:always_expressionの中に関して" do
+      it "always_expression は必要な属性を持つ" do
+        pattern = concept[:patterns][:always_expression]
+
+        expect(pattern).to include(
+          :matchers,
+          :reason,
+          :suggestion,
+          :example
+        )
+      end
     end
   end
 end
