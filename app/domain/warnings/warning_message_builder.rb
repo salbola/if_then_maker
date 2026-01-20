@@ -5,7 +5,7 @@ class WarningMessageBuilder
   unless warning[:concept] || warning[:pattern] || warning[:matches]
     raise ArgumentError, "Unsupported warning format: #{warning.inspect}"
   end
-concept_name = warning[:concept].to_s.camelize
+    concept_name = warning[:concept].to_s.camelize
     concept_class = "WarningConcepts::#{concept_name}".safe_constantize
     return nil unless concept_class
 

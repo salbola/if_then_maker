@@ -10,7 +10,7 @@ RSpec.describe Warnings::IfConditionWarningChecker do
     field: :if_condition,
     concept: :ambiguous_trigger_expression,
     pattern: :always_expression,
-    matches: ["常に"]
+    matches: [ "常に" ]
   }
 ])
       end

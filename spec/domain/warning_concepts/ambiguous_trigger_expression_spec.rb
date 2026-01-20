@@ -1,7 +1,7 @@
 require "rails_helper"
 RSpec.describe WarningConcepts::AmbiguousTriggerExpression do
   describe ".definition" do
-    let(:concept){ described_class.definition }
+    let(:concept) { described_class.definition }
     describe "一番上の構成に関して" do
       it "conceptとして必要なキーを持つ" do
       expect(concept).to include(

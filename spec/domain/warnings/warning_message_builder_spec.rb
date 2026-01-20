@@ -5,7 +5,7 @@ RSpec.describe Warnings::WarningMessageBuilder do
     field: :if_condition,
     concept: :ambiguous_trigger_expression,
     pattern: :always_expression,
-    matches: ["常に"]
+    matches: [ "常に" ]
   }
   end
   describe ".build" do
