@@ -23,7 +23,7 @@ class IfThenRuleForm
 
   def valid?(context = nil)
     result = super
-    build_warnings
+    collect_warnings
     result
   end
 
@@ -52,13 +52,21 @@ class IfThenRuleForm
       self.status  = if_then_rule_of_model.status
   end
 
-
+  # ↓ビュー(_form.html.erb)で使うwarningメッセージ集を取得するためのメソッド。
+  # @warningにはメッセージは入っていないがキーと今回検出されたキーワードが存在。
+  # そのキーと紐づけた素材、warning_conceptsにあるメッセージや検出されたワードを組み合わせる。
+  # それを配列としてwarningメッセージのパーツの塊の集まりとして返す
+  def warning_messages
+    @warnings.map do |w|
+      Warnings::WarningMessageBuilder.build(w)
+    end
+  end
   private
 
-  def build_warnings
+  def collect_warnings
     # 編集時と新規作成で挙動が変化するものは編集前の元のルールである@if_then_rule_of_modelを渡す。
     @warnings = []
-    @warnings += ::IfConditionWarningChecker.check(if_condition)
+    @warnings += Warnings::IfConditionWarningChecker.check(if_condition)
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
@@ -67,6 +75,7 @@ class IfThenRuleForm
     @warnings += ::ThenActionWarningChecker.check(then_action)
     @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
+
 
   def create_rule
       record = @current_user.if_then_rules.create(

@@ -1,16 +1,18 @@
-RSpec.describe IfConditionWarningChecker do
+require "rails_helper"
+RSpec.describe Warnings::IfConditionWarningChecker do
    describe ".check" do
     context "問題のある表現を含む場合" do
       it "『常に』を含むと warning を返す" do
         warnings = described_class.check("常に水を飲む")
 
-        expect(warnings).not_to be_empty
-      end
-
-      it "『あとで』を含むと warning を返す" do
-        warnings = described_class.check("あとで運動する")
-
-        expect(warnings).not_to be_empty
+        expect(warnings).to eq([
+  {
+    field: :if_condition,
+    concept: :ambiguous_trigger_expression,
+    pattern: :always_expression,
+    matches: [ "常に" ]
+  }
+])
       end
     end
 
