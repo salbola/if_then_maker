@@ -23,7 +23,7 @@ class IfThenRuleForm
 
   def valid?(context = nil)
     result = super
-    build_warnings
+    collect_warnings
     result
   end
 
@@ -52,17 +52,18 @@ class IfThenRuleForm
       self.status  = if_then_rule_of_model.status
   end
 
-
-  def built_warnings
-  Rails.logger.debug "RAW WARNINGS: #{@warnings.inspect}"
-  @warnings.map do |w|
-    Rails.logger.debug "BUILD WARNING: #{w.inspect}"
-    Warnings::WarningMessageBuilder.build(w)
+  # ↓ビュー(_form.html.erb)で使うwarningメッセージ集を取得するためのメソッド。
+  # @warningにはメッセージは入っていないがキーと今回検出されたキーワードが存在。
+  # そのキーと紐づけた素材、warning_conceptsにあるメッセージや検出されたワードを組み合わせる。
+  # それを配列としてwarningメッセージのパーツの塊の集まりとして返す
+  def warning_messages
+    @warnings.map do |w|
+      Warnings::WarningMessageBuilder.build(w)
+    end
   end
-end
   private
 
-  def build_warnings
+  def collect_warnings
     # 編集時と新規作成で挙動が変化するものは編集前の元のルールである@if_then_rule_of_modelを渡す。
     @warnings = []
     @warnings += ::IfConditionWarningChecker.check(if_condition)

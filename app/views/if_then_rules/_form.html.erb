@@ -1,5 +1,5 @@
 <!--if_then_rule_formはフォームオブジェクト-->
-<% if_then_rule_form.built_warnings.each do |warning| %>
+<% if_then_rule_form.warning_messages.each do |warning| %>
   <div class="text-sm text-orange-700">
     <p><%= warning[:reason] %></p>
     <p class="text-gray-600"><%= warning[:suggestion] %></p>
