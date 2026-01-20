@@ -1,4 +1,11 @@
 <!--if_then_rule_formはフォームオブジェクト-->
+<% if_then_rule_form.built_warnings.each do |warning| %>
+  <div class="text-sm text-orange-700">
+    <p><%= warning[:reason] %></p>
+    <p class="text-gray-600"><%= warning[:suggestion] %></p>
+    <p class="text-xs text-gray-500"><%= warning[:example] %></p>
+  </div>
+<% end %>
 <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6" do |f| %>
   <%= f.hidden_field :memo_id %>
   <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
@@ -12,15 +19,7 @@
           <%= if_then_rule_form.errors[:if_condition].first %>
         </p>
       <% end %>
-      <% if if_then_rule_form.warnings.any? %>
-        <% if_then_rule_form.warnings
-            .filter { |w| w[:field] == :if_condition }
-            .each do |warning| %>
-          <p class="text-yellow-600 text-sm">
-            <%= warning[:message] %>
-          </p>
-        <% end %>
-      <% end %>
+
     </div>
 
 
@@ -73,15 +72,7 @@
           <%= if_then_rule_form.errors[:then_action].first %>
         </p>
       <% end %>
-      <% if if_then_rule_form.warnings.any? %>
-        <% if_then_rule_form.warnings
-            .filter { |w| w[:field] == :then_action }
-            .each do |warning| %>
-          <p class="text-yellow-600 text-sm">
-            <%= warning[:message] %>
-          </p>
-        <% end %>
-      <% end %>
+
     </div>
 
     <details class="mt-2 group ">

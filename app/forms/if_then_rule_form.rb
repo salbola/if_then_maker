@@ -53,6 +53,13 @@ class IfThenRuleForm
   end
 
 
+  def built_warnings
+  Rails.logger.debug "RAW WARNINGS: #{@warnings.inspect}"
+  @warnings.map do |w|
+    Rails.logger.debug "BUILD WARNING: #{w.inspect}"
+    Warnings::WarningMessageBuilder.build(w)
+  end
+end
   private
 
   def build_warnings
@@ -67,6 +74,7 @@ class IfThenRuleForm
     @warnings += ::ThenActionWarningChecker.check(then_action)
     @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
+
 
   def create_rule
       record = @current_user.if_then_rules.create(

@@ -70,13 +70,14 @@ WARNING_KEYWORDS = {
   #     { field: :if_condition, message: message } if check_text.include?(keyword)
   #   end
   # end
+
   def self.check(text)
       return [] if text.blank?
 
       warnings = []
 
       concept_key = :ambiguous_trigger_expression
-      concept = WarningConcepts::AMBIGUOUS_TRIGGER_EXPRESSION
+      concept = WarningConcepts::AmbiguousTriggerExpression.definition
 
       concept[:patterns].each do |pattern_key, pattern|
         matched = pattern[:matchers].select { |w| text.include?(w) }
