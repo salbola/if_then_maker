@@ -1,7 +1,7 @@
 module Warnings
 class WarningMessageBuilder
   def self.build(warning)
-    #もし古い形式の構造など互換性のない形式のwarningが含まれていたらエラーを出す
+  # もし古い形式の構造など互換性のない形式のwarningが含まれていたらエラーを出す
   unless warning[:concept] || warning[:pattern] || warning[:matches]
     raise ArgumentError, "Unsupported warning format: #{warning.inspect}"
   end
