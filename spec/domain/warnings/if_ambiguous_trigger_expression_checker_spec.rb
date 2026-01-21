@@ -8,7 +8,7 @@ RSpec.describe Warnings::IfAmbiguousTriggerExpressionChecker do
         expect(warnings).to eq([
   {
     field: :if_condition,
-    concept: :ambiguous_trigger_expression,
+    concept: :if_ambiguous_trigger_expression,
     pattern: :always_expression,
     matches: [ "常に" ]
   }
@@ -18,7 +18,7 @@ RSpec.describe Warnings::IfAmbiguousTriggerExpressionChecker do
 
     context "問題のない表現の場合" do
       it "warning を返さない" do
-        warnings = described_class.check("朝7時に起きたら水を飲む")
+        warnings = described_class.check("7時に起きたら水を飲む")
 
         expect(warnings).to be_empty
       end
