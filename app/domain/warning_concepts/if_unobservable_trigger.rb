@@ -1,6 +1,6 @@
 module WarningConcepts
   # zeit werkがキャメルケースで予測するらしいので全文字が大文字になる定数でなくキャメルケースになるクラスを使用することにした
-  class IfUnobservable_trigger
+  class IfUnobservableTrigger
     def self.concept_key
       name.demodulize.underscore.to_sym
     end

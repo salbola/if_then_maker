@@ -1,6 +1,6 @@
 module Warnings
   class IfUnobservableTriggerChecker
-    CONCEPT = WarningConcepts::IfUnobservableTriggerChecker
+    CONCEPT = WarningConcepts::IfUnobservableTrigger
     def self.check(text)
         return [] if text.blank?
 
