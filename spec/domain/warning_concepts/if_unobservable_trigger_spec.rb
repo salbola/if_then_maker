@@ -21,7 +21,6 @@ RSpec.describe WarningConcepts::IfUnobservableTrigger do
       it "patterns に subjective_state_condition を持つ" do
         expect(concept[:patterns]).to have_key(:subjective_state_condition)
       end
-    
     end
 
 
