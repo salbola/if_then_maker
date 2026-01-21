@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpec.describe WarningConcepts::AmbiguousTriggerExpression do
+RSpec.describe WarningConcepts::IfAmbiguousTriggerExpression do
   describe ".definition" do
     let(:concept) { described_class.definition }
     describe "一番上の構成に関して" do

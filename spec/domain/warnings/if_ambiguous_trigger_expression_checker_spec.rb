@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpec.describe Warnings::IfConditionWarningChecker do
+RSpec.describe Warnings::IfAmbiguousTriggerExpressionChecker do
    describe ".check" do
     context "問題のある表現を含む場合" do
       it "『常に』を含むと warning を返す" do
