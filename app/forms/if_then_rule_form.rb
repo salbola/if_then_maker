@@ -67,6 +67,7 @@ class IfThenRuleForm
     # 編集時と新規作成で挙動が変化するものは編集前の元のルールである@if_then_rule_of_modelを渡す。
     @warnings = []
     @warnings += Warnings::IfAmbiguousTriggerExpressionChecker.check(if_condition)
+    @warnings += Warnings::IfUnobservableTriggerChecker.check(if_condition)
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
