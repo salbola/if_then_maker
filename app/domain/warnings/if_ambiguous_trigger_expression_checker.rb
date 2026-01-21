@@ -1,12 +1,14 @@
 module Warnings
   class IfAmbiguousTriggerExpressionChecker
+    CONCEPT = WarningConcepts::IfAmbiguousTriggerExpression
+
     def self.check(text)
         return [] if text.blank?
 
         warnings = []
 
-        concept_key = :if_ambiguous_trigger_expression
-        concept = WarningConcepts::IfAmbiguousTriggerExpression.definition
+        concept_key = CONCEPT.concept_key
+        concept = CONCEPT.definition
 
         concept[:patterns].each do |pattern_key, pattern|
           matched = pattern[:matchers].select { |w| text.include?(w) }
