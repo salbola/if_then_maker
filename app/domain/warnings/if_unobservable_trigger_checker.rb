@@ -1,12 +1,12 @@
 module Warnings
-  class IfConditionWarningChecker
+  class IfUnobservableTriggerChecker
     def self.check(text)
         return [] if text.blank?
 
         warnings = []
 
-        concept_key = :ambiguous_trigger_expression
-        concept = WarningConcepts::AmbiguousTriggerExpression.definition
+        concept_key = :if_unobservable_trigger
+        concept = WarningConcepts::IfUnobservableTriggerChecker.definition
 
         concept[:patterns].each do |pattern_key, pattern|
           matched = pattern[:matchers].select { |w| text.include?(w) }
