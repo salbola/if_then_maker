@@ -71,12 +71,12 @@ class IfThenRuleForm
     @warnings += Warnings::ThenNonVerifiableActionChecker.check(then_action)
     @warnings += Warnings::ThenOversizedActionChecker.check(then_action)
     @warnings += Warnings::ThenNegativeExpressionActionChecker.check(then_action)
+    # 以下,他のレコードが関わる構成系
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
       exclude_id: @if_then_rule_of_model&.id
     )
-    # @warnings += ::ThenActionWarningChecker.check(then_action)
     @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 
