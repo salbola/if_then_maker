@@ -66,13 +66,17 @@ class IfThenRuleForm
   def collect_warnings
     # 編集時と新規作成で挙動が変化するものは編集前の元のルールである@if_then_rule_of_modelを渡す。
     @warnings = []
-    @warnings += Warnings::IfConditionWarningChecker.check(if_condition)
+    @warnings += Warnings::IfAmbiguousTriggerExpressionChecker.check(if_condition)
+    @warnings += Warnings::IfUnobservableTriggerChecker.check(if_condition)
+    @warnings += Warnings::ThenNonVerifiableActionChecker.check(then_action)
+    @warnings += Warnings::ThenOversizedActionChecker.check(then_action)
+    @warnings += Warnings::ThenNegativeExpressionActionChecker.check(then_action)
+    # 以下,他のレコードが関わる構成系
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
       exclude_id: @if_then_rule_of_model&.id
     )
-    @warnings += ::ThenActionWarningChecker.check(then_action)
     @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 

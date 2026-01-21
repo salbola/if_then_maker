@@ -1,5 +1,5 @@
 require "rails_helper"
-RSpec.describe WarningConcepts::AmbiguousTriggerExpression do
+RSpec.describe WarningConcepts::ThenNegativeExpressionAction do
   describe ".definition" do
     let(:concept) { described_class.definition }
     describe "一番上の構成に関して" do
@@ -15,15 +15,15 @@ RSpec.describe WarningConcepts::AmbiguousTriggerExpression do
 
 
     describe "patterns階層に関して" do
-      it "patterns に always_expression を持つ" do
-        expect(concept[:patterns]).to have_key(:always_expression)
+      it "patterns に negative_expression_action を持つ" do
+        expect(concept[:patterns]).to have_key(:negative_expression_action)
       end
     end
 
 
-    describe "patternsの各階層:always_expressionの中に関して" do
-      it "always_expression は必要な属性を持つ" do
-        pattern = concept[:patterns][:always_expression]
+    describe "patternsの各階層:negative_expression_actionの中に関して" do
+      it "negative_expression_action は必要な属性を持つ" do
+        pattern = concept[:patterns][:negative_expression_action]
 
         expect(pattern).to include(
           :matchers,
