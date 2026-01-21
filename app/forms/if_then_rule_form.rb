@@ -68,12 +68,13 @@ class IfThenRuleForm
     @warnings = []
     @warnings += Warnings::IfAmbiguousTriggerExpressionChecker.check(if_condition)
     @warnings += Warnings::IfUnobservableTriggerChecker.check(if_condition)
+    @warnings += Warnings::ThenNonVerifiableActionChecker.check(then_action)
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
       exclude_id: @if_then_rule_of_model&.id
     )
-    @warnings += ::ThenActionWarningChecker.check(then_action)
+    # @warnings += ::ThenActionWarningChecker.check(then_action)
     @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 

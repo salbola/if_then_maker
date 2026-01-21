@@ -1,0 +1,27 @@
+module Warnings
+  class ThenNonVerifiableActionChecker
+    CONCEPT = WarningConcepts::ThenNonVerifiableAction
+    def self.check(text)
+        return [] if text.blank?
+
+        warnings = []
+
+        concept_key = CONCEPT.concept_key
+        concept = CONCEPT.definition
+
+        concept[:patterns].each do |pattern_key, pattern|
+          matched = pattern[:matchers].select { |w| text.include?(w) }
+          next if matched.empty?
+
+          warnings << {
+            field: :then_action,
+            concept: concept_key,
+            pattern: pattern_key,
+            matches: matched
+          }
+        end
+
+        warnings
+      end
+  end
+end
