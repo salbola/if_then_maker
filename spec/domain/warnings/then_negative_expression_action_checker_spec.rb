@@ -1,14 +1,9 @@
 require "rails_helper"
-RSpec.describe Warnings::IfAmbiguousTriggerExpressionChecker do
+RSpec.describe Warnings::ThenNegativeExpressionActionChecker do
    describe ".check" do
     context "問題のある表現を含む場合" do
-      it "patarn:always_expression『常に』を含むと warning を返す" do
-        warnings = described_class.check("常に水を飲む")
-
-        expect(warnings).not_to be_empty
-      end
-      it "patarn:never_come_time_expression『ひまなとき』を含むと warning を返す" do
-        warnings = described_class.check("ひまなときに水を飲む")
+      it "patarn:negative_expression_action『ない』を含むと warning を返す" do
+        warnings = described_class.check("水を飲まない")
 
         expect(warnings).not_to be_empty
       end

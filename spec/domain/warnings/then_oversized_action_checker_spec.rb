@@ -1,14 +1,14 @@
 require "rails_helper"
-RSpec.describe Warnings::IfAmbiguousTriggerExpressionChecker do
+RSpec.describe Warnings::ThenOversizedActionChecker do
    describe ".check" do
     context "問題のある表現を含む場合" do
-      it "patarn:always_expression『常に』を含むと warning を返す" do
-        warnings = described_class.check("常に水を飲む")
+      it "patarn:too_large_action『すべて』を含むと warning を返す" do
+        warnings = described_class.check("この世すべての水を飲む")
 
         expect(warnings).not_to be_empty
       end
-      it "patarn:never_come_time_expression『ひまなとき』を含むと warning を返す" do
-        warnings = described_class.check("ひまなときに水を飲む")
+      it "patarn:multi_step_action『同時に』を含むと warning を返す" do
+        warnings = described_class.check("水を飲み同時にお茶飲む")
 
         expect(warnings).not_to be_empty
       end
