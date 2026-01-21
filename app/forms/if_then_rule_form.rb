@@ -70,6 +70,7 @@ class IfThenRuleForm
     @warnings += Warnings::IfUnobservableTriggerChecker.check(if_condition)
     @warnings += Warnings::ThenNonVerifiableActionChecker.check(then_action)
     @warnings += Warnings::ThenOversizedActionChecker.check(then_action)
+    @warnings += Warnings::ThenNegativeExpressionActionChecker.check(then_action)
     @warnings += ::IfConditionDuplicateChecker.check(
       user: @current_user,
       if_condition: if_condition,
