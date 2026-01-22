@@ -12,7 +12,7 @@ module WarningConcepts
         description: "実行中のルールが多すぎると実行できなくなって挫折する",
         hint: "実行中のルールが可能な数に収まっている ",
         patterns: {
-          status_too_many_active: {
+          too_many_active: {
             matchers: [ "" ],
             reason: "実行中のルールが少し多いかもしれません。",
             suggestion: "一度に実行する数は#{LIMIT}つまでを推奨しています。ひとまずは焦らず下書きにしておいて,優先度で順番にしましょう。",
