@@ -7,17 +7,17 @@ class WarningMessageBuilder
   end
     concept_name = warning[:concept].to_s.camelize
     concept_class = "WarningConcepts::#{concept_name}".safe_constantize
-    return nil unless concept_class
+    raise "Concept not found" unless concept_class
 
     definition = concept_class.definition
     pattern = definition[:patterns][warning[:pattern]]
-    return nil unless pattern
+    raise "pattern not found" unless pattern
 
     matched = warning[:matches].uniq.join("、")
 
     {
       field: warning[:field],
-      reason: "「#{matched}」は#{pattern[:reason]}",
+      reason: warning[:metadata] ? "#{pattern[:reason]}":"「#{matched}」は#{pattern[:reason]}",
       suggestion: pattern[:suggestion],
       example: pattern[:example]
     }

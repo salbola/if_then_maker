@@ -11,7 +11,7 @@ module WarningConcepts
         description: "一つのifに複数の行動が結びついていると選択の余地が出てしまい無意識の行動,習慣化の妨げになる",
         hint: "他のルールと同じ条件になっていない ",
         patterns: {
-          always_expression: {
+          if_duplicate_content: {
             matchers: [ "" ],
             reason: "すでに同じifの習慣が存在します。一つのifに複数の行動が結びついていると迷いが生まれ習慣の妨げになります",
             suggestion: "別のタイミングと結び付けて見ましょう",
