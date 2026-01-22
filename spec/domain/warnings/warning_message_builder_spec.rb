@@ -31,5 +31,18 @@ RSpec.describe Warnings::WarningMessageBuilder do
 
       expect(message[:reason]).to include("常に")
     end
+
+    it "metadata がある場合は matched 文言を使わない" do
+      warning = {
+        field: :status,
+        concept: :status_too_many_active,
+        pattern: :too_many_active,
+        matches: [],
+        metadata: {}
+      }
+
+      message = described_class.build(warning)
+      expect(message[:reason]).to be_present
+    end
   end
 end
