@@ -3,7 +3,7 @@ module Warnings
     CONCEPT = WarningConcepts::IfDuplicateContent
     def self.check(user:, if_condition:, exclude_id: nil)
       return [] if if_condition.blank?
-      
+
 
       concept_key = CONCEPT.concept_key
       concept = CONCEPT.definition

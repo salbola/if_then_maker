@@ -21,8 +21,8 @@ module Warnings
 
       if active_count >= LIMIT
       [ {
-        # field: :status,
-        # message: "実行中（active）のルールがすでに#{LIMIT}つあります。負担が大きくなっていないか確認してみてください。"
+            # field: :status,
+            # message: "実行中（active）のルールがすでに#{LIMIT}つあります。負担が大きくなっていないか確認してみてください。"
             field: :status,
             concept: concept_key,
             pattern: pattern_key,

@@ -95,7 +95,4 @@ RSpec.describe Warnings::StatusTooManyActiveChecker, type: :model do
       end
     end
   end
-
-
-
 end
