@@ -5,9 +5,9 @@ module Warnings
     # currnt_ruleがnilの場合新規作成としてるのでこれだけは必須ではない
     def self.check(user:, status:, current_rule: nil)
       # 新規作成時 : activeではない ならスキップ
-      return [] unless status == "active"
+      return [] unless status&.to_sym == :active
       # 編集時：すでに active ならスキップ
-      return [] if current_rule&.status == "active"
+      return [] if current_rule&.status&.to_sym == :active
 
       concept_key = CONCEPT.concept_key
       concept = CONCEPT.definition
