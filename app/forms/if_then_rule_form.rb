@@ -77,7 +77,7 @@ class IfThenRuleForm
       if_condition: if_condition,
       exclude_id: @if_then_rule_of_model&.id
     )
-    @warnings += ::ActiveLimitWarningChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
+    @warnings += Warnings::StatusTooManyActiveChecker.check(user: @current_user, status: status, current_rule: @if_then_rule_of_model)
   end
 
 
