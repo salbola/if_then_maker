@@ -10,7 +10,7 @@ module WarningConcepts
         label: "完了を判別できる行動",
         target: :then,
         description: "迷わず最初の一歩を始められるサイズになっている(スモールステップ,ベビーステップ,5ルールのような)行動",
-        hint: "迷わず最初の一歩を始められるサイズになっている",
+        hint: { enabled: true, content:"迷わず最初の一歩を始められるサイズになっている"},
         patterns: {
           too_large_action: {
             matchers: [

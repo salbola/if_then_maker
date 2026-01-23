@@ -147,10 +147,12 @@
   <ul>
     <% if_concepts.each do |concept| %>
       <% d = concept.definition %>
+      <% if d[:hint][:enabled] %>
       <li>
-        <%= d[:hint] %>
+        <%= d[:hint][:content] %>
         <span class="text-xs text-gray-400">（<%= d[:label] %>）</span>
       </li>
+      <% end %>
     <% end %>
   </ul>
 </div>
@@ -158,10 +160,12 @@
   <ul>
     <% then_concepts.each do |concept| %>
       <% d = concept.definition %>
+      <% if d[:hint][:enabled] %>
       <li>
-        <%= d[:hint] %>
+        <%= d[:hint][:content] %>
         <span class="text-xs text-gray-400">（<%= d[:label] %>）</span>
       </li>
+      <% end %>
     <% end %>
   </ul>
 </div>

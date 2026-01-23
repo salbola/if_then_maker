@@ -10,7 +10,7 @@ module WarningConcepts
         label: "開始タイミングが絞れること",
         target: :if,
         description: "実行条件が曖昧で、行動のきっかけとして再現性が低い状態",
-        hint: "その瞬間が起きたと直感的に1つに判断できる ",
+        hint: { enabled: true, content:"その瞬間が起きたと直感的に1つに判断できる "},
         patterns: {
           always_expression: {
             matchers: [ "常に", "つねに", "いつも", "何時も", "毎回", "まいかい", "永遠に", "えいえんに", "永久に", "えいきゅうに", "日頃から", "ひごろから", "日常", "にちじょう" ],
