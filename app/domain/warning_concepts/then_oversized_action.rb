@@ -7,9 +7,10 @@ module WarningConcepts
 
     def self.definition
       {
-        label: "完了を判別できる行動",
+        label: "迷わず最初の一歩を始められるサイズになっている",
+        target: :then,
         description: "迷わず最初の一歩を始められるサイズになっている(スモールステップ,ベビーステップ,5ルールのような)行動",
-        hint: "迷わず最初の一歩を始められるサイズになっている",
+        hint: { enabled: true, content: "5-20秒以内に始められる「最初の一歩」になっている" },
         patterns: {
           too_large_action: {
             matchers: [

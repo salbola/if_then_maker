@@ -8,8 +8,9 @@ module WarningConcepts
     def self.definition
       {
         label: "完了を判別できる行動",
+        target: :then,
         description: "終わったかどうかが客観的に判別できず成功も失敗もできない行動",
-        hint: "終わったかどうかを自分で判断できる",
+        hint: { enabled: true, content: "終わったかどうかを自分で判断できる" },
         patterns: {
           mental_action: {
             matchers: [

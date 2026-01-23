@@ -8,8 +8,9 @@ module WarningConcepts
     def self.definition
       {
         label: "気付けるトリガーになっている",
+        target: :if,
         description: "実行条件が曖昧で、行動のきっかけとして再現性が低い状態",
-        hint: "自分の気分や状態ではなく、外から確認できる出来事になっている ",
+        hint: { enabled: true, content: "自分の気分や状態ではなく、外から確認できる出来事になっている " },
         patterns: {
           emotional_state_trigger: {
             # 感情に関するトリガーでも有効なケースとしてIF：イライラを感じたらTHEN：3回深呼吸するというような感情を整えたり、感情的な行動に介入することが目的なifthenをつくりたいケースも考えられるがこのタイプはmvp外とする。今回は新たな習慣を無意識にできるようになることを目的とした習慣？

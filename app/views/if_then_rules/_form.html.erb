@@ -21,11 +21,6 @@
       <% end %>
 
     </div>
-
-
-
-
-
     <details class="mt-2 group">
       <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
         <span class="transition-transform group-open:rotate-90">▶</span>
@@ -33,27 +28,12 @@
       </summary>
 
       <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        <ul class="space-y-3 list-disc list-inside">
-          <li>
-            その瞬間が起きたと直感的に1つに判断できる
-            <span class="ml-1 text-xs text-gray-400">（開始タイミングが絞れること）</span>
-          </li>
-
-          <li>
-            自分の気分や状態ではなく、外から確認できる出来事になっている
-            <span class="ml-1 text-xs text-gray-400">（気付けるトリガーになっている）</span>
-          </li>
-
-          <li>
-            他のルールと同じ条件になっていない
-            <span class="ml-1 text-xs text-gray-400">（一つのトリガーが一つの行動と結びつく）</span>
-          </li>
-        </ul>
-        <p class="mt-2 text-xs text-gray-500">
-          例：「やる気が出たら」→「机に座ったら」
-        </p>
+        <p class="text-xs text-gray-400 font-light">セルフチェック用です。</p>
+        <%= render "if_then_rules/hint", target: :if %>
       </div>
     </details>
+
+
   </div>
   <div class="p-4 rounded-lg bg-green-50 border border-green-100">
     <div class="form-control">
@@ -68,40 +48,14 @@
       <% end %>
 
     </div>
-
-    <details class="mt-2 group ">
+    <details class="mt-2 group">
       <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
         <span class="transition-transform group-open:rotate-90">▶</span>
         💡 実行しやすいTHENのチェックポイント
       </summary>
-
       <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        <ul class="space-y-3 list-disc list-inside">
-          <li>
-            迷わず最初の一歩を始められるサイズになっている
-            <span class="ml-1 text-xs text-gray-400">（小さなステップになっている）</span>
-          </li>
-
-          <li>
-            終わったかどうかを自分で判断できる
-            <span class="ml-1 text-xs text-gray-400">（完了を判別できる行動）</span>
-          </li>
-
-          <li>
-            具体的な場所や道具が思い浮かぶ
-            <span class="ml-1 text-xs text-gray-400">（現実の環境と結びついた行動）</span>
-          </li>
-
-          <li>
-            「〜しない」ではなく、やる行動で書かれている
-            <span class="ml-1 text-xs text-gray-400">（実行しにくい否定表現でなく別の肯定の表現にする"代替ifthen"）</span>
-          </li>
-        </ul>
-
-        <p class="mt-2 text-xs text-gray-500">
-          例：「勉強する」→「ノートを開く」<br>
-          例2：「スマホを見ない」→「スマホの代わりに本を1ページ読む」
-        </p>
+        <p class="text-xs text-gray-400 font-light">セルフチェック用です。</p>
+        <%= render "if_then_rules/hint", target: :then %>
       </div>
     </details>
   </div>
@@ -141,4 +95,8 @@
     <% end %>
   </div>
   <% end %>
+
+
+
+
 

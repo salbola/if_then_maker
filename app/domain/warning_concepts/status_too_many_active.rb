@@ -9,8 +9,9 @@ module WarningConcepts
     def self.definition
       {
         label: "実行中のルールが多いことによる挫折を防ぐ",
+        target: :status,
         description: "実行中のルールが多すぎると実行できなくなって挫折する",
-        hint: "実行中のルールが可能な数に収まっている ",
+        hint: { enabled: true, content: "実行中のルールが可能な数に収まっている " },
         patterns: {
           too_many_active: {
             matchers: [ "" ],
