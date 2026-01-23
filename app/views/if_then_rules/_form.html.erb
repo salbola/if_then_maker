@@ -21,8 +21,16 @@
       <% end %>
 
     </div>
+    <details class="mt-2 group">
+      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
+        <span class="transition-transform group-open:rotate-90">▶</span>
+        💡 実行しやすいIFのチェックポイント
+      </summary>
 
-    <%= render "if_then_rules/hint", target: :if %>
+      <div class="mt-2 text-sm text-gray-600  p-3 rounded">
+        <%= render "if_then_rules/hint", target: :if %>
+      </div>
+    </details>
 
 
   </div>
@@ -39,8 +47,15 @@
       <% end %>
 
     </div>
-
-  <%= render "if_then_rules/hint", target: :then %>
+    <details class="mt-2 group">
+      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
+        <span class="transition-transform group-open:rotate-90">▶</span>
+        💡 実行しやすいTHENのチェックポイント
+      </summary>
+      <div class="mt-2 text-sm text-gray-600  p-3 rounded">
+        <%= render "if_then_rules/hint", target: :then %>
+      </div>
+    </details>
   </div>
    <%= f.label :status, "状態", class: "label" %>
    <%= f.select :status, [ ["実行中", "active"],["下書き", "draft"]], {selected: change_default_status(@active_if_then_rules,setted_status:if_then_rule_form.status)} %>

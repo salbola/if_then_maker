@@ -1,21 +1,8 @@
-
-<details class="mt-2 group">
-      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
-        <span class="transition-transform group-open:rotate-90">▶</span>
-        💡 実行しやすいIFのチェックポイント
-      </summary>
-
-      <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        <ul class="space-y-3 list-disc list-inside">
-          <% warning_hints_for(target).each do |concept| %>
-            <li>
-            <span class="hint-label"><%= concept.definition[:label] %></span>
-            <span class="ml-1 text-xs text-gray-400"><%= concept.definition.dig(:hint, :content) %></span>
-            </li>
-          <% end %>
-        </ul>
-        <p class="mt-2 text-xs text-gray-500">
-          例：「やる気が出たら」→「机に座ったら」
-        </p>
-      </div>
-    </details>
+<ul class="space-y-3 list-disc list-inside">
+  <% warning_hints_for(target).each do |concept| %>
+    <li>
+    <span class="hint-label"><%= concept.definition[:label] %></span>
+    <span class="ml-1 text-xs text-gray-400"><%= concept.definition.dig(:hint, :content) %></span>
+    </li>
+  <% end %>
+</ul>
