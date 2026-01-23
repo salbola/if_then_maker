@@ -1,9 +1,9 @@
 module WarningConceptsHelper
   def if_concepts
-    WarningConcepts.all.select { |c| c.name.demodulize.start_with?("If") }
+    WarningConcepts.if_concepts
   end
 
   def then_concepts
-    WarningConcepts.all.select { |c| c.name.demodulize.start_with?("Then") }
+    WarningConcepts.then_concepts
   end
 end
