@@ -1,0 +1,6 @@
+<% warning_hints_for(target).each do |concept| %>
+  <div class="hint">
+    <span class="hint-label"><%= concept.definition[:label] %></span>
+    <span class="hint-content"><%= concept.definition.dig(:hint, :content) %></span>
+  </div>
+<% end %>
