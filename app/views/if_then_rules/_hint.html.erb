@@ -1,6 +1,8 @@
-<ul class="space-y-3 list-disc list-inside">
+<ul class="space-y-3 list-disc list-inside bg-gray-100">
   <% warning_hints_for(target).each do |concept| %>
-    <li>
+    <li class="list-none">
+    <!--セルフチェック用として一応チェック-->
+    <input type="checkbox" class="checkbox checkbox-info cursor-pointer checkbox-sm""  />
     <span class="hint-label"><%= concept.definition[:label] %></span>
     <span class="ml-1 text-xs text-gray-400"><%= concept.definition.dig(:hint, :content) %></span>
     </li>
