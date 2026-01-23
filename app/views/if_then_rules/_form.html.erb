@@ -142,3 +142,26 @@
   </div>
   <% end %>
 
+
+<div class="hint-toggle">
+  <ul>
+    <% WarningConceptsHelper.if_concepts.each do |concept| %>
+      <% d = concept.definition %>
+      <li>
+        <%= d[:hint] %>
+        <span class="text-xs text-gray-400">（<%= d[:label] %>）</span>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class="hint-toggle">
+  <ul>
+    <% WarningConceptsHelper.then_concepts.each do |concept| %>
+      <% d = concept.definition %>
+      <li>
+        <%= d[:hint] %>
+        <span class="text-xs text-gray-400">（<%= d[:label] %>）</span>
+      </li>
+    <% end %>
+  </ul>
+</div>
