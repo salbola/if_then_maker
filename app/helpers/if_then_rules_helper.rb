@@ -27,9 +27,4 @@ module IfThenRulesHelper
     # activeなルールの個数が3つ以上あれば初期値をdraftにする
     active_if_then_rules.length >= 3 ? "draft" : "active"
   end
-  #コンセプトをtargetごとにヒントまで持ってくる
-  def warning_hints_for(target)
-    WarningConcepts.for_target(target)
-      .select { |c| c.definition.dig(:hint, :enabled) }
-  end
 end
