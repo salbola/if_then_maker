@@ -8,6 +8,7 @@ module WarningConcepts
     def self.definition
       {
         label: "気付けるトリガーになっている",
+        target: :if,
         description: "実行条件が曖昧で、行動のきっかけとして再現性が低い状態",
         hint: "自分の気分や状態ではなく、外から確認できる出来事になっている ",
         patterns: {

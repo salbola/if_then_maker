@@ -6,12 +6,10 @@ module WarningConcepts
   end
 
   def self.if_concepts
-    # all.select(&:if?)
-    all.select { |c| c.name.demodulize.start_with?("If") }
+    all.select { |c| c.definition[:target] == :if }
   end
 
   def self.then_concepts
-    # all.select(&:then?)
-    all.select { |c| c.name.demodulize.start_with?("Then") }
+    all.select { |c| c.definition[:target] == :then }
   end
 end

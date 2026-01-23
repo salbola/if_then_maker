@@ -8,6 +8,7 @@ module WarningConcepts
     def self.definition
       {
         label: "一つのトリガーが一つの行動と結びつく",
+        target: :if,
         description: "一つのifに複数の行動が結びついていると選択の余地が出てしまい無意識の行動,習慣化の妨げになる",
         hint: "他のルールと同じ条件になっていない ",
         patterns: {

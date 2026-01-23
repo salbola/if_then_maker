@@ -8,6 +8,7 @@ module WarningConcepts
     def self.definition
       {
         label: "開始タイミングが絞れること",
+        target: :if,
         description: "実行条件が曖昧で、行動のきっかけとして再現性が低い状態",
         hint: "その瞬間が起きたと直感的に1つに判断できる ",
         patterns: {
