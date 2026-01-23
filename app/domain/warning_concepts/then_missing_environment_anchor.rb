@@ -10,7 +10,7 @@ module WarningConcepts
         label: "現実の環境と結びついた行動",
         target: :then,
         description: "現実の環境と結びついた行動で実行難易度を下げる",
-        hint: { enabled: true, content:"具体的な場所や道具が思い浮かぶ"},
+        hint: { enabled: true, content: "具体的な場所や道具が思い浮かぶ" },
         patterns: {
           missing_environment_anchor: {
             matchers: [

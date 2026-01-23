@@ -10,7 +10,7 @@ module WarningConcepts
         label: "実行しにくい否定表現でなく別の肯定の表現にする'代替ifthen'",
         target: :then,
         description: "脳の特性や行動心理学的に、「回避」や「禁止」の指示は行動に繋がりにくく、むしろその対象を意識させてしまう。(シロクマ効果)「したくない行動の代わりにxxxxする」にという形式が良い。'代替ifthen'",
-        hint: { enabled: true, content:"「〜しない」ではなく、やる行動で書かれている"},
+        hint: { enabled: true, content: "「〜しない」ではなく、やる行動で書かれている" },
         patterns: {
           negative_expression_action: {
             matchers: [
