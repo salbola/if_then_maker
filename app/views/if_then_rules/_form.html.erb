@@ -145,7 +145,7 @@
 
 <div class="hint-toggle">
   <ul>
-    <% WarningConceptsHelper.if_concepts.each do |concept| %>
+    <% if_concepts.each do |concept| %>
       <% d = concept.definition %>
       <li>
         <%= d[:hint] %>
@@ -156,7 +156,7 @@
 </div>
 <div class="hint-toggle">
   <ul>
-    <% WarningConceptsHelper.then_concepts.each do |concept| %>
+    <% then_concepts.each do |concept| %>
       <% d = concept.definition %>
       <li>
         <%= d[:hint] %>
