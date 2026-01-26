@@ -4,11 +4,11 @@
   <div class="hero-content text-center">
     <div class="max-w-md">
       <h1 class="text-4xl font-bold">振り返り一覧</h1>
-
+<ul>
 <% @reflections.each do |reflection|  %>
-   <li class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">完了日:<%= reflection.reflected_on %><%= if_then_rule_board_view(reflection.if_then_rule) %></li>
+   <li class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">完了日:<%= reflection.reflected_on.strftime("%Y年%-m月%-d日") %><%= if_then_rule_board_view(reflection.if_then_rule) %></li>
 <% end %>
-
+</ul>
 
     </div>
   </div>
