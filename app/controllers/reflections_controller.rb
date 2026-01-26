@@ -8,4 +8,8 @@ class ReflectionsController < ApplicationController
     )
     redirect_back fallback_location: dash_boards_path
   end
+
+    def index
+    @reflections = current_user.reflections.includes(:if_then_rule).order(reflected_on: :desc)
+  end
 end

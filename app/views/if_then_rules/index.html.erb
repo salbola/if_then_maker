@@ -1,66 +1,71 @@
+    <% content_for :title do %>
+      If-Thenルール一覧
+    <% end %>
 <% if @if_then_rules.active.count > 3 %>
   <p class="text-sm text-yellow-600 mb-2">
     実行中のルールが少し多いかもしれません。<%= "(３つまでを推奨していますが現在 #{@if_then_rules.active.length} つです) " %>
   </p>
-<% end %><h1 class="text-xl font-semibold mb-6">
-  If-Thenルール一覧
-</h1>
+<% end %>
 
-<% if @if_then_rules.any? %>
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    <% @if_then_rules.each do |rule| %>
-      <div class="card bg-base-100 border shadow-sm">
-        <div class="card-body">
-          <h2 class="text-sm font-medium text-gray-500">
-            IF
-          </h2>
-          <p class="mb-2">
-            <%= rule.if_condition %>
-          </p>
+<div class="max-w-1vw">
 
-          <h2 class="text-sm font-medium text-gray-500">
-            THEN
-          </h2>
-          <p class="mb-4">
-            <%= rule.then_action %>
-          </p>
-          <div>
-            <p class="tag bg-accent text-white inline-block mr-2 px-2.5 py-0.5">
-              <%= rule.status %>
+  <% if @if_then_rules.any? %>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <% @if_then_rules.each do |rule| %>
+        <div class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
+          <div class="card-body">
+            <h2 class="text-sm font-medium text-gray-500 text-left">
+              IF
+            </h2>
+            <p class="mb-2">
+              <%= rule.if_condition %>
             </p>
-          </div>
 
-          <% if rule.memo.present? %>
-            <p class="text-xs text-gray-400 mb-2">
-              元メモ：<%= rule.memo.title.presence || "（無題）" %>
+            <h2 class="text-sm font-medium text-gray-500 text-left">
+              THEN
+            </h2>
+            <p class="mb-4">
+              <%= rule.then_action %>
             </p>
-          <% end %>
+            <div>
+              <p class="tag bg-accent text-white inline-block mr-2 px-2.5 py-0.5">
+                <%= rule.status %>
+              </p>
+            </div>
 
-          <div class="card-actions justify-end">
-            <%= link_to "詳細見る",
-                        if_then_rule_path(rule),
-                        class: "btn btn-outline btn-sm" %>
-          </div>
-          <div class="card-actions justify-end">
-            <%= link_to "編集する",
-                        edit_if_then_rule_path(rule),
-                        class: "btn btn-outline btn-sm" %>
-          </div>
-          <div class="card-actions justify-end">
-          <%= link_to "削除する",
-            if_then_rule_path(rule),
-           data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "このルールを削除しますか？" },
-            class: "btn btn-outline btn-error btn-sm"
-          %>
+            <% if rule.memo.present? %>
+              <p class="text-xs text-gray-400 mb-2">
+                元メモ：<%= rule.memo.title.presence || "（無題）" %>
+              </p>
+            <% end %>
+
+            <div class="card-actions justify-end">
+              <%= link_to "詳細見る",
+                          if_then_rule_path(rule),
+                          class: "btn btn-outline btn-sm" %>
+            </div>
+            <div class="card-actions justify-end">
+              <%= link_to "編集する",
+                          edit_if_then_rule_path(rule),
+                          class: "btn btn-outline btn-sm" %>
+            </div>
+            <div class="card-actions justify-end">
+            <%= link_to "削除する",
+              if_then_rule_path(rule),
+            data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "このルールを削除しますか？" },
+              class: "btn btn-outline btn-error btn-sm"
+            %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <p class="text-gray-500">
-    まだIf-Thenルールはありません。
-  </p>
-<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500">
+      まだIf-Thenルールはありません。
+    </p>
+  <% end %>
+
+</div>
