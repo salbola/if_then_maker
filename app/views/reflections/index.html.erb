@@ -1,8 +1,4 @@
-
-
-<main class="hero min-h-[70vh] bg-[#69c5d4]">
-  <div class="hero-content text-center">
-    <div class="max-w-md">
+<div class="max-w-md">
       <h1 class="text-4xl font-bold">振り返り一覧</h1>
 <ul>
 <% @reflections.group_by(&:reflected_on).each do |date, reflections| %>
@@ -16,6 +12,4 @@
   </ul>
 <% end %>
 
-    </div>
-  </div>
-</main>
+</div>
