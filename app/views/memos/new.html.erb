@@ -1,5 +1,8 @@
+    <% content_for :title do %>
+      メモ作成
+    <% end %>
 <div class="max-w-2xl mx-auto mt-10 px-4">
-  <h1 class="text-2xl font-bold mb-6">新しいメモを作成</h1>
+
 
   <%= form_with model: @memo, local: true do |f| %>
     <!-- タイトル -->

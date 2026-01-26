@@ -22,18 +22,31 @@
     <% else %>
       <%= render "shared/header_guest" %>
     <% end %>
-    <div class ="bg-[#69c5d4]">
-    <% flash.each do |type, message| %>
-      <div class="alert <%= flash_class(type) %> mb-4">
-        <span><%= message %></span>
+
+
+
+    <div class ="bg-[#69c5d4] min-h-[70vh] space-y-6 ">
+      <% flash.each do |type, message| %>
+        <div class="alert <%= flash_class(type) %> mb-4">
+          <span><%= message %></span>
+        </div>
+      <% end %>
+
+      <% if content_for(:title) %>
+        <h1 class="text-4xl font-bold text-center pt-6">
+          <%= yield :title %>
+        </h1>
+      <% end %>
+
+      <main class="hero">
+      <div class="hero-content text-center">
+        <%= yield %>
       </div>
-    <% end %>
-    <main class="hero min-h-[70vh] bg-[#69c5d4]">
-    <div class="hero-content text-center">
-    <%= yield %>
+      </main>
     </div>
-    </main>
-    </div>
+
+
+
     <% if logged_in? %>
       <%= render "shared/footer_logged_in" %>
     <% else %>

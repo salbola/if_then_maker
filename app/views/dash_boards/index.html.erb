@@ -1,8 +1,11 @@
+
 <div class="max-w-md">
 
 
   <% if @if_then_rules.active.any? %>
-    <h1 class="text-4xl font-bold mb-4">今日のルール</h1>
+    <% content_for :title do %>
+      今日のルール
+    <% end %>
     <!--今日のルール一覧-->
     <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
     <!-- カードの下の今日やったルールなどの集計表示 -->
@@ -11,7 +14,10 @@
 
 
   <% else %>
-    <p class="mb-6 text-gray-600">まだ実行中のルールがありません</p>
+    <% content_for :title do %>
+      こちらがダッシュボードです。
+    <% end %>
+    <p class="mb-6 text-gray-600">まだ実行中のルールがありません。新しく作ってみましょう</p>
   <% end %>
 
 

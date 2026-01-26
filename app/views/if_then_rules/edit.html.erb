@@ -1,4 +1,5 @@
-  <h1 class="text-4xl font-semi-bold text-center my-6">
-    If-Thenルール編集
-  </h1>
+
+    <% content_for :title do %>
+      If-Thenルール編集
+    <% end %>
 <%= render "form", if_then_rule_form: @if_then_rule_form, url:if_then_rule_path(@if_then_rule), method: :patch %>

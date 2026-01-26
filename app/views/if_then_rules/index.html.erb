@@ -1,4 +1,6 @@
-
+    <% content_for :title do %>
+      If-Thenルール一覧
+    <% end %>
 <% if @if_then_rules.active.count > 3 %>
   <p class="text-sm text-yellow-600 mb-2">
     実行中のルールが少し多いかもしれません。<%= "(３つまでを推奨していますが現在 #{@if_then_rules.active.length} つです) " %>
@@ -6,7 +8,7 @@
 <% end %>
 
 <div class="max-w-1vw">
-  <h1 class="text-4xl font-bold">If-Thenルール一覧</h1>
+
   <% if @if_then_rules.any? %>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <% @if_then_rules.each do |rule| %>
