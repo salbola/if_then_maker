@@ -13,12 +13,10 @@
       </div>
 
       <div class="mt-6 flex flex-col gap-3">
-        <a href=<%= new_user_path %> class="btn btn-primary">
-          新規登録
-        </a>
-        <a href=<%= login_path %> class="btn btn-outline">
-          ログイン
-        </a>
+      
+        <%= link_to "新規登録", new_user_path, class:"btn btn-primary" %>
+        <%= link_to "ログイン", login_path, class:"btn btn-outline" %>
+
         <a href="#" class="link link-hover text-gray-500">
           サービスについて
         </a>
