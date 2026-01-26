@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   # reflections 振り返りの表示機能
   resources :reflections, only: %i[index]
+  resource :reflection_time, only: %i[update edit]
 
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

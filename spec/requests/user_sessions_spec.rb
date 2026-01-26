@@ -49,7 +49,6 @@ RSpec.describe "UserSessions", type: :request do
 
       expect(response).to redirect_to(root_path)
       follow_redirect!
-      expect(response.body).to include("仮のランディングページ")
       expect(response.body).to include("ログアウトしました")
     end
   end

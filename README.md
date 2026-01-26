@@ -3,7 +3,7 @@
 知識を「実際の行動」に変えるための、if-thenプランニング支援アプリです。
 
 ## ER図リンク
-https://gyazo.com/e26e2e005d17f920fbe5c5744d973a4d
+https://gyazo.com/f4f091b52a23f692640bb19682310eb9
 ## 画面遷移図(figma)
 https://www.figma.com/design/H44ccmTepqsom5FopkMFus/%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C?node-id=0-1&t=Ov61CgIhPLcyqUrH-1
 
@@ -132,8 +132,8 @@ https://ifthen-maker.onrender.com
 ### 振り返り関連
 
 - [x]  振り返り記録の作成（実行できたかだけの簡単なもの）
-- [ ]  振り返り記録の一覧表示
-- [ ]  振り返りタイミングの設定
+- [x]  振り返り記録の一覧表示
+- [x]  振り返りタイミングの設定
 
 
 ## MVP外の機能候補(必要かどうかから様子をみます)
