@@ -1,30 +1,43 @@
-<main class="hero min-h-[70vh] bg-base-200">
+<main class="hero min-h-[70vh] bg-[#69c5d4]">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-4xl font-bold">
-        仮のランディングページ
+      <h1 class="text-5xl font-bold">
+        If then maker
       </h1>
+      <p class="mb-10"> 日々の小さな習慣やタスクを、if-thenルールで簡単に習慣化。</p>
 
-      <p class="py-6 text-lg">
-        キャッチコピーーーーーーー。
-      </p>
+      <div class=" bg-[#eaf2fb] card shadow-md rounded-lg p-4">
 
-      <div class="space-y-2 text-sm text-base-content/80">
-        <p>ここでサービスの紹介や特徴-------------</p>
-        <p>リンクや画像を追加--------------</p>
+        <h2 class="mb-6">
+        このアプリは本やネットで得た<strong>「小さな工夫」を、実際の行動に変える</strong>ためのサービスです。</h2>
+        <div class ="text-sm space-y-4" >
+        <p>
+          良いアイデアや工夫を知っても、実際にやろうとするとつい先延ばしにしてしまうことが多いものです。
+          たとえば…
+        </p>
+        <ul class="list-disc list-inside ml-4 mb-4 text-left ">
+          <li>朝起きたらコップ一杯の水を飲む</li>
+          <li>仕事前にデスクを整頓する</li>
+          <li>寝る前にスマホを置いて少し読書する</li>
+          <li>毎日少しだけ筋トレやストレッチをする</li>etc..
+        </ul>
+        <p>
+          このアプリは、そんな「知ってはいるけどやれない」を、「if-thenルール」で具体的な行動に変えるお手伝いをします。
+        </p>
+        </div>
       </div>
 
       <div class="mt-6 flex flex-col gap-3">
-        <a href=<%= new_user_path %> class="btn btn-primary">
-          新規登録
-        </a>
-        <a href=<%= login_path %> class="btn btn-outline">
-          ログイン
-        </a>
-        <a href="#" class="link link-hover">
-          サービスについて
-        </a>
+        <p class="text-sm text-gray-100 mb-2 animate-bounce">今日から小さな習慣を始めましょう</p>
+        <%= link_to "新規登録", new_user_path, class:"btn  bg-[#fff462]" %>
+        <%= link_to "ログイン", login_path, class:"btn btn-outline" %>
+
+
       </div>
+      <p class="text-sm text-gray-500 mb-4 mt-9">
+          ※本アプリは現在開発中です。一部機能は順次追加予定です。
+      </p>
     </div>
   </div>
+  
 </main>
