@@ -1,6 +1,5 @@
 class ReflectionTimesController < ApplicationController
   def edit
-    
   end
   def update
     current_user.update(reflection_time_params)
