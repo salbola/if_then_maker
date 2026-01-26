@@ -10,17 +10,21 @@
     <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
     <!-- カードの下の今日やったルールなどの集計表示 -->
     <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
+
+    <div class="mt-6 flex flex-col gap-3">
+      <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
+    </div>
     
-    <div class="card bg-base-100 shadow p-4 mb-4">
-  <p class="text-sm text-gray-500">振り返りタイミング</p>
+    <div class="card bg-base-200 shadow p-4 mt-16 ">
+      <p class="text-sm text-gray-500">振り返りタイミング</p>
 
-  <div class="flex items-center justify-between mt-1">
-    <span class="text-lg font-semibold">
-      毎日<%= current_user.reflection_time&.strftime("%H:%M") || "未設定" %>に振り返る
-    </span>
+      <div class="flex items-center justify-between mt-1">
+        <span class="text-lg font-semibold">
+          毎日<%= current_user.reflection_time&.strftime("%H:%M") || "未設定" %>に振り返る
+        </span>
 
-    <%= link_to "変更", edit_reflection_time_path, class: "btn btn-sm" %>
-  </div>
+        <%= link_to "変更", edit_reflection_time_path, class: "btn btn-sm" %>
+      </div>
 </div>
 
 
@@ -29,14 +33,11 @@
       こちらがダッシュボードです。
     <% end %>
     <p class="mb-6 text-gray-600">まだ実行中のルールがありません。新しく作ってみましょう</p>
+    <div class="mt-12 flex flex-col gap-3">
+      <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
+    </div>
   <% end %>
 
-
-
-
-  <div class="mt-12 flex flex-col gap-3">
-    <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
-  </div>
 
 </div>
 
