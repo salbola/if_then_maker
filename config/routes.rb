@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       # post :step3, action: :step3_submit
     end
   end
+  # reflections 振り返りの表示機能
+  resources :reflections, only: %i[index]
 
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
