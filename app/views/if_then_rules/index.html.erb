@@ -7,14 +7,14 @@
 
 <main class="hero min-h-[70vh] bg-[#69c5d4]">
   <div class="hero-content text-center">
-    <div class="max-w-md">
+    <div class="max-w-1vw">
       <h1 class="text-4xl font-bold">If-Thenルール一覧</h1>
       <% if @if_then_rules.any? %>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <% @if_then_rules.each do |rule| %>
             <div class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
               <div class="card-body">
-                <h2 class="text-sm font-medium text-gray-500">
+                <h2 class="text-sm font-medium text-gray-500 card-title">
                   IF
                 </h2>
                 <p class="mb-2">
