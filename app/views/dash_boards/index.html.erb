@@ -10,7 +10,18 @@
     <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
     <!-- カードの下の今日やったルールなどの集計表示 -->
     <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
+    
+    <div class="card bg-base-100 shadow p-4 mb-4">
+  <p class="text-sm text-gray-500">振り返りタイミング</p>
 
+  <div class="flex items-center justify-between mt-1">
+    <span class="text-lg font-semibold">
+      <%= current_user.reflection_time&.strftime("%H:%M") || "未設定" %>
+    </span>
+
+    <%= link_to "変更", edit_reflection_time_path, class: "btn btn-sm" %>
+  </div>
+</div>
 
 
   <% else %>
