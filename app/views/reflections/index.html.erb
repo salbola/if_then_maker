@@ -4,15 +4,27 @@
 <div class="max-w-md">
 
 <ul>
-<% @reflections.group_by(&:reflected_on).each do |date, reflections| %>
-  <h2 class="text-lg font-semibold mt-4 mb-2"><%= date.strftime("%Y年%-m月%-d日") %></h2>
-  <ul class="space-y-2">
-    <% reflections.each do |reflection| %>
-      <li class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
-        <%= if_then_rule_board_view(reflection.if_then_rule) %>
-      </li>
-    <% end %>
-  </ul>
+<% if  @reflections.any?%>
+  <% @reflections.group_by(&:reflected_on).each do |date, reflections| %>
+    <h2 class="text-lg font-semibold mt-4 mb-2"><%= date.strftime("%Y年%-m月%-d日") %></h2>
+    <ul class="space-y-2">
+      <% reflections.each do |reflection| %>
+        <li class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
+          <%= if_then_rule_board_view(reflection.if_then_rule) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+    <p class="text-gray-500">
+      まだ振り返りはありません。
+    </p>
+    <p class="text-gray-500">
+    まずは一つメモやルールを作ることから始めましょう。
+    </p>
+    <div class="mt-12 flex flex-col gap-3">
+      <%= link_to "新しくルールを作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
+    </div>
 <% end %>
 
 </div>
