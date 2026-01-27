@@ -6,10 +6,22 @@ class ReflectionsController < ApplicationController
       user: current_user,
       reflected_on: Date.current
       )
+    streams = []
+
+    streams << turbo_stream.replace(
+      "today_rules",
+      partial: "if_then_rules/today_rules",
+      locals: { rules: current_user.if_then_rules }
+    )
+
     if current_user.all_rules_completed_today?
-    flash[:celebrate] = "おめでとうございます!今日のマイルール、すべて達成しました!"
+      streams << turbo_stream.replace(
+        "modal",
+        partial: "shared/celebrate_modal"
+      )
     end
-      redirect_back fallback_location: dash_boards_path
+
+    render turbo_stream: streams
   end
 
     def index
