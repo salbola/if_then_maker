@@ -15,4 +15,12 @@ class IfThenRule < ApplicationRecord
   def today_reflection
     reflections.find_by(reflected_on: Date.current)
   end
+
+  def human_status
+    case status
+    when "draft" then "下書き"
+    when "active" then "実行中"
+    when "done" then "完了"
+    end
+  end
 end
