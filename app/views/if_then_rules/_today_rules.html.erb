@@ -17,6 +17,11 @@
 
         <% if rule.reflected_today? %>
           <p>完了済み！</p>
+          <%= button_to "取り消す",
+            if_then_rule_reflection_path(rule,rule.today_reflection.id),
+            method: :delete,
+            class: "btn btn-xs"
+          %>
         <% else %>
           <%= button_to "✔️",
             if_then_rule_reflections_path(rule),

@@ -24,7 +24,18 @@ class ReflectionsController < ApplicationController
     render turbo_stream: streams
   end
 
-    def index
+  def index
     @reflections = current_user.reflections.includes(:if_then_rule).order(reflected_on: :desc)
+  end
+
+  def destroy
+  reflection = current_user.reflections.find(params[:id])
+  reflection.destroy!
+
+  render turbo_stream: turbo_stream.replace(
+    "today_rules",
+    partial: "if_then_rules/today_rules",
+    locals: { rules: current_user.if_then_rules }
+  ), notice: "チェックを取り消ししました"
   end
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :memos
   # ifthenの表示機能->if_then_rules
   resources :if_then_rules, only: %i[ index show new create edit update destroy] do
-    resources :reflections, only: %i[create]
+    resources :reflections, only: %i[create destroy]
   end
   # ifthenの作成機能(ステップUI)->if_then_rules/flows
   namespace :if_then_rules do
