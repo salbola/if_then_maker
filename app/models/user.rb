@@ -13,4 +13,9 @@ class User < ApplicationRecord
   validates :password_confirmation,
             presence: true,
             if: -> { new_record? || will_save_change_to_crypted_password? }
+
+  def  all_rules_completed_today?
+    today_rules = if_then_rules.active
+    completed = today_rules.all?(&:reflected_today?)
+  end
 end
