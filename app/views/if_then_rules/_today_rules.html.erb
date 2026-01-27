@@ -7,7 +7,8 @@
       <div class="flex justify-end px-4 pt-2">
         <%= link_to "✏️",
           edit_if_then_rule_path(rule),
-          class: "btn btn-ghost btn-sm btn-circle"
+          class: "btn btn-ghost btn-sm btn-circle",
+          data: { turbo_frame: "_top" }
         %>
       </div>
 

@@ -1,4 +1,5 @@
 class ReflectionsController < ApplicationController
+  include IfThenRulesHelper
   def create
     rule = current_user.if_then_rules.find(params[:if_then_rule_id])
     
@@ -12,6 +13,12 @@ class ReflectionsController < ApplicationController
       "today_rules",
       partial: "if_then_rules/today_rules",
       locals: { rules: current_user.if_then_rules }
+    )
+
+    streams << turbo_stream.replace(
+      "today_progress",
+      partial: "if_then_rules/today_progress",
+      locals: { progress: today_progress(current_user.if_then_rules) }
     )
 
     if current_user.all_rules_completed_today?
@@ -31,11 +38,19 @@ class ReflectionsController < ApplicationController
   def destroy
   reflection = current_user.reflections.find(params[:id])
   reflection.destroy!
+    streams = []
 
-  render turbo_stream: turbo_stream.replace(
-    "today_rules",
-    partial: "if_then_rules/today_rules",
-    locals: { rules: current_user.if_then_rules }
-  ), notice: "チェックを取り消ししました"
+    streams << turbo_stream.replace(
+      "today_rules",
+      partial: "if_then_rules/today_rules",
+      locals: { rules: current_user.if_then_rules }
+    )
+
+        streams << turbo_stream.replace(
+      "today_progress",
+      partial: "if_then_rules/today_progress",
+      locals: { progress: today_progress(current_user.if_then_rules) }
+    )
+  render turbo_stream: streams, notice: "チェックを取り消ししました"
   end
 end
