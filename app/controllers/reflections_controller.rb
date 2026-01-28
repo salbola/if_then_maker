@@ -2,7 +2,7 @@ class ReflectionsController < ApplicationController
   include IfThenRulesHelper
   def create
     rule = current_user.if_then_rules.find(params[:if_then_rule_id])
-    
+
     reflection = rule.reflections.find_or_create_by!(
       user: current_user,
       reflected_on: Date.current

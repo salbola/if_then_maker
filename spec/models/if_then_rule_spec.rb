@@ -71,7 +71,6 @@ RSpec.describe IfThenRule, type: :model do
 
 
     describe "#today_reflection" do
-
       context "今日のreflectionがある場合" do
         before do
           create(:reflection,
@@ -118,7 +117,6 @@ RSpec.describe IfThenRule, type: :model do
       expect(rule.human_status).to eq "定着済み"
     end
   end
-
     end
   end
 end
