@@ -1,97 +1,113 @@
 <!--if_then_rule_formはフォームオブジェクト-->
-
-<%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6" do |f| %>
-  <%= f.hidden_field :memo_id %>
-  <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
-    <div class="form-control">
-      <%= f.label :if_condition, "IF（きっかけ）", class: "label" %>
-      <%= f.text_field :if_condition,
-                      class: "input input-bordered",
-                      placeholder: "例：朝7時に起きたら" %>
-      <% if if_then_rule_form.errors[:if_condition].any? %>
-        <p class="text-sm text-red-600 mt-1">
-          <%= if_then_rule_form.errors[:if_condition].first %>
-        </p>
-      <% end %>
-
-    </div>
-    <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :if_condition %>
-    <details class="mt-2 group">
-      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
-        <span class="transition-transform group-open:rotate-90">▶</span>
-        💡 実行しやすいIFのチェックポイント
-      </summary>
-
-      <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        <p class="text-xs text-gray-400 font-light">セルフチェック用です。</p>
-        <%= render "if_then_rules/hint", target: :if %>
-      </div>
-    </details>
-
-
-  </div>
-  <div class="p-4 rounded-lg bg-green-50 border border-green-100">
-    <div class="form-control">
-      <%= f.label :then_action, "THEN（行動）", class: "label" %>
-      <%= f.text_field :then_action,
-                      class: "input input-bordered",
-                      placeholder: "例：コップ一杯の水を飲む" %>
-      <% if if_then_rule_form.errors[:then_action].any? %>
-        <p class="text-sm text-red-600 mt-1">
-          <%= if_then_rule_form.errors[:then_action].first %>
-        </p>
-      <% end %>
-
-    </div>
-    <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :then_action %>
-    <details class="mt-2 group">
-      <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
-        <span class="transition-transform group-open:rotate-90">▶</span>
-        💡 実行しやすいTHENのチェックポイント
-      </summary>
-      <div class="mt-2 text-sm text-gray-600  p-3 rounded">
-        <p class="text-xs text-gray-400 font-light">セルフチェック用です。</p>
-        <%= render "if_then_rules/hint", target: :then %>
-      </div>
-    </details>
-  </div>
-   <%= f.label :status, "状態", class: "label" %>
-   <%= f.select :status, [ ["実行中", "active"],["下書き", "draft"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,setted_status:if_then_rule_form.status)} %>
-
-
-<% if if_then_rule_form.warnings.any? %>
-        <% if_then_rule_form.warnings
-            .filter { |w| w[:field] == :status }
-            .each do |warning| %>
-          <p class="text-yellow-600 text-sm">
-            <%= warning[:message] %>
+<div class ="space-y-6">
+  <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6" do |f| %>
+    <%= f.hidden_field :memo_id %>
+    <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
+      <div class="form-control">
+        <%= f.label :if_condition, "もし", class: "label block text-left" %>
+        <%= f.text_field :if_condition,
+                        class: "input input-bordered",
+                        placeholder: "例：朝7時に起きたら" %>
+        <% if if_then_rule_form.errors[:if_condition].any? %>
+          <p class="text-sm text-red-600 mt-1">
+            <%= if_then_rule_form.errors[:if_condition].first %>
           </p>
         <% end %>
-      <% end %>
-  <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :status %>
-  <p class="text-sm text-gray-500 mt-1">
-  現在、実行中のルールは <%= @active_if_then_rules.length %> 件です
-</p>
+
+      </div>
+      <!--warning表示-->
+      <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :if_condition %>
+      <details class="mt-2 group">
+        <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
+          <span class="transition-transform group-open:rotate-90">▶</span>
+          💡 実行しやすいIFのチェックポイント
+          <p class="text-xs text-gray-400 font-light">セルフチェック用です。</p>
+        </summary>
+
+        <div class="mt-2 text-sm text-gray-600  p-3 rounded">
+          <%= render "if_then_rules/hint", target: :if %>
+        </div>
+      </details>
+
+
+    </div>
+    <div class="p-4 rounded-lg bg-green-50 border border-green-100">
+      <div class="form-control">
+        <%= f.label :then_action, "その時は", class: "label block text-left" %>
+        <%= f.text_field :then_action,
+                        class: "input input-bordered",
+                        placeholder: "例：コップ一杯の水を飲む" %>
+        <% if if_then_rule_form.errors[:then_action].any? %>
+          <p class="text-sm text-red-600 mt-1">
+            <%= if_then_rule_form.errors[:then_action].first %>
+          </p>
+        <% end %>
+
+      </div>
+      <!--warning表示-->
+      <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :then_action %>
+      <details class="mt-2 group">
+        <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
+          <span class="transition-transform group-open:rotate-90">▶</span>
+          💡 実行しやすいTHENのチェックポイント
+          <p class="text-xs text-gray-400 font-light">セルフチェック用です。</p>
+        </summary>
+        <div class="mt-2 text-sm text-gray-600  p-3 rounded">
+          <%= render "if_then_rules/hint", target: :then %>
+        </div>
+      </details>
+    </div>
+    <%= f.label :status, "状態", class: "label" %>
+    <%= f.select :status, [ ["実行中", "active"],["未実行", "draft"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,setted_status:if_then_rule_form.status)} %>
+
+    <!--statusのwarning_message-->
+    <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :status %>
+    <p class="text-sm text-gray-500 mt-1">
+      現在、実行中のルールは <%= @active_if_then_rules.length %> 件です
+    </p>
+
+    <!--warning確認を無視するトグル-->
+    <%= hidden_field_tag :commit_type, "" %>
+
+    <label class="flex items-center gap-2">
+      <%= check_box_tag :commit_type,
+            "ignore_warnings",
+            false,
+            class: "toggle toggle-primary" %>
+      <span class="text-sm">ヒントの自動チェックをしない</span>
+    </label>
+
+    <!--保存ボタンなど-->
     <div class="pt-4 space-y-3">
-    <% if if_then_rule_form.warnings.present? %>
-      <% if if_then_rule_form.errors.empty? %>
-        <%= f.button "このまま保存する",
-                    name: "commit_type",
-                    value: "ignore_warnings",
+      <% if if_then_rule_form.warnings.present? %>
+
+
+        <%= f.button "もう一度確認して保存する",
+
+                    class: "btn btn-secondary w-full" %>
+
+      <% else %>
+
+        <%= f.button "保存する",
                     class: "btn btn-primary w-full" %>
       <% end %>
+    </div>
 
-      <%= f.button "もう一度確認して保存する",
-                  name: "commit_type",
-                  value: "review",
-                  class: "btn btn-secondary w-full" %>
-
-    <% else %>
-      <%= f.button "保存する",
-                  class: "btn btn-primary w-full" %>
     <% end %>
-  </div>
-  <% end %>
+    <!--フォームここまで-->
+    <!--選択されているメモの表示-->
+    <% if @memo %>
+      <div class="bg-gray-100 p-3 rounded text-sm">
+        <p class="text-xs text-gray-400 mb-1">元メモ</p>
+        <%= @memo.title %>
+        <%= @memo.body %>
+      </div>
+    <% else %>
+      <p class="text-xs text-gray-400">
+        元メモなし
+      </p>
+    <% end %>
+</div>
 
 
 

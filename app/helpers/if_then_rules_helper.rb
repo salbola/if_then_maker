@@ -11,13 +11,6 @@ module IfThenRulesHelper
       percent: total.zero? ? 0 : (done * 100 / total)
     }
   end
-  # ルールをカード表示する際のヘルパー
-  def if_then_rule_board_view(rule)
-    safe_join([
-      tag.p(rule.if_condition, class: "font-normal"),
-      tag.p(rule.then_action, class: "font-semibold text-primary mt-4")
-    ])
-  end
 
   # 新規作成フォームで使うヘルパー
   # その時のactiveなルールの個数でstatusの入力欄のデフォルト値を変える

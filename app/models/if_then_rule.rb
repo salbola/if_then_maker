@@ -18,7 +18,7 @@ class IfThenRule < ApplicationRecord
 
   def human_status
     case status
-    when "draft" then "下書き"
+    when "draft" then "未実行"
     when "active" then "実行中"
     when "habituated" then "定着済み"
     end

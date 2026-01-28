@@ -8,15 +8,15 @@
     <% end %>
     <!--今日のルール一覧-->
     <turbo-frame id="today_rules">
-    <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
+    <%= render "if_then_rules/dash_boards/today_rules", rules: @if_then_rules %>
     </turbo-frame>
     <!-- カードの下の今日やったルールなどの集計表示 -->
     <turbo-frame id="today_progress">
-    <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
+    <%= render "if_then_rules/dash_boards/today_progress", progress: today_progress(@if_then_rules) %>
     </turbo-frame>
 
     <div class="mt-6 flex flex-col gap-3">
-      <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
+      <%= link_to "新しくマイルールを作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
     </div>
     
     <div class="card bg-base-200 shadow p-4 mt-16 ">
@@ -39,7 +39,7 @@
     <p class="mb-6 text-gray-600">ここで毎日の振り返りで実行したルールのチェックをします</p>
     <p class="mb-6 text-gray-600">まだ実行中のルールがありません。新しく作ってみましょう</p>
     <div class="mt-12 flex flex-col gap-3">
-      <%= link_to "新しく習慣を作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
+      <%= link_to "新しくマイルールを作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
     </div>
   <% end %>
 

@@ -97,8 +97,8 @@ RSpec.describe IfThenRule, type: :model do
         context "status が draft のとき" do
     before { rule.update!(status: :draft) }
 
-    it "下書き を返す" do
-      expect(rule.human_status).to eq "下書き"
+    it "未実行 を返す" do
+      expect(rule.human_status).to eq "未実行"
     end
   end
 

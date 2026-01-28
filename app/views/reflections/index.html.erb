@@ -10,7 +10,7 @@
     <ul class="space-y-2">
       <% reflections.each do |reflection| %>
         <li class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
-          <%= if_then_rule_board_view(reflection.if_then_rule) %>
+          <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
         </li>
       <% end %>
     </ul>
