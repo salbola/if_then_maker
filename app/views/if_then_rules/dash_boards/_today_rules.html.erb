@@ -14,7 +14,9 @@
 
       <!-- body -->
       <div class="px-4 pb-4 space-y-2">
-        <%= if_then_rule_board_view(rule) %>
+      <div>
+        <%= render "if_then_rules/cards/rule_sentence", rule: rule %>
+      </div>
 
         <% if rule.reflected_today? %>
           <p>完了済み！</p>
