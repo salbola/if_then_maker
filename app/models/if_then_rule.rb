@@ -3,7 +3,7 @@ class IfThenRule < ApplicationRecord
   belongs_to :memo
   has_many :reflections, dependent: :destroy
 
-  enum status: { draft: 0, active: 1, done: 2 }
+  enum status: { draft: 0, active: 1, habituated: 2 }
   validates :if_condition, presence: true, if: :active?
   validates :then_action, presence: true, if: :active?
   validates :status, presence: true
@@ -20,7 +20,7 @@ class IfThenRule < ApplicationRecord
     case status
     when "draft" then "下書き"
     when "active" then "実行中"
-    when "done" then "完了"
+    when "habituated" then "定着済み"
     end
   end
 end
