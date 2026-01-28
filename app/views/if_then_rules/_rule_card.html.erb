@@ -1,56 +1,57 @@
 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <% if_then_rules.each do |rule| %>
-        <div class="bg-[#eaf2fb] card shadow-md rounded-lg p-4 space-y-2">
-                  <!--ルールのステータス-->
-          <div class="text-right">
-              <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-xs ">
+        <div class="bg-[#eaf2fb] card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr]">
+          <!--ルールのifとthenのグループ-->
+          <div class = " bg-gray-200 p-4  relative rounded-t-lg shadow-inner ">
+              <!--ルールのステータス-->
+              <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
                 <%= rule.human_status%>
               </p>
-          </div>
-          <!--ルールのifとthen-->
-          <div class = "card-title bg-gray-200 p-4 my-4">
-            <h2 class="text-xs font-medium text-gray-500 text-left">
+            <p class="text-xs font-medium text-gray-500 text-left">
               もし
-            </h2>
+            </p>
             <p class="text-sm text-gray-700 bg-blue-100 rounded px-2 py-1 ">
               <%= rule.if_condition %>
             </p>
 
-            <h2 class="text-xs font-medium text-gray-500 text-left">
+            <p class="text-xs font-medium text-gray-500 text-left">
               その時は
-            </h2>
+            </p>
             <p class="text-sm font-semibold text-primary bg-green-100 rounded px-2 py-1">
               <%= rule.then_action %>
             </p>
           </div>
 
-            <!--ルールの元になったメモ-->
+          <!--ルールのUI関係のグループ-->
           <div>
-            <% if rule.memo.present? %>
-              <p class="text-[11px] text-gray-400 mt-1">
-                元メモ：<%= rule.memo.title.presence || "（無題）" %>
-              </p>
-            <% else %>
-              <p class="text-[11px] text-gray-400 mt-1">
-                元のメモがありません
-              </p>
-            <% end %>
-          </div>
-            <!--ボタン集-->
-            <div class="card-actions justify-end mt-4">
-              <%= link_to "詳細",
-                          if_then_rule_path(rule),
-                          class: "btn btn-ghost btn-sm btn-primary" %>
-              <%= link_to "編集",
-                          edit_if_then_rule_path(rule),
-                          class: "btn btn-ghost btn-sm" %>
-              <%= link_to "削除",
-                if_then_rule_path(rule),
-                data: {
-                            turbo_method: :delete,
-                            turbo_confirm: "このルールを削除しますか？" },
-                  class: "btn btn-ghost btn-error btn-sm"
-              %>
+              <!--ルールの元になったメモ-->
+            <div>
+              <% if rule.memo.present? %>
+                <p class="text-[11px] text-gray-400 mt-1">
+                  元メモ：<%= rule.memo.title.presence || "（無題）" %>
+                </p>
+              <% else %>
+                <p class="text-[11px] text-gray-400 mt-1">
+                  元のメモがありません
+                </p>
+              <% end %>
+            </div>
+              <!--ボタン集-->
+              <div class="card-actions justify-end mt-4">
+                <%= link_to "詳細",
+                            if_then_rule_path(rule),
+                            class: "btn btn-ghost btn-sm " %>
+                <%= link_to "編集",
+                            edit_if_then_rule_path(rule),
+                            class: "btn btn-ghost btn-sm btn-primary" %>
+                <%= link_to "削除",
+                  if_then_rule_path(rule),
+                  data: {
+                              turbo_method: :delete,
+                              turbo_confirm: "このルールを削除しますか？" },
+                    class: "btn btn-ghost btn-error btn-sm"
+                %>
+              </div>
             </div>
         </div>
       <% end %>
