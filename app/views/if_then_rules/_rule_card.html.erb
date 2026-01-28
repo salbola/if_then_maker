@@ -1,12 +1,12 @@
 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <% if_then_rules.each do |rule| %>
-        <div class="bg-[#eaf2fb] card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr]">
+        <div class="bg-[#eaf2fb] card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative">
+            <!--ルールのステータス-->
+            <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
+              <%= rule.human_status%>
+            </p>
           <!--ルールのifとthenのグループ-->
-          <div class = " bg-gray-200 p-4  relative rounded-t-lg shadow-inner ">
-              <!--ルールのステータス-->
-              <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
-                <%= rule.human_status%>
-              </p>
+          <div class = " bg-gray-200 p-4 rounded-t-lg shadow-inner ">
             <p class="text-xs font-medium text-gray-500 text-left">
               もし
             </p>
