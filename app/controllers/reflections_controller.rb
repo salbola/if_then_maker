@@ -11,13 +11,13 @@ class ReflectionsController < ApplicationController
 
     streams << turbo_stream.replace(
       "today_rules",
-      partial: "if_then_rules/today_rules",
+      partial: "if_then_rules/dash_boards/today_rules",
       locals: { rules: current_user.if_then_rules }
     )
 
     streams << turbo_stream.replace(
       "today_progress",
-      partial: "if_then_rules/today_progress",
+      partial: "if_then_rules/dash_boards/today_progress",
       locals: { progress: today_progress(current_user.if_then_rules) }
     )
 
@@ -42,13 +42,13 @@ class ReflectionsController < ApplicationController
 
     streams << turbo_stream.replace(
       "today_rules",
-      partial: "if_then_rules/today_rules",
+      partial: "if_then_rules/dash_boards/today_rules",
       locals: { rules: current_user.if_then_rules }
     )
 
         streams << turbo_stream.replace(
       "today_progress",
-      partial: "if_then_rules/today_progress",
+      partial: "if_then_rules/dash_boards/today_progress",
       locals: { progress: today_progress(current_user.if_then_rules) }
     )
   render turbo_stream: streams, notice: "チェックを取り消ししました"

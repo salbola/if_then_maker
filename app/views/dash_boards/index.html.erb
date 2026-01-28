@@ -8,11 +8,11 @@
     <% end %>
     <!--今日のルール一覧-->
     <turbo-frame id="today_rules">
-    <%= render "if_then_rules/today_rules", rules: @if_then_rules %>
+    <%= render "if_then_rules/dash_boards/today_rules", rules: @if_then_rules %>
     </turbo-frame>
     <!-- カードの下の今日やったルールなどの集計表示 -->
     <turbo-frame id="today_progress">
-    <%= render "if_then_rules/today_progress", progress: today_progress(@if_then_rules) %>
+    <%= render "if_then_rules/dash_boards/today_progress", progress: today_progress(@if_then_rules) %>
     </turbo-frame>
 
     <div class="mt-6 flex flex-col gap-3">

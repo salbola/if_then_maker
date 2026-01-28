@@ -6,7 +6,7 @@
 <div class="max-w-1vw">
 
   <% if @if_then_rules.any? %>
-    <%= render "if_then_rules/rule_card", if_then_rules: @if_then_rules %>
+    <%= render "if_then_rules/cards/rule_card", if_then_rules: @if_then_rules %>
   <% else %>
     <p class="text-gray-500">
       まだIf-Thenルールはありません。
