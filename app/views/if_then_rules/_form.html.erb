@@ -65,6 +65,18 @@
     <p class="text-sm text-gray-500 mt-1">
       現在、実行中のルールは <%= @active_if_then_rules.length %> 件です
     </p>
+
+    <!--warning確認を無視するトグル-->
+    <%= hidden_field_tag :commit_type, "" %>
+
+    <label class="flex items-center gap-2">
+      <%= check_box_tag :commit_type,
+            "ignore_warnings",
+            false,
+            class: "toggle toggle-primary" %>
+      <span class="text-sm">ヒントの自動チェックをしない</span>
+    </label>
+
     <!--保存ボタンなど-->
     <div class="pt-4 space-y-3">
       <% if if_then_rule_form.warnings.present? %>
@@ -81,6 +93,7 @@
                     class: "btn btn-secondary w-full" %>
 
       <% else %>
+
         <%= f.button "保存する",
                     class: "btn btn-primary w-full" %>
       <% end %>
