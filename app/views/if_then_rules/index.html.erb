@@ -8,7 +8,9 @@
   <% if @if_then_rules.any? %>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <% @if_then_rules.each do |rule| %>
-        <%= render "if_then_rules/cards/rule_card",  rule: rule %>
+        <%= render "if_then_rules/cards/rule_card",  rule: rule do %>
+          <%= render "if_then_rules/cards/rule_actions_list",  rule: rule %>
+        <% end %>
       <% end %>
     </div>
   <% else %>
