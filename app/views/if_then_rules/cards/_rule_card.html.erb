@@ -5,21 +5,10 @@
             <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
               <%= rule.human_status%>
             </p>
+
           <!--ルールのifとthenのグループ-->
           <div class = " bg-gray-200 p-4 rounded-t-lg shadow-inner ">
-            <p class="text-xs font-medium text-gray-500 text-left">
-              もし
-            </p>
-            <p class="text-sm text-gray-700 bg-blue-100 rounded px-2 py-1 ">
-              <%= rule.if_condition %>
-            </p>
-
-            <p class="text-xs font-medium text-gray-500 text-left">
-              その時は
-            </p>
-            <p class="text-sm font-semibold text-primary bg-green-100 rounded px-2 py-1">
-              <%= rule.then_action %>
-            </p>
+            <%= render "if_then_rules/cards/rule_sentence", rule: rule %>
           </div>
 
           <!--ルールのUI関係のグループ-->
