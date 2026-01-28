@@ -13,13 +13,13 @@ class IfThenRulesController < ApplicationController
   def new
     @if_then_rule_form = IfThenRuleForm.new({ memo_id: params[:memo_id] }, user: current_user)
     @active_if_then_rules = current_user.if_then_rules.active
-    @memo = Memo.find(@if_then_rule_form.memo_id)
+    @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
   end
 
   def create
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
     @active_if_then_rules = current_user.if_then_rules.active
-    @memo = Memo.find(@if_then_rule_form.memo_id)
+    @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
 
     if @if_then_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
       redirect_to @if_then_rule_form.status == "active" ? dash_boards_path : if_then_rules_path, notice: "If-Thenルールを作成しました"
@@ -38,14 +38,14 @@ class IfThenRulesController < ApplicationController
 
     @if_then_rule_form = IfThenRuleForm.new(user: current_user, if_then_rule_of_model: @if_then_rule)
     @if_then_rule_form.apply_model_to_form
-    @memo = Memo.find(@if_then_rule_form.memo_id)
+    @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
   end
 
   def update
     @active_if_then_rules = current_user.if_then_rules.active
     @if_then_rule = current_user.if_then_rules.find(params[:id])
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user, if_then_rule_of_model: @if_then_rule)
-    @memo = Memo.find(@if_then_rule_form.memo_id)
+    @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
 
     if @if_then_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
       redirect_to if_then_rule_path(@if_then_rule), notice: "If-Thenルールを編集しました"
