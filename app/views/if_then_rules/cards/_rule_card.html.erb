@@ -1,9 +1,11 @@
 
-<div class="bg-[#eaf2fb] card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative">
-    <!--ルールのステータス-->
-    <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
-      <%= rule.human_status%>
-    </p>
+<div class=" <%= bg_class %>  card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative">
+    <!--ルールのステータス(表示したくない時はローカル引数show_statusをfalseへ)-->
+    <% if local_assigns.fetch(:show_status, true) %>
+      <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
+        <%= rule.human_status%>
+      </p>
+    <% end %>
 
   <!--ルールのifとthenのグループ-->
   <div class = " bg-gray-200 p-4 rounded-t-lg shadow-inner ">

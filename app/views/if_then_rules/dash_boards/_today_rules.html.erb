@@ -1,17 +1,13 @@
 <!--ダッシュボードで使用する今日のルール一覧のパーシャル-->
 <turbo-frame id="today_rules">
-<div class="space-y-2">
-  <% rules.active.each do |rule| %>
-  <!--card-->
-    <div class=" <%= rule.reflected_today? ? "bg-success/80 " : "bg-[#eaf2fb]" %> card shadow-md rounded-lg p-4">
+  <div class="space-y-2">
+    <% rules.active.each do |rule| %>
 
-  <%= render "if_then_rules/cards/rule_card",  rule: rule do %>
-          <%= render "if_then_rules/cards/rule_actions_dashboard",  rule: rule %>
-        <% end %>
+    <!--card-->
+      <%= render "if_then_rules/cards/rule_card",  rule: rule,bg_class: rule.reflected_today? ? "bg-success/80 " : "bg-[#eaf2fb]" , show_status: false do %>
+        <%= render "if_then_rules/cards/rule_actions_dashboard",  rule: rule %>
+      <% end %>
 
-
-      <!-- ui -->
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 </turbo-frame>
