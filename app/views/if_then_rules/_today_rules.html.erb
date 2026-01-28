@@ -1,12 +1,14 @@
 <!--ダッシュボードで使用する今日のルール一覧のパーシャル-->
+<turbo-frame id="today_rules">
 <div class="space-y-2">
   <% rules.active.each do |rule| %>
-    <div class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
+    <div class=" <%= rule.reflected_today? ? "bg-success/80 " : "bg-[#eaf2fb]" %> card shadow-md rounded-lg p-4">
       <!-- header -->
       <div class="flex justify-end px-4 pt-2">
         <%= link_to "✏️",
           edit_if_then_rule_path(rule),
-          class: "btn btn-ghost btn-sm btn-circle"
+          class: "btn btn-ghost btn-sm btn-circle",
+          data: { turbo_frame: "_top" }
         %>
       </div>
 
@@ -16,6 +18,11 @@
 
         <% if rule.reflected_today? %>
           <p>完了済み！</p>
+          <%= button_to "取り消す",
+            if_then_rule_reflection_path(rule,rule.today_reflection.id),
+            method: :delete,
+            class: "btn btn-xs"
+          %>
         <% else %>
           <%= button_to "✔️",
             if_then_rule_reflections_path(rule),
@@ -27,3 +34,4 @@
     </div>
   <% end %>
 </div>
+</turbo-frame>

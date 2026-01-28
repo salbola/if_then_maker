@@ -77,4 +77,37 @@ RSpec.describe User, type: :model do
     expect(user.salt).to be_present
     end
   end
+
+  describe "#all_rules_completed_today?" do
+    let(:user) { create(:user) }
+    let(:memo) { create(:memo, user: user) }
+    context "すべてのactiveルールが今日完了しているとき" do
+      it "trueを返す" do
+        rule1 = create(:if_then_rule, user: user, memo: memo, status: :active)
+        rule2 = create(:if_then_rule, user: user, memo: memo, status: :active)
+
+        create(:reflection, user: user,  if_then_rule: rule1, reflected_on: Date.current)
+        create(:reflection, user: user,  if_then_rule: rule2, reflected_on: Date.current)
+
+        expect(user.all_rules_completed_today?).to eq true
+      end
+    end
+
+    context "activeルールの一部が未完了のとき" do
+      it "falseを返す" do
+        rule1 = create(:if_then_rule, user: user, memo: memo, status: :active)
+        rule2 = create(:if_then_rule, user: user, memo: memo, status: :active)
+
+        create(:reflection, user: user,  if_then_rule: rule1, reflected_on: Date.current)
+
+        expect(user.all_rules_completed_today?).to eq false
+      end
+    end
+
+    context "activeルールが存在しないとき" do
+      it "trueを返す" do
+        expect(user.all_rules_completed_today?).to eq true
+      end
+    end
+  end
 end

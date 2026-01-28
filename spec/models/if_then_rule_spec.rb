@@ -35,6 +35,7 @@ RSpec.describe IfThenRule, type: :model do
   end
 
   describe "バリデーションstatus" do
+    let(:rule) { create(:if_then_rule, user: user, memo: memo) }
     it "statusがnilの場合invalidになる" do
       if_then_rule = build(:if_then_rule, user: user, memo: memo, status: nil)
 
@@ -42,28 +43,80 @@ RSpec.describe IfThenRule, type: :model do
       expect(if_then_rule.errors[:status]).to include("can't be blank")
     end
   end
-
-  describe "#reflected_today?メソッドの確認" do
+  describe "便利系メソッド関連" do
     let(:rule) { create(:if_then_rule, user: user, memo: memo) }
 
-    context "今日のreflectionがある場合" do
-      before do
-        create(:reflection,
-          user: user,
-          if_then_rule: rule,
-          reflected_on: Date.current
-        )
+
+    describe "#reflected_today?" do
+      context "今日のreflectionがある場合" do
+        before do
+          create(:reflection,
+            user: user,
+            if_then_rule: rule,
+            reflected_on: Date.current
+          )
+        end
+
+        it "trueを返す" do
+          expect(rule.reflected_today?).to be true
+        end
       end
 
-      it "trueを返す" do
-        expect(rule.reflected_today?).to be true
+      context "今日のreflectionがない場合" do
+        it "falseを返す" do
+          expect(rule.reflected_today?).to be false
+        end
       end
     end
 
-    context "今日のreflectionがない場合" do
-      it "falseを返す" do
-        expect(rule.reflected_today?).to be false
+
+    describe "#today_reflection" do
+      context "今日のreflectionがある場合" do
+        before do
+          create(:reflection,
+            user: user,
+            if_then_rule: rule,
+            reflected_on: Date.current
+          )
+        end
+
+        it "オブジェクトを返す" do
+          expect(rule.today_reflection).to be_present
+        end
       end
+
+      context "今日のreflectionがない場合" do
+        it "nilを返す" do
+          expect(rule.today_reflection).to be nil
+        end
+      end
+    end
+
+
+    describe "#human_status" do
+        context "status が draft のとき" do
+    before { rule.update!(status: :draft) }
+
+    it "下書き を返す" do
+      expect(rule.human_status).to eq "下書き"
+    end
+  end
+
+  context "status が active のとき" do
+    before { rule.update!(status: :active) }
+
+    it "実行中 を返す" do
+      expect(rule.human_status).to eq "実行中"
+    end
+  end
+
+  context "status が habituated のとき" do
+    before { rule.update!(status: :habituated) }
+
+    it "定着済み を返す" do
+      expect(rule.human_status).to eq "定着済み"
+    end
+  end
     end
   end
 end

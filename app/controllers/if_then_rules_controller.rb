@@ -1,6 +1,9 @@
 class IfThenRulesController < ApplicationController
   def index
     @if_then_rules = current_user.if_then_rules.includes(:memo)
+    if @if_then_rules.active.length > 3
+    flash.now[:warning] = "実行中のルールが少し多いかもしれません。(３つまでを推奨していますが現在 #{@if_then_rules.active.length} つです) "
+    end
   end
 
   def show
@@ -17,7 +20,7 @@ class IfThenRulesController < ApplicationController
     @active_if_then_rules = current_user.if_then_rules.active
 
     if @if_then_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
-      redirect_to if_then_rules_path, notice: "If-Thenルールを作成しました"
+      redirect_to @if_then_rule_form.status == "active" ? dash_boards_path : if_then_rules_path, notice: "If-Thenルールを作成しました"
     else
       flash.now[:alert] = "入力内容に問題があります。" if @if_then_rule_form.errors.any?
 

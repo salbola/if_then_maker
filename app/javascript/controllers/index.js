@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CelebrateModalController from "./celebrate_modal_controller"
+application.register("celebrate-modal", CelebrateModalController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
