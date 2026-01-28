@@ -80,7 +80,7 @@ RSpec.describe "Memos", type: :request do
         memo: { title: "更新後タイトル" }
       }
 
-      expect(response).to redirect_to(memos_path)
+      expect(response).to redirect_to(memo_path(memo))
       expect(memo.reload.title).to eq("更新後タイトル")
     end
   end
