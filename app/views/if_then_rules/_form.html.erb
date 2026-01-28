@@ -15,6 +15,7 @@
         <% end %>
 
       </div>
+      <!--warning表示-->
       <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :if_condition %>
       <details class="mt-2 group">
         <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">
@@ -43,6 +44,7 @@
         <% end %>
 
       </div>
+      <!--warning表示-->
       <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :then_action %>
       <details class="mt-2 group">
         <summary class="text-sm text-gray-500 flex items-center gap-2 cursor-pointer list-none">

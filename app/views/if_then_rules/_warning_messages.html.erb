@@ -1,7 +1,10 @@
 <% if_then_rule_form.warning_messages.select{|d| d[:field ]== field}.each do |warning| %>
-  <div class="text-sm text-orange-700">
+  <div class="text-sm text-orange-700 text-left my-2">
     <p><%= warning[:reason] %></p>
+    <details class="ml-4 ">
+
     <p class="text-gray-600"><%= warning[:suggestion] %></p>
     <p class="text-xs text-gray-500"><%= warning[:example] %></p>
+    </details>
   </div>
 <% end %>
