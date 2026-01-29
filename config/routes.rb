@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "pages#landing_page"
+  get  "/about",  to: "pages#about"
   resources :dash_boards, only: [ :index ]
   # 新規登録機能->users
   resources :users, only: [ :new, :create ]

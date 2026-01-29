@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
-  skip_before_action :require_login, only: %i[landing_page]
-  before_action :redirect_if_logged_in, only: [ :landing_page ]
+  skip_before_action :require_login, only: %i[landing_page about]
+  before_action :redirect_if_logged_in, only: %i[ landing_page about]
   def landing_page
+  end
+
+  def about
   end
 
   private
