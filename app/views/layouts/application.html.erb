@@ -16,7 +16,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="min-h-screen flex flex-col bg-[#69c5d4]">
     <% if logged_in? %>
       <%= render "shared/header_logged_in" %>
     <% else %>
@@ -25,7 +25,7 @@
 
 <turbo-frame id="modal"></turbo-frame>
 
-    <div class ="bg-[#69c5d4] min-h-[70vh] space-y-6 ">
+<main class="flex-1 space-y-6 pb-16">
       <% flash.each do |type, message| %>
         <div class="alert <%= flash_class(type) %> mb-4">
           <span><%= message %></span>
@@ -38,12 +38,12 @@
         </h1>
       <% end %>
 
-      <main class="hero">
+
       <div class=" text-center">
         <%= yield %>
       </div>
-      </main>
-    </div>
+</main>
+
 
 
 
