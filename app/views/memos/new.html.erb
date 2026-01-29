@@ -1,8 +1,6 @@
     <% content_for :title do %>
       メモ作成
     <% end %>
-<div class="max-w-2xl mx-auto mt-10 px-4">
-
 
   <%= form_with model: @memo, local: true do |f| %>
     <!-- タイトル -->
@@ -44,4 +42,4 @@
             class: "btn btn-primary" %>
     </div>
   <% end %>
-</div>
+
