@@ -3,6 +3,11 @@
     <% end %>
 
   <% if @memos.any? %>
+      <div class="my-12 flex flex-col gap-3">
+        <%= link_to "新しくメモを作成する",
+            new_memo_path,
+            class: "btn btn-primary" %>
+      </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <% @memos.each do |memo| %>
         <div class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
