@@ -4,7 +4,7 @@
     <% rules.active.each do |rule| %>
 
     <!--card-->
-      <%= render "if_then_rules/cards/rule_card",  rule: rule,bg_class: rule.reflected_today? ? "bg-success/80 " : "bg-base-100" , show_status: false do %>
+      <%= render "if_then_rules/cards/rule_card",  rule: rule,bg_class: rule.reflected_today? ? "bg-base-300 " : "bg-base-100" , show_status: false do %>
         <%= render "if_then_rules/cards/rule_actions_dashboard",  rule: rule %>
       <% end %>
 
