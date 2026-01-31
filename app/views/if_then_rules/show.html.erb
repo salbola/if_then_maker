@@ -3,31 +3,20 @@
     <% end %>
 
 
-    <div class="bg-[#eaf2fb] card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative min-w-lg">
+    <div class="bg-base-100 card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative min-w-lg">
             <!--ルールのステータス-->
             <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
               <%= @if_then_rule.human_status%>
             </p>
 
           <!--ルールのifとthenのグループ-->
-          <div class = " bg-gray-200 p-4 rounded-t-lg shadow-inner ">
+          <div class = " bg-base-100 p-4 rounded-t-lg shadow-inner ">
             <%= render "if_then_rules/cards/rule_sentence", rule: @if_then_rule %>
           </div>
 
           <!--ルールのUI関係のグループ-->
-          <div>
-              <!--ルールの元になったメモ-->
-            <div>
-              <% if @if_then_rule.memo.present? %>
-                <p class="text-[11px] text-gray-400 mt-1">
-                  元メモ：<%= @if_then_rule.memo.title.presence || "（無題）" %>
-                </p>
-              <% else %>
-                <p class="text-[11px] text-gray-400 mt-1">
-                  元のメモがありません
-                </p>
-              <% end %>
-            </div>
+          <div >
+             
               <!--ボタン集-->
               <div class="card-actions justify-end mt-4">
                 <%= link_to "編集",
@@ -43,6 +32,23 @@
               </div>
         </div>
     </div>
+
+ <!--ルールの元になったメモ-->
+            <div class="bg-memo card shadow">
+              <% if @if_then_rule.memo.present? %>
+                <p class="text-[11px]  mt-1">
+                  元メモ：<%= @if_then_rule.memo.title.presence || "（無題）" %>
+                </p>
+                <p class="text-[11px] mt-1">
+                  <%= @if_then_rule.memo.body.presence || "（無題）" %>
+                </p>
+              <% else %>
+                <p class="text-[11px] text-gray-400 mt-1">
+                  元のメモがありません
+                </p>
+              <% end %>
+            </div>
+
 
   <div>
     <%= link_to "一覧に戻る",

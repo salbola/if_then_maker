@@ -2,7 +2,7 @@
 <% content_for :title do %>
       ステップ１-メモの選択
 <% end %>
-<div class="max-w-md">
+
 
   <p class="mb-6 text-gray-600">
   元にするメモを選択してください
@@ -10,7 +10,7 @@
 
   <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
   <% @memos.each do |memo| %>
-  <div class="card bg-base-100 shadow-sm border">
+  <div class="card bg-memo shadow-sm ">
     <div class="card-body">
       <h2 class="card-title text-base">
         <%= memo.title %>
@@ -37,4 +37,3 @@
     <%= link_to "新しくメモを作成する", new_memo_path, class:"btn btn-primary" %>
   </div>
 
-</div>

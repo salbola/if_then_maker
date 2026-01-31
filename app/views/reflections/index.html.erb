@@ -8,7 +8,7 @@
     <h2 class="text-lg font-semibold mt-4 mb-2"><%= date.strftime("%Y年%-m月%-d日") %></h2>
     <ul class="space-y-2">
       <% reflections.each do |reflection| %>
-        <li class="bg-[#eaf2fb] card shadow-md rounded-lg p-4">
+        <li class="bg-base-100 card shadow-md rounded-lg p-4">
           <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
         </li>
       <% end %>

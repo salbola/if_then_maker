@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="">
   <head>
     <title><%= content_for(:title) || "If then maker" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,7 +16,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="min-h-screen flex flex-col bg-[#69c5d4]">
+  <body class="min-h-screen flex flex-col bg-base-200">
     <% if logged_in? %>
       <%= render "shared/header_logged_in" %>
     <% else %>
@@ -27,7 +27,7 @@
 
 <main class="flex-1 space-y-6 pb-16">
   <!--中央寄せラッパー-->
-  <div class="mx-auto max-w-xl px-4">
+  <div class="mx-auto max-w-xl px-4 text-center">
 
       <% flash.each do |type, message| %>
         <div class="alert <%= flash_class(type) %> mb-4">
@@ -36,13 +36,13 @@
       <% end %>
 
       <% if content_for(:title) %>
-        <h1 class="text-4xl font-bold text-center py-6">
+        <h1 class="text-4xl font-bold py-6">
           <%= yield :title %>
         </h1>
       <% end %>
 
 
-      <div class=" text-center">
+      <div class=" space-y-8">
         <%= yield %>
       </div>
   </div>
