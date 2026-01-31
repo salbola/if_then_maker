@@ -3,7 +3,7 @@
     <% end %>
 
 
-    <div class="bg-[#eaf2fb] card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative min-w-lg">
+    <div class="bg-base-100 card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative min-w-lg">
             <!--ルールのステータス-->
             <p class="tag bg-accent text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
               <%= @if_then_rule.human_status%>
@@ -21,6 +21,9 @@
               <% if @if_then_rule.memo.present? %>
                 <p class="text-[11px] text-gray-400 mt-1">
                   元メモ：<%= @if_then_rule.memo.title.presence || "（無題）" %>
+                </p>
+                <p class="text-[11px] text-gray-400 mt-1">
+                  <%= @if_then_rule.memo.body.presence || "（無題）" %>
                 </p>
               <% else %>
                 <p class="text-[11px] text-gray-400 mt-1">
