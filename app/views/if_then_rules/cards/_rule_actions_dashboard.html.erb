@@ -3,7 +3,7 @@
 
   <div class="px-4 pb-4 space-y-2">
     <% if rule.reflected_today? %>
-      <p class="text-gray-100">完了済み！</p>
+      <p class="text-gray-700">完了済み！</p>
       <%= button_to "取り消す",
         if_then_rule_reflection_path(rule,rule.today_reflection.id),
         method: :delete,
