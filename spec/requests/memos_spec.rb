@@ -95,5 +95,15 @@ RSpec.describe "Memos", type: :request do
 
       expect(response).to redirect_to(memos_path)
     end
+    it "memo削除時にif_then_ruleのmemo_idがnullになる" do
+      login_as(user)
+      memo
+      rule = create(:if_then_rule, user: user, memo: memo)
+
+      memo.destroy
+
+      expect(IfThenRule.exists?(rule.id)).to be true
+      expect(rule.reload.memo_id).to be_nil
+    end
   end
 end
