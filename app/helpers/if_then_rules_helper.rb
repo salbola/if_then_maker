@@ -14,9 +14,9 @@ module IfThenRulesHelper
 
   # 新規作成フォームで使うヘルパー
   # その時のactiveなルールの個数でstatusの入力欄のデフォルト値を変える
-  def change_default_status(active_if_then_rules, setted_status: nil)
+  def change_default_status(active_if_then_rules, set_status: nil)
     # もしすでに設定済みの値があればそれを返す(warningやerrorによる再表示用)
-    return setted_status if setted_status
+    return set_status if set_status
     # activeなルールの個数が3つ以上あれば初期値をdraftにする
     active_if_then_rules.length >= 3 ? "draft" : "active"
   end

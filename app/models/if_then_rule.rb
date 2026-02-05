@@ -1,6 +1,6 @@
 class IfThenRule < ApplicationRecord
   belongs_to :user
-  belongs_to :memo
+  belongs_to :memo, optional: true
   has_many :reflections, dependent: :destroy
 
   enum status: { draft: 0, active: 1, habituated: 2 }
