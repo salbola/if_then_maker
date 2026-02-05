@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_26_093138) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_05_100641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_26_093138) do
     t.text "then_action"
     t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
-    t.bigint "memo_id", null: false
+    t.bigint "memo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["memo_id"], name: "index_if_then_rules_on_memo_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_26_093138) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "if_then_rules", "memos"
+  add_foreign_key "if_then_rules", "memos", on_delete: :nullify
   add_foreign_key "if_then_rules", "users"
   add_foreign_key "memos", "users"
   add_foreign_key "reflections", "if_then_rules"
