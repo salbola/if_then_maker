@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe Memo, type: :model do
   let(:user) { User.create }
   describe "バリデーション" do
-
     it "title があれば有効" do
       memo = build(:memo, title: "テストメモ", user: user)
       expect(memo).to be_valid
