@@ -3,4 +3,10 @@ class Memo < ApplicationRecord
   has_many :if_then_rules, dependent: :nullify
   validates :title, presence: :true, length: { maximum: 100 }
   validates :body, length: { maximum: 10_000 }
+
+  def display_for_select
+    title_text = title.present? ? title.truncate(20) : "（無題）"
+    body_text = body.presence&.truncate(10)
+    "#{title_text} - #{body_text}"
+  end
 end

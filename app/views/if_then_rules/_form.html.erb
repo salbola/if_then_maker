@@ -72,10 +72,14 @@
     <label class="flex items-center gap-2">
       <%= check_box_tag :commit_type,
             "ignore_warnings",
-            false,
+            controller.action_name == "edit" ? true : false,
             class: "toggle toggle-primary" %>
       <span class="text-sm">ヒントの自動チェックをしない</span>
     </label>
+    <% if controller.action_name == "edit" %>
+      <p class="text-xs text-gray-400 mb-1">メモを変更する</p>
+      <%= f.collection_select :memo_id, current_user.memos, :id, :display_for_select, include_blank: true %>
+    <% end %>
 
     <!--保存ボタンなど-->
     <div class="pt-4 space-y-3">
@@ -98,7 +102,7 @@
     <!--選択されているメモの表示-->
     <% if @memo %>
       <div class="bg-memo p-3 rounded text-sm">
-        <p class="text-xs text-gray-400 mb-1">元メモ</p>
+        <p class="text-xs text-gray-400 mb-1">現在のメモ</p>
         <%= @memo.title %>
         <%= @memo.body %>
       </div>
