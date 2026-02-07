@@ -93,7 +93,7 @@
       <% end %>
     </div>
       <% if controller.action_name == "edit" %>
-        <%= f.collection_select :memo_id, Memo.all, :id, :title, include_blank: true, selected: @memo.id %>
+        <%= f.collection_select :memo_id, current_user.memos, :id, :title, include_blank: true, selected: @memo.id %>
       <% end %>
     <% end %>
     <!--フォームここまで-->
