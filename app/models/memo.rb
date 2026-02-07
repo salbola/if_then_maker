@@ -5,8 +5,8 @@ class Memo < ApplicationRecord
   validates :body, length: { maximum: 10_000 }
 
   def display_for_select
-    title_text = title.present? ? title.truncate(10) : "（無題）"
-    body_text = body.present? ? body.truncate(10) : "(本文はありません)"
-    "#{title_text}：#{body_text}"
+    title_text = title.present? ? title.truncate(20) : "（無題）"
+    body_text = body.presence&.truncate(10)
+    "#{title_text} - #{body_text}"
   end
 end
