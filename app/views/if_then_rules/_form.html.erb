@@ -72,7 +72,7 @@
     <label class="flex items-center gap-2">
       <%= check_box_tag :commit_type,
             "ignore_warnings",
-            false,
+            controller.action_name == "edit" ? true : false,
             class: "toggle toggle-primary" %>
       <span class="text-sm">ヒントの自動チェックをしない</span>
     </label>
@@ -92,7 +92,7 @@
                     class: "btn btn-primary w-full" %>
       <% end %>
     </div>
-      <%if controller.action_name == "edit" %>
+      <% if controller.action_name == "edit" %>
         <%= f.collection_select :memo_id, Memo.all, :id, :title, include_blank: true, selected: @memo.id %>
       <% end %>
     <% end %>
