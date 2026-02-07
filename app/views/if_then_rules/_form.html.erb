@@ -78,7 +78,7 @@
     </label>
     <% if controller.action_name == "edit" %>
       <p class="text-xs text-gray-400 mb-1">メモを変更する</p>
-      <%= f.collection_select :memo_id, current_user.memos, :id, :display_for_select, include_blank: true, selected: @memo.id %>
+      <%= f.collection_select :memo_id, current_user.memos, :id, :display_for_select, include_blank: true %>
     <% end %>
 
     <!--保存ボタンなど-->
