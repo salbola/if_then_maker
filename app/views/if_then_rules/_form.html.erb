@@ -92,7 +92,9 @@
                     class: "btn btn-primary w-full" %>
       <% end %>
     </div>
-
+      <%if controller.action_name == "edit" %>
+        <%= f.collection_select :memo_id, Memo.all, :id, :title, include_blank: true, selected: @memo.id %>
+      <% end %>
     <% end %>
     <!--フォームここまで-->
     <!--選択されているメモの表示-->
