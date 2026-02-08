@@ -11,6 +11,7 @@ class MemosController < ApplicationController
 
   def create
     @memo = current_user.memos.build(memo_params)
+    @from_rule_flow = params[:memo][:from] == "rule_flow"
     if @memo.save
       redirect_to @memo, notice: "メモの作成が成功しました"
     else
@@ -47,7 +48,7 @@ class MemosController < ApplicationController
   def memo_params
     params.require(:memo).permit(
       :title,
-      :body
+      :body,
     )
   end
 end

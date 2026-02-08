@@ -45,15 +45,29 @@
         <% end %>
       </div>
 
-      <!-- ボタン -->
-      <div class="flex justify-end gap-3">
-        <%= link_to "キャンセル",
-              memos_path,
-              class: "btn btn-ghost" %>
 
-        <%= f.submit "保存する",
-              class: "btn btn-primary" %>
-      </div>
+
+      <!-- ボタン -->
+        <% if @from_rule_flow %>
+          <!--ルール作成のフローの場合-->
+          <%= f.hidden_field :from, value: "rule_flow" %>
+          <div class="flex justify-end gap-3">
+            <%= f.submit "保存する",
+                  class: "btn btn-primary" %>
+          </div>
+        <% else %>
+            <!--ルール作成のフローではない通常のmemo作成-->
+          <div class="flex justify-end gap-3">
+            <%= link_to "キャンセル",
+                  memos_path,
+                  class: "btn btn-ghost" %>
+            <%= f.submit "保存する",
+                  class: "btn btn-primary" %>
+          </div>
+
+        <% end %>
+
+
     <% end %>
   </div>
 </div>
