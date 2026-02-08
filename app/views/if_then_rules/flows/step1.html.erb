@@ -1,9 +1,13 @@
 
 <% content_for :title do %>
-      ステップ１-メモの選択
+      マイルールの作成
 <% end %>
-
-
+<div class="relative">
+  <%= link_to '← ダッシュボードに戻る',
+      dash_boards_path,
+      class: 'btn btn-ghost btn-sm ' %>
+</div>
+<%= render "if_then_rules/flow_navigation", step: @step %>
   <p class="mb-6 text-gray-600">
   元にするメモを選択してください
   </p>
@@ -34,6 +38,6 @@
 
 もしくは
   <div class="mt-12 flex flex-col gap-3">
-    <%= link_to "新しくメモを作成する", new_memo_path, class:"btn btn-primary" %>
+    <%= link_to "新しくメモを作成する", new_memo_path(from: "rule_flow"), class:"btn btn-primary" %>
   </div>
 

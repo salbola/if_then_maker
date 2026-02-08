@@ -1,6 +1,17 @@
     <% content_for :title do %>
       <%= @memo.title %>
     <% end %>
+<% if @from_rule_flow %>
+  <div class="relative">
+  <%= link_to '← step1メモ選択へ戻る',
+      step1_if_then_rules_flow_path,
+      class: 'btn btn-ghost btn-sm ' %>
+</div>
+  <p class="text-sm ">
+    ルール作成フロー中（step1）
+  </p>
+ <%end%>
+
 <div class=" px-4 py-8 bg-memo ">
 
 
@@ -11,21 +22,21 @@
 
   <!-- 操作ボタン群 -->
   <div class="flex flex-col gap-6 items-center ">
+    <% if !@from_rule_flow %>
+      <!-- 編集・削除 -->
+      <div class="flex gap-4">
+        <%= link_to "編集",
+                    edit_memo_path(@memo),
+                    class: "btn btn-outline btn-primary" %>
 
-    <!-- 編集・削除 -->
-    <div class="flex gap-4">
-      <%= link_to "編集",
-                  edit_memo_path(@memo),
-                  class: "btn btn-outline btn-primary" %>
-
-      <%= link_to "削除",
-                    memo_path(@memo),
-                    data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "このメモを削除しますか？" },
-                    class: "btn btn-outline btn-error" %>
-    </div>
-
+        <%= link_to "削除",
+                      memo_path(@memo),
+                      data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "このメモを削除しますか？" },
+                      class: "btn btn-outline btn-error" %>
+      </div>
+    <% end %>
     <!-- マイルール化ボタン -->
     <div>
       <%= link_to "このメモで新しいマイルールを作る",
@@ -34,7 +45,8 @@
     </div>
   </div>
 </div>
-<div>
-<%= link_to "一覧に戻る", memos_path, class: "btn btn-ghost btn-sm" %>
-</div>
-
+<% if !@from_rule_flow %>
+  <div>
+  <%= link_to "一覧に戻る", memos_path, class: "btn btn-ghost btn-sm" %>
+  </div>
+<% end %>

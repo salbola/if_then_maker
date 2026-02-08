@@ -1,6 +1,16 @@
     <% content_for :title do %>
       メモ作成
     <% end %>
+  <% if @from_rule_flow %>
+  <div class="relative">
+  <%= link_to '← step1メモ選択へ戻る',
+      step1_if_then_rules_flow_path,
+      class: 'btn btn-ghost btn-sm ' %>
+</div>
+  <p class="text-sm ">
+    ルール作成フロー中（step1）
+  </p>
+  <%end%>
 
 <div class="card bg-memo shadow">
   <div class="card-body">
@@ -34,15 +44,29 @@
         <% end %>
       </div>
 
-      <!-- ボタン -->
-      <div class="flex justify-end gap-3">
-        <%= link_to "キャンセル",
-              memos_path,
-              class: "btn btn-ghost" %>
 
-        <%= f.submit "保存する",
-              class: "btn btn-primary" %>
-      </div>
+
+      <!-- ボタン -->
+        <% if @from_rule_flow %>
+          <!--ルール作成のフローの場合-->
+          <%= f.hidden_field :from, value: "rule_flow" %>
+          <div class="flex justify-end gap-3">
+            <%= f.submit "保存する",
+                  class: "btn btn-primary" %>
+          </div>
+        <% else %>
+            <!--ルール作成のフローではない通常のmemo作成-->
+          <div class="flex justify-end gap-3">
+            <%= link_to "キャンセル",
+                  memos_path,
+                  class: "btn btn-ghost" %>
+            <%= f.submit "保存する",
+                  class: "btn btn-primary" %>
+          </div>
+
+        <% end %>
+
+
     <% end %>
   </div>
 </div>

@@ -1,6 +1,11 @@
 
-
-    <% content_for :title do %>
-      If-Thenルール作成
-    <% end %>
+<div class="relative">
+  <%= link_to '← メモ選択に戻る',
+    step1_if_then_rules_flow_path,
+    class: 'btn btn-ghost btn-sm' %>
+</div>
+<% content_for :title do %>
+  マイルールの作成
+<% end %>
+<%= render "if_then_rules/flow_navigation", step: @step %>
 <%= render "form", if_then_rule_form: @if_then_rule_form, url: if_then_rules_path, method: :post %>
