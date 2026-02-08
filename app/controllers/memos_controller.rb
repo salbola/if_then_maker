@@ -6,7 +6,6 @@ class MemosController < ApplicationController
   def new
     @memo = current_user.memos.build
     @from_rule_flow = params[:from] == "rule_flow"
-
   end
 
   def create
