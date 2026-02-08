@@ -1,6 +1,17 @@
     <% content_for :title do %>
       <%= @memo.title %>
     <% end %>
+<% if @from_rule_flow %>
+  <div class="relative">
+  <%= link_to '← step1メモ選択へ戻る',
+      step1_if_then_rules_flow_path,
+      class: 'btn btn-ghost btn-sm ' %>
+</div>
+  <p class="text-sm ">
+    ルール作成フロー中（step1）
+  </p>
+ <%end%>
+ 
 <div class=" px-4 py-8 bg-memo ">
 
 

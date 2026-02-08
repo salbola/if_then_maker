@@ -13,7 +13,7 @@ class MemosController < ApplicationController
     @memo = current_user.memos.build(memo_params)
     @from_rule_flow = params[:memo][:from] == "rule_flow"
     if @memo.save
-      redirect_to @memo, notice: "メモの作成が成功しました"
+      redirect_to memo_path(@memo, from: "rule_flow"), notice: "メモの作成が成功しました"
     else
       flash.now[:alert] = "メモの作成が失敗しました"
       render :new, status: :unprocessable_content
@@ -22,6 +22,7 @@ class MemosController < ApplicationController
 
   def show
     @memo = current_user.memos.find(params[:id])
+    @from_rule_flow = params[:from] == "rule_flow"
   end
 
   def edit
