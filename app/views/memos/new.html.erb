@@ -1,6 +1,12 @@
     <% content_for :title do %>
       メモ作成
     <% end %>
+  <% if @from_rule_flow %>
+  <p class="text-sm ">
+    ルール作成フロー中（step1）
+  </p>
+ <%end%>
+
 
 <div class="card bg-memo shadow">
   <div class="card-body">
