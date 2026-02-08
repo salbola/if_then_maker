@@ -3,4 +3,5 @@
     <% content_for :title do %>
       If-Thenルール作成
     <% end %>
+    <%= render "if_then_rules/flow_navigation", step: @step %>
 <%= render "form", if_then_rule_form: @if_then_rule_form, url: if_then_rules_path, method: :post %>
