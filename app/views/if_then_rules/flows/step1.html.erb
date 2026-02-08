@@ -2,7 +2,11 @@
 <% content_for :title do %>
       マイルールの作成
 <% end %>
-
+<div class="relative">
+  <%= link_to '← ダッシュボードに戻る',
+      dash_boards_path,
+      class: 'btn btn-ghost btn-sm text-gray-500' %>
+</div>
 <%= render "if_then_rules/flow_navigation", step: @step %>
   <p class="mb-6 text-gray-600">
   元にするメモを選択してください
