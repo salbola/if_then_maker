@@ -1,4 +1,6 @@
-<h1>Trials#show</h1>
-<p>Find me in app/views/trials/show.html.erb</p>
-<%= @trial_rule_form %>
-<%= @trial_rule_form %>
+<% content_for :title do %>
+  マイルール作成(お試し)
+<% end %>
+<div class="  bg-base-100 card shadow-md rounded-lg  space-y-2 p-4">
+<%= render "if_then_rules/cards/rule_sentence", rule: @trial_rule_form %>
+</div>
