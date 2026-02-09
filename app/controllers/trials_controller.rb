@@ -4,9 +4,24 @@ class TrialsController < ApplicationController
 
 
   def new
+    @trial_rule_form = TrialRuleForm.new()
+    @memo = Memo.find_by(id: @trial_rule_form.memo_id)
+    @step = 2
   end
 
   def create
+    @trial_rule_form = TrialRuleForm.new(trial_rule_params)
+    @memo = Memo.find_by(id: @trial_rule_form.memo_id)
+    @step = 2
+    if @trial_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
+      redirect_to @trial_rule_form.status == "active" ? dash_boards_path : if_then_rules_path, notice: "If-Thenルールを作成しました"
+    else
+      flash.now[:alert] = "入力内容に問題があります。" if @trial_rule_form.errors.any?
+
+      flash.now[:warning] = "改善のヒント💡：改善できそうな点があります。内容を確認した上で、このまま保存することもできます。" if @trial_rule_form.warnings.any?
+
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -16,5 +31,10 @@ class TrialsController < ApplicationController
 
   def redirect_if_logged_in
     redirect_to dash_boards_path if logged_in?
+  end
+
+  def trial_rule_params
+    params.require(:trial_rule_form)
+          .permit(:memo_id, :if_condition, :then_action, :status)
   end
 end

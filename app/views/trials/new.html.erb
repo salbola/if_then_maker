@@ -1,2 +1,10 @@
-<h1>Trials#new</h1>
-<p>Find me in app/views/trials/new.html.erb</p>
+<div class="relative">
+  <%= link_to '← 説明ページへ戻る',
+    root_path,
+    class: 'btn btn-ghost btn-sm' %>
+</div>
+<% content_for :title do %>
+  マイルールの作成(お試し)
+<% end %>
+
+<%= render "trial_form", if_then_rule_form: @trial_rule_form, url: trials_path, method: :post %>
