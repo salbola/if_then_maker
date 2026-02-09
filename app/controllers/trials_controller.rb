@@ -1,6 +1,6 @@
 class TrialsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create show]
-  before_action :redirect_if_logged_in, only: %i[ new create show]
+  skip_before_action :require_login, only: %i[new create show reload_guard]
+  before_action :redirect_if_logged_in, only: %i[ new create show reload_guard]
 
 
   def new
@@ -26,6 +26,10 @@ class TrialsController < ApplicationController
   end
 
   def show
+  end
+
+  def reload_guard
+      redirect_to new_trial_path, alert: "ページを再読み込みしました。もう一度入力してください。"
   end
 
   private
