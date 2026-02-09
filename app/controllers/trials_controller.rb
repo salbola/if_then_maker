@@ -5,20 +5,21 @@ class TrialsController < ApplicationController
 
   def new
     @trial_rule_form = TrialRuleForm.new()
-    @memo = Memo.find_by(id: @trial_rule_form.memo_id)
+    # @memo = Memo.find_by(id: @trial_rule_form.memo_id)
     @step = 2
   end
 
   def create
     @trial_rule_form = TrialRuleForm.new(trial_rule_params)
-    @memo = Memo.find_by(id: @trial_rule_form.memo_id)
+    # @memo = Memo.find_by(id: @trial_rule_form.memo_id)
     @step = 2
-    if @trial_rule_form.save(ignore_warnings: params[:commit_type] == "ignore_warnings")
-      redirect_to @trial_rule_form.status == "active" ? dash_boards_path : if_then_rules_path, notice: "If-Thenルールを作成しました"
+    if @trial_rule_form.savable?(ignore_warnings: params[:commit_type] == "ignore_warnings")
+      flash.now[:notice] = "If-Thenルールを作成しました(!お試しなので保存はしていません)"
+      render :show
     else
       flash.now[:alert] = "入力内容に問題があります。" if @trial_rule_form.errors.any?
 
-      flash.now[:warning] = "改善のヒント💡：改善できそうな点があります。内容を確認した上で、このまま保存することもできます。" if @trial_rule_form.warnings.any?
+      flash.now[:warning] = "改善のヒント💡：改善できそうな点があります。内容を確認した上で、このまま進めることもできます。" if @trial_rule_form.warnings.any?
 
       render :new, status: :unprocessable_entity
     end

@@ -11,7 +11,7 @@ class TrialRuleForm
   validates :then_action, presence: { message: "THEN（行動）を入力してください" }
 
   attr_reader :warnings
-  attr_reader :if_then_rule_of_model
+  # attr_reader :if_then_rule_of_model
 
   def initialize(attributes = {})
     super(attributes)
@@ -28,11 +28,8 @@ class TrialRuleForm
     valid? && (warnings.blank? || ignore_warnings)
   end
 
-  def save(ignore_warnings: false)
-    return false unless savable?(ignore_warnings: ignore_warnings)
-
-    return 
-
+  # def save(ignore_warnings: false)
+    # return false unless savable?(ignore_warnings: ignore_warnings)
     # trialでは保存はしない
     # if @if_then_rule_of_model
     #   # モデルが渡されている場合はeditからの文脈なのでupdateの処理
@@ -41,7 +38,7 @@ class TrialRuleForm
     #   # モデルが渡されてない場合はnewからの文脈なのでupdateの処理
     #   create_rule
     # end
-  end
+  # end
 
   # def apply_model_to_form
   #     # モデルが渡されている場合は属性の値入っていなければモデルのものになる(edit表示用にコントローラーで使う)
