@@ -1,6 +1,6 @@
 <!--if_then_rule_formはフォームオブジェクト-->
 <div class ="space-y-6">
-  <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6" do |f| %>
+  <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6", data: { turbo: false } do |f| %>
     <%= f.hidden_field :memo_id %>
     <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
       <div class="form-control">
