@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get  "/term",  to: "pages#term"
   get  "/privacy",  to: "pages#privacy"
   # トライアル機能
-  resources :trials, only: %i[ new create  ] 
-  get  "/trials", to: "trials#reload_guard"
+  resources :trials, only: %i[ new create  ]
+  get "/trials", to: "trials#reload_guard"
 
   # ダッシュボード
   resources :dash_boards, only: [ :index ]
