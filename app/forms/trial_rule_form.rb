@@ -29,15 +29,15 @@ class TrialRuleForm
   end
 
   # def save(ignore_warnings: false)
-    # return false unless savable?(ignore_warnings: ignore_warnings)
-    # trialでは保存はしない
-    # if @if_then_rule_of_model
-    #   # モデルが渡されている場合はeditからの文脈なのでupdateの処理
-    #   update_rule
-    # else
-    #   # モデルが渡されてない場合はnewからの文脈なのでupdateの処理
-    #   create_rule
-    # end
+  # return false unless savable?(ignore_warnings: ignore_warnings)
+  # trialでは保存はしない
+  # if @if_then_rule_of_model
+  #   # モデルが渡されている場合はeditからの文脈なのでupdateの処理
+  #   update_rule
+  # else
+  #   # モデルが渡されてない場合はnewからの文脈なのでupdateの処理
+  #   create_rule
+  # end
   # end
 
   # def apply_model_to_form
