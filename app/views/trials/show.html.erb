@@ -1,0 +1,14 @@
+<% content_for :title do %>
+  マイルール作成(お試し)
+<% end %>
+<div class="  bg-base-100 card shadow-md rounded-lg  space-y-2 p-4">
+<%= render "if_then_rules/cards/rule_sentence", rule: @trial_rule_form %>
+</div>
+<div class="mt-6 flex flex-col gap-3">
+  <p class="text-center mb-3">
+    今回の内容はお試しです。<br>
+    新規登録すると、ルールを保存して使えるようになります。
+  </p>
+  <%= link_to "新規登録", new_user_path, class:"btn  btn-primary" %>
+  <%= link_to "もう一度試してみる", new_trial_path, class:"btn  btn-ghost" %>
+</div>

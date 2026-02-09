@@ -1,0 +1,13 @@
+<div class="relative">
+  <%= link_to '← 説明ページへ戻る',
+    root_path,
+    class: 'btn btn-ghost btn-sm' %>
+</div>
+<% content_for :title do %>
+  マイルールの作成(お試し)
+<% end %>
+<div class="card bg-base-100 text-gray-800 text-sm space-y-2 p-2">
+  <p>ifでは"常に"や"いつも"などのトリガーとして機能しにくい条件をいれると警告として止める機能があります。</p>
+  <p>thenでは"完成"や"終わらせる"などの実行するには大きすぎる行動をいれると警告として止める機能があります。</p>
+</div>
+<%= render "trial_form", if_then_rule_form: @trial_rule_form, url: trials_path, method: :post %>

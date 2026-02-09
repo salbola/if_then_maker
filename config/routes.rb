@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get  "/about",  to: "pages#about"
   get  "/term",  to: "pages#term"
   get  "/privacy",  to: "pages#privacy"
+  # トライアル機能
+  resources :trials, only: %i[ new create  ]
+  get "/trials", to: "trials#reload_guard"
+
+  # ダッシュボード
   resources :dash_boards, only: [ :index ]
   # 新規登録機能->users
   resources :users, only: [ :new, :create ]
