@@ -52,7 +52,6 @@ RSpec.describe "Memos", type: :request do
         }.to change(Memo, :count).by(1)
       end
     end
-
   end
   describe "PATCH /memos/:id(edit->updateのテスト)" do
     it "メモを更新できる" do

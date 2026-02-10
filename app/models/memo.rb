@@ -14,5 +14,4 @@ class Memo < ApplicationRecord
     body_text = body.presence&.truncate(10)
     "#{title_text} - #{body_text}"
   end
-
 end
