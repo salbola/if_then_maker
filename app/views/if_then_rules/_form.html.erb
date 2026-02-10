@@ -58,7 +58,7 @@
       </details>
     </div>
     <%= f.label :status, "状態", class: "label" %>
-    <%= f.select :status, [ ["実行中", "active"],["未実行", "draft"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,set_status:if_then_rule_form.status)} %>
+    <%= f.select :status, [ ["実行中", "active"],["下書き", "draft"],["停止中", "inactive"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,set_status:if_then_rule_form.status)} %>
 
     <!--statusのwarning_message-->
     <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :status %>

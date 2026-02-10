@@ -3,9 +3,9 @@ class IfThenRule < ApplicationRecord
   belongs_to :memo, optional: true
   has_many :reflections, dependent: :destroy
 
-  enum status: { draft: 0, active: 1, habituated: 2 }
-  validates :if_condition, presence: true, if: :active?
-  validates :then_action, presence: true, if: :active?
+  enum status: { inactive: 0, active: 1, habituated: 2, draft: 3 }
+  validates :if_condition, presence: true, unless: :draft?
+  validates :then_action, presence: true, unless: :draft?
   validates :status, presence: true
 
   def reflected_today?
@@ -18,7 +18,8 @@ class IfThenRule < ApplicationRecord
 
   def human_status
     case status
-    when "draft" then "未実行"
+    when "draft" then "下書き"
+    when "inactive" then "停止中"
     when "active" then "実行中"
     when "habituated" then "定着済み"
     end

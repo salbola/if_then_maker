@@ -7,8 +7,8 @@ class IfThenRuleForm
   attribute :then_action, :string
   attribute :status, :string
   # モデルにおいてstatusはintだがenum
-  validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }
-  validates :then_action, presence: { message: "THEN（行動）を入力してください" }
+  validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }, unless: -> { status == "draft" }
+  validates :then_action, presence: { message: "THEN（行動）を入力してください" }, unless: -> { status == "draft" }
 
   attr_reader :warnings
   attr_reader :user
