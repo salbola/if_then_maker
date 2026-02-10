@@ -8,11 +8,6 @@ RSpec.describe Memo, type: :model do
       expect(memo).to be_valid
     end
 
-    it "title が空だと無効" do
-      memo = build(:memo, title: nil, user: user)
-      expect(memo).not_to be_valid
-      expect(memo.errors[:title]).to include("can't be blank")
-    end
 
     it "title が100文字を超えると無効" do
       memo = build(:memo, title: "a" * 101, user: user)

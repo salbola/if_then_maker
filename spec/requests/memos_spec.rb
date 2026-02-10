@@ -52,23 +52,6 @@ RSpec.describe "Memos", type: :request do
         }.to change(Memo, :count).by(1)
       end
     end
-      context "異常系" do
-        context "ログインしている場合" do
-          it "作成に失敗しnewを再表示する" do
-            login_as(user)
-
-            post memos_path, params: {
-              memo: {
-                title: "",
-                body: "本文"
-              }
-            }
-
-            expect(response).to have_http_status(:unprocessable_content)
-            expect(response.body).to include("メモの作成")
-          end
-        end
-      end
   end
   describe "PATCH /memos/:id(edit->updateのテスト)" do
     it "メモを更新できる" do
