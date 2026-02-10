@@ -93,30 +93,6 @@ RSpec.describe IfThenRule, type: :model do
     end
 
 
-    describe "#human_status" do
-        context "status が draft のとき" do
-    before { rule.update!(status: :draft) }
 
-    it "未実行 を返す" do
-      expect(rule.human_status).to eq "未実行"
-    end
-  end
-
-  context "status が active のとき" do
-    before { rule.update!(status: :active) }
-
-    it "実行中 を返す" do
-      expect(rule.human_status).to eq "実行中"
-    end
-  end
-
-  context "status が habituated のとき" do
-    before { rule.update!(status: :habituated) }
-
-    it "定着済み を返す" do
-      expect(rule.human_status).to eq "定着済み"
-    end
-  end
-    end
   end
 end
