@@ -99,6 +99,4 @@ class IfThenRuleForm
       status: status
     )
   end
-
-  
 end

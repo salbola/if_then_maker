@@ -91,8 +91,5 @@ RSpec.describe IfThenRule, type: :model do
         end
       end
     end
-
-
-
   end
 end
