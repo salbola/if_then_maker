@@ -203,7 +203,7 @@ end
               memo_id: memo.id,
               if_condition: "",
               then_action: "水を飲む",
-              status: "draft"
+              status: "active"
             },
             user: user,
             if_then_rule_of_model: if_then_rule
