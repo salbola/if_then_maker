@@ -1,5 +1,5 @@
     <% content_for :title do %>
-      <%= @memo.title %>
+      <%= @memo.title.presence ||  "(無題)" %>
     <% end %>
 <% if @from_rule_flow %>
   <div class="relative">
