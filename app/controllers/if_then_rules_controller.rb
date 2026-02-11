@@ -1,6 +1,8 @@
 class IfThenRulesController < ApplicationController
   def index
-    @if_then_rules = current_user.if_then_rules.includes(:memo)
+    @q = current_user.if_then_rules.ransack(params[:q])
+    # @if_then_rules = current_user.if_then_rules.includes(:memo)
+    @if_then_rules = @q.result.includes(:memo)
     if @if_then_rules.active.length > 3
     flash.now[:warning] = "実行中のルールが少し多いかもしれません。(３つまでを推奨していますが現在 #{@if_then_rules.active.length} つです) "
     end
