@@ -2,32 +2,35 @@
       メモ一覧
     <% end %>
     <% if @memos.any? %>
-      <%= search_form_for @q do |f| %>
-        <div class="flex gap-2 sm:flex-row flex-col">
+      <div>
+        <%= search_form_for @q do |f| %>
+          <div class="flex gap-2 sm:flex-row flex-col">
 
-          <label class="input input-primary flex items-center gap-2 w-full">
-            <!-- 🔍 アイコン -->
-            <svg xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 opacity-70"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-              <path stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m21 21-4.35-4.35m1.85-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
-            </svg>
+            <label class="input input-primary flex items-center gap-2 w-full">
+              <!-- 🔍 アイコン -->
+              <svg xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 opacity-70"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m21 21-4.35-4.35m1.85-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+              </svg>
 
-            <%= f.search_field :title_or_body_cont,
-                  class: "grow",
-                  placeholder: "メモを検索..." %>
-          </label>
+              <%= f.search_field :title_or_body_cont,
+                    class: "grow",
+                    placeholder: "メモを検索..." %>
+            </label>
 
-          <%= f.submit "検索",
-                class: "btn btn-primary" %>
+            <%= f.submit "検索",
+                  class: "btn btn-primary" %>
 
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+        <%= link_to "検索をクリア", memos_path, class: "btn btn-ghost btn-sm" %>
+      </div>
     <% end %>
 
   <% if @searched_memos.any? %>
@@ -80,7 +83,6 @@
 
   <% elsif @memos.any? %>
     <p class="text-gray-500">検索に一致するメモはありませんでした。</p>
-    <%= link_to "検索をクリア", memos_path, class: "btn btn-ghost btn-sm" %>
   <% else %>
     <div class="text-center text-base-content/60">
 
