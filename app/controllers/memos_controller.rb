@@ -1,6 +1,7 @@
 class MemosController < ApplicationController
   def index
-    @memos = current_user.memos
+    @q = current_user.memos.ransack(params[:q])
+    @memos = @q.result(distinct: true)
   end
 
   def new
