@@ -39,7 +39,7 @@
       <% end %>
     </div>
   <% elsif @if_then_rules.any? %>
-    <p class="text-gray-500">検索に一致するメモはありませんでした。</p>
+    <p class="text-gray-500">検索に一致するルールはありませんでした。</p>
     <%= link_to "検索をクリア", if_then_rules_path, class: "btn btn-ghost btn-sm" %>
   <% else %>
     <p class="text-gray-500">
