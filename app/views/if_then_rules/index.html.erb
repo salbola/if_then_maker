@@ -1,16 +1,48 @@
     <% content_for :title do %>
       If-Thenルール一覧
     <% end %>
-
-
   <% if @if_then_rules.any? %>
+    <div>
+      <%= search_form_for @q do |f| %>
+        <div class="flex gap-2 sm:flex-row flex-col">
+
+          <label class="input input-primary flex items-center gap-2 w-full">
+            <!-- 🔍 アイコン -->
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 opacity-70"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+              <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m21 21-4.35-4.35m1.85-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
+            </svg>
+
+            <%= f.search_field :if_condition_or_then_action_cont,
+                  class: "grow",
+                  placeholder: "ルールを検索..." %>
+          </label>
+
+          <%= f.submit "検索",
+                class: "btn btn-primary" %>
+
+        </div>
+      <% end %>
+      <%= link_to "検索をクリア", if_then_rules_path, class: "btn btn-ghost btn-sm" %>
+    </div>
+  <% end %>
+
+  <% if @searched_rules.any? %>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <% @if_then_rules.each do |rule| %>
+      <% @searched_rules.each do |rule| %>
         <%= render "if_then_rules/cards/rule_card",  rule: rule, bg_class: "bg-base-100" do %>
           <%= render "if_then_rules/cards/rule_actions_index",  rule: rule %>
         <% end %>
       <% end %>
     </div>
+  <% elsif @if_then_rules.any? %>
+    <p class="text-gray-500">検索に一致するルールはありませんでした。</p>
   <% else %>
     <p class="text-gray-500">
       まだIf-Thenルールはありません。
@@ -19,6 +51,9 @@
     まずは一つメモやルールを作ることから始めましょう。
     </p>
   <% end %>
+
+
+  <!--表示ここまで   以下ボタン-->
     <div class="mt-12 flex flex-col gap-3">
       <%= link_to "新しくルールを作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
     </div>
