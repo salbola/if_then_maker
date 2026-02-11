@@ -5,11 +5,11 @@ class Memo < ApplicationRecord
   validates :body, length: { maximum: 10_000 }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["title", "body"]
+    [ "title", "body" ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["if_then_rules"]
+    [ "if_then_rules" ]
   end
 
   def display_title

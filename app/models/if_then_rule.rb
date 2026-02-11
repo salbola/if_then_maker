@@ -9,11 +9,11 @@ class IfThenRule < ApplicationRecord
   validates :status, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "id", "if_condition", "memo_id", "status", "then_action", "updated_at", "user_id"]
+    [ "created_at", "id", "if_condition", "memo_id", "status", "then_action", "updated_at", "user_id" ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["memo", "reflections"]
+    [ "memo", "reflections" ]
   end
 
   def reflected_today?
