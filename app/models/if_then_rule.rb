@@ -13,7 +13,7 @@ class IfThenRule < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["memo", "reflections", "user"]
+    ["memo", "reflections"]
   end
 
   def reflected_today?

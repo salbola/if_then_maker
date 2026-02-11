@@ -9,7 +9,7 @@ class Memo < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["if_then_rules", "user"]
+    ["if_then_rules"]
   end
 
   def display_title
