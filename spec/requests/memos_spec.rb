@@ -121,7 +121,7 @@ RSpec.describe "Memos", type: :request do
       let!(:my_memo) do
         create(:memo, user: user, updated_at: 8.days.ago, title: "my memo")
       end
-    
+
       let!(:other_user_memo) do
         create(:memo, user: other_user, updated_at: 8.days.ago, title: "other memo")
       end
@@ -134,8 +134,5 @@ RSpec.describe "Memos", type: :request do
         expect(response.body).not_to include("other memo")
       end
     end
-
-
-
   end
 end

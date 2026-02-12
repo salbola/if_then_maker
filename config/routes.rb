@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post "/login",  to: "user_sessions#create"
   delete "/logout", to: "user_sessions#destroy"
   # メモの機能->memos
-  resources :memos do 
+  resources :memos do
     collection do
       get :stale
     end
