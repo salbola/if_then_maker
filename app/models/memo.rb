@@ -3,7 +3,7 @@ class Memo < ApplicationRecord
   has_many :if_then_rules, dependent: :nullify
   validates :title, length: { maximum: 100 }
   validates :body, length: { maximum: 10_000 }
-
+# 未整理のメモは7日以上前かつルールとの紐付けがないものとして今回は指定している,調整にはdaysで変える。
   scope :stale, ->(days = 7) {
   left_outer_joins(:if_then_rules)
     .where(if_then_rules: { id: nil })

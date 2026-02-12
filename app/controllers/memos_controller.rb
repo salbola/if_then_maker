@@ -7,7 +7,7 @@ class MemosController < ApplicationController
 
   def stale
     @memos = current_user.memos
-    @searched_memos = @memos.stale
+    @searched_memos = @memos.stale(days = 7)
   end
 
   def new
