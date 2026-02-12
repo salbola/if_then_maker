@@ -54,7 +54,7 @@ RSpec.describe "Memos", type: :request do
         expect(response).to redirect_to(login_path)
       end
     end
-    context "正常系" do
+    context "ログインしている場合" do
       it "メモを作成できる" do
         login_as(user)
 
@@ -70,37 +70,54 @@ RSpec.describe "Memos", type: :request do
     end
   end
   describe "PATCH /memos/:id(edit->updateのテスト)" do
-    it "メモを更新できる" do
-      login_as(user)
+    context "未ログインの場合" do
+      it "login_pathにリダイレクトされる" do
+        patch memo_path(memo)
+        expect(response).to redirect_to(login_path)
+      end
+    end
+    context "ログインしている場合" do
+      it "メモを更新できる" do
+        login_as(user)
 
-      patch memo_path(memo), params: {
-        memo: { title: "更新後タイトル" }
-      }
+        patch memo_path(memo), params: {
+          memo: { title: "更新後タイトル" }
+        }
 
-      expect(response).to redirect_to(memo_path(memo))
-      expect(memo.reload.title).to eq("更新後タイトル")
+        expect(response).to redirect_to(memo_path(memo))
+        expect(memo.reload.title).to eq("更新後タイトル")
+      end
     end
   end
   describe "DELETE /memos/:id(destroyのテスト)" do
-    it "メモを削除できる" do
-      login_as(user)
-      memo
-
-      expect {
+    context "未ログインの場合" do
+      it "login_pathにリダイレクトされる" do
         delete memo_path(memo)
-      }.to change(Memo, :count).by(-1)
-
-      expect(response).to redirect_to(memos_path)
+        expect(response).to redirect_to(login_path)
+      end
     end
-    it "memo削除時にif_then_ruleのmemo_idがnullになる" do
-      login_as(user)
-      memo
-      rule = create(:if_then_rule, user: user, memo: memo)
 
-      memo.destroy
+    context "ログインしている場合" do
+      it "メモを削除できる" do
+        login_as(user)
+        memo
 
-      expect(IfThenRule.exists?(rule.id)).to be true
-      expect(rule.reload.memo_id).to be_nil
+        expect {
+          delete memo_path(memo)
+        }.to change(Memo, :count).by(-1)
+
+        expect(response).to redirect_to(memos_path)
+      end
+      it "memo削除時にif_then_ruleのmemo_idがnullになる" do
+        login_as(user)
+        memo
+        rule = create(:if_then_rule, user: user, memo: memo)
+
+        memo.destroy
+
+        expect(IfThenRule.exists?(rule.id)).to be true
+        expect(rule.reload.memo_id).to be_nil
+      end
     end
   end
 
@@ -118,20 +135,22 @@ RSpec.describe "Memos", type: :request do
         login_as(user)
         get stale_memos_path
       end
-      let!(:my_memo) do
-        create(:memo, user: user, updated_at: 8.days.ago, title: "my memo")
-      end
+      context "8日以上前の取得されるメモがある場合" do
+        let!(:my_memo) do
+          create(:memo, user: user, updated_at: 8.days.ago, title: "my memo")
+        end
 
-      let!(:other_user_memo) do
-        create(:memo, user: other_user, updated_at: 8.days.ago, title: "other memo")
-      end
-      it "未整理のメモ一覧が表示される" do
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to include("未整理メモ一覧")
-      end
-      it "他のユーザーのものが含まれない" do
-        expect(response.body).to include("my memo")
-        expect(response.body).not_to include("other memo")
+        let!(:other_user_memo) do
+          create(:memo, user: other_user, updated_at: 8.days.ago, title: "other memo")
+        end
+        it "未整理のメモ一覧が表示される" do
+          expect(response).to have_http_status(:ok)
+          expect(response.body).to include("未整理メモ一覧")
+        end
+        it "他のユーザーのものが含まれない" do
+          expect(response.body).to include("my memo")
+          expect(response.body).not_to include("other memo")
+        end
       end
     end
   end
