@@ -2,6 +2,16 @@ RSpec.describe "Memos", type: :request do
   include LoginHelper
   let(:user) { create(:user, password: "password") }
   let(:memo) { create(:memo, user: user) }
+  let(:other_user) { create(:user) }
+  let!(:my_memo) do
+    create(:memo, user: user, title: "my memo")
+  end
+
+  let!(:other_user_memo) do
+    create(:memo, user: other_user, title: "other memo")
+  end
+
+
 
   describe "GET /memos(メモ一覧表示)" do
     context "未ログインの場合" do
@@ -12,12 +22,18 @@ RSpec.describe "Memos", type: :request do
     end
 
     context "ログインしている場合" do
-      it "一覧が表示される" do
+      before do
         login_as(user)
         get memos_path
-
+      end
+      it "一覧が表示される" do
         expect(response).to have_http_status(:ok)
         expect(response.body).to include("メモ一覧")
+      end
+
+      it "他のユーザーのものが含まれない" do
+        expect(response.body).to include("my memo")
+        expect(response.body).not_to include("other memo")
       end
     end
   end
@@ -86,5 +102,40 @@ RSpec.describe "Memos", type: :request do
       expect(IfThenRule.exists?(rule.id)).to be true
       expect(rule.reload.memo_id).to be_nil
     end
+  end
+
+  describe "GET /memos/stale(#staleのテスト)" do
+    context "未ログインの場合" do
+      it "login_pathにリダイレクトされる" do
+        get stale_memos_path
+
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context "ログインしている場合" do
+      before do
+        login_as(user)
+        get stale_memos_path
+      end
+      let!(:my_memo) do
+        create(:memo, user: user, updated_at: 8.days.ago, title: "my memo")
+      end
+    
+      let!(:other_user_memo) do
+        create(:memo, user: other_user, updated_at: 8.days.ago, title: "other memo")
+      end
+      it "未整理のメモ一覧が表示される" do
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include("未整理メモ一覧")
+      end
+      it "他のユーザーのものが含まれない" do
+        expect(response.body).to include("my memo")
+        expect(response.body).not_to include("other memo")
+      end
+    end
+
+
+
   end
 end
