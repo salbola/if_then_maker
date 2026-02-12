@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Memo, type: :model do
-  let(:user) { User.create }
+  let(:user) { create(:user) }
   describe "バリデーション" do
     it "title があれば有効" do
       memo = build(:memo, title: "テストメモ", user: user)
@@ -31,6 +31,39 @@ RSpec.describe Memo, type: :model do
       memo = build(:memo, title: "タイトル", body: nil)
 
       expect(memo.display_for_select).to end_with(" - ")
+    end
+  end
+
+  describe ".stale" do
+    context "取得される条件" do
+      it "7日以上前かつルールがない場合に取得されること" do
+        memo = create(:memo,
+          user: user,
+          updated_at: 8.days.ago)
+
+        expect(Memo.stale).to include(memo)
+      end
+    end
+    context "取得されない条件" do
+      it "updated_atが6日前の場合取得されないこと" do
+        memo = create(:memo,
+        user: user,
+        updated_at: 6.days.ago
+      )
+
+      expect(Memo.stale).not_to include(memo)
+      end
+
+      it 'ルールが存在する場合取得されないこと' do
+        memo = create(:memo,
+          user: user,
+          updated_at: 10.days.ago
+        )
+
+        create(:if_then_rule, memo: memo, user: user)
+
+        expect(Memo.stale).not_to include(memo)
+      end
     end
   end
 end
