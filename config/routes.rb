@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   post "/login",  to: "user_sessions#create"
   delete "/logout", to: "user_sessions#destroy"
   # メモの機能->memos
-  resources :memos
+  resources :memos do
+    collection do
+      get :stale
+    end
+  end
   # ifthenの表示機能->if_then_rules
   resources :if_then_rules, only: %i[ index show new create edit update destroy] do
     resources :reflections, only: %i[create destroy]

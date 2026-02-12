@@ -5,6 +5,11 @@ class MemosController < ApplicationController
     @searched_memos = @q.result(distinct: true)
   end
 
+  def stale
+    @memos = current_user.memos
+    @searched_memos = @memos.stale(days = 7)
+  end
+
   def new
     @memo = current_user.memos.build
     @from_rule_flow = params[:from] == "rule_flow"

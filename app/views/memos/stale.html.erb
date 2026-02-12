@@ -1,38 +1,10 @@
     <% content_for :title do %>
-      メモ一覧
+      未整理メモ一覧
     <% end %>
-    <% if @memos.any? %>
-      <div>
-        <%= search_form_for @q do |f| %>
-          <div class="flex gap-2 sm:flex-row flex-col">
+    <div>
+        <%= link_to "通常のメモ一覧へ", memos_path, class: "btn btn-ghost btn-sm" %>
+    </div>
 
-            <label class="input input-primary flex items-center gap-2 w-full">
-              <!-- 🔍 アイコン -->
-              <svg xmlns="http://www.w3.org/2000/svg"
-                  class="h-4 w-4 opacity-70"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor">
-                <path stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="m21 21-4.35-4.35m1.85-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" />
-              </svg>
-
-              <%= f.search_field :title_or_body_cont,
-                    class: "grow",
-                    placeholder: "メモを検索..." %>
-            </label>
-
-            <%= f.submit "検索",
-                  class: "btn btn-primary" %>
-
-          </div>
-        <% end %>
-        <%= link_to "検索をクリア", memos_path, class: "btn btn-ghost btn-sm" %>
-        <%= link_to "未整理メモ", stale_memos_path, class: "btn btn-ghost btn-sm" %>
-      </div>
-    <% end %>
 
   <% if @searched_memos.any? %>
 
@@ -70,7 +42,7 @@
                     data: {
                       turbo_method: :delete,
                       turbo_confirm: "このメモを削除しますか？" },
-                    class: "btn btn-sm btn-ghost btn-error" %>
+                    class: "btn btn-lg btn-ghost btn-error " %>
             </div>
           </div>
         </div>
