@@ -4,6 +4,12 @@ class Memo < ApplicationRecord
   validates :title, length: { maximum: 100 }
   validates :body, length: { maximum: 10_000 }
 
+  scope :stale, ->(days = 7) {
+  left_outer_joins(:if_then_rules)
+    .where(if_then_rules: { id: nil })
+    .where("memos.updated_at <= ?", days.days.ago)
+}
+
   def self.ransackable_attributes(auth_object = nil)
     [ "title", "body" ]
   end
