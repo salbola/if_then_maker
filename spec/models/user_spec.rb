@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
         user = build(:user, email: nil)
 
         expect(user).not_to be_valid
-        expect(user.errors[:email]).to include("can't be blank")
+        expect(user.errors[:email]).to include("を入力してください")
       end
 
       it 'email がユニークでないと無効' do
@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
         )
 
         expect(duplicate_user).not_to be_valid
-        expect(duplicate_user.errors[:email]).to include('has already been taken')
+        expect(duplicate_user.errors[:email]).to include('はすでに存在します')
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
 
         expect(user).not_to be_valid
         expect(user.errors[:password]).to include(
-          'is too short (minimum is 3 characters)'
+          'は3文字以上で入力してください'
         )
       end
 
@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
         )
 
         expect(user).not_to be_valid
-        expect(user.errors[:password_confirmation]).to include("can't be blank")
+        expect(user.errors[:password_confirmation]).to include("を入力してください")
       end
 
       it 'password と password_confirmation が一致しないと無効' do
@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
 
         expect(user).not_to be_valid
         expect(user.errors[:password_confirmation]).to include(
-          "doesn't match Password"
+          "とパスワードの入力が一致しません"
         )
       end
     end
