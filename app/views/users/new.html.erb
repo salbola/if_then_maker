@@ -17,7 +17,7 @@
               placeholder: "example@example.com" %>
         <% if @user.errors[:email].any? %>
           <p class="text-error text-sm mt-1">
-            <%= @user.errors[:email].first %>
+            <%= @user.errors.full_messages_for(:email).first %>
           </p>
         <% end %>
       </div>
@@ -30,7 +30,7 @@
               placeholder: "3文字以上" %>
         <% if @user.errors[:password].any? %>
           <p class="text-error text-sm mt-1">
-            <%= @user.errors[:password].first %>
+            <%= @user.errors.full_messages_for(:password).first %>
           </p>
         <% end %>
       </div>
@@ -42,7 +42,7 @@
               class: "input input-bordered w-full" %>
         <% if @user.errors[:password_confirmation].any? %>
           <p class="text-error text-sm mt-1">
-            <%= @user.errors[:password_confirmation].first %>
+            <%= @user.errors.full_messages_for(:password_confirmation).first %>
           </p>
         <% end %>
       </div>
