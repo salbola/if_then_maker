@@ -27,6 +27,7 @@ module Myapp
 
     config.i18n.default_locale = :ja
 
+    config.exceptions_app = self.routes
     config.generators.system_tests = nil
     config.generators do |g|
       g.skip_routes true
