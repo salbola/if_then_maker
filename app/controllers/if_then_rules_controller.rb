@@ -1,6 +1,7 @@
 class IfThenRulesController < ApplicationController
   def index
-    @if_then_rules = current_user.if_then_rules
+    authorize IfThenRule
+    @if_then_rules = policy_scope(IfThenRule)
     @q = @if_then_rules.ransack(params[:q])
     @searched_rules = @q.result.includes(:memo)
     if @if_then_rules.active.length > 3
@@ -9,17 +10,20 @@ class IfThenRulesController < ApplicationController
   end
 
   def show
-    @if_then_rule = current_user.if_then_rules.find(params[:id])
+    @if_then_rule = policy_scope(IfThenRule).find(params[:id])
+    authorize @if_then_rule
   end
 
   def new
+    authorize IfThenRule
     @if_then_rule_form = IfThenRuleForm.new({ memo_id: params[:memo_id] }, user: current_user)
-    @active_if_then_rules = current_user.if_then_rules.active
+    @active_if_then_rules = policy_scope(IfThenRule).active
     @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
     @step = 2
   end
 
   def create
+    authorize IfThenRule
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user)
     @active_if_then_rules = current_user.if_then_rules.active
     @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
@@ -36,8 +40,9 @@ class IfThenRulesController < ApplicationController
   end
 
   def edit
-    @active_if_then_rules = current_user.if_then_rules.active
-    @if_then_rule = current_user.if_then_rules.find(params[:id])
+    @if_then_rule = policy_scope(IfThenRule).find(params[:id])
+    authorize @if_then_rule
+    @active_if_then_rules = policy_scope(IfThenRule).active
 
     @if_then_rule_form = IfThenRuleForm.new(user: current_user, if_then_rule_of_model: @if_then_rule)
     @if_then_rule_form.apply_model_to_form
@@ -45,8 +50,9 @@ class IfThenRulesController < ApplicationController
   end
 
   def update
-    @active_if_then_rules = current_user.if_then_rules.active
-    @if_then_rule = current_user.if_then_rules.find(params[:id])
+    @active_if_then_rules = policy_scope(IfThenRule).active
+    @if_then_rule = policy_scope(IfThenRule).find(params[:id])
+    authorize @if_then_rule
     @if_then_rule_form = IfThenRuleForm.new(if_then_rule_params, user: current_user, if_then_rule_of_model: @if_then_rule)
     @memo = Memo.find_by(id: @if_then_rule_form.memo_id)
 
@@ -60,8 +66,10 @@ class IfThenRulesController < ApplicationController
   end
 
   def destroy
-  current_user.if_then_rules.find(params[:id]).destroy!
-  redirect_to if_then_rules_path, notice: "If-Thenルールを削除しました", status: :see_other
+    if_then_rule = policy_scope(IfThenRule).find(params[:id])
+    authorize if_then_rule
+    if_then_rule.destroy!
+    redirect_to if_then_rules_path, notice: "If-Thenルールを削除しました", status: :see_other
   end
 
   private
