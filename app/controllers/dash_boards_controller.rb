@@ -1,5 +1,6 @@
 class DashBoardsController < ApplicationController
   def index
-    @if_then_rules = current_user.if_then_rules
+    @if_then_rules = policy_scope(IfThenRule)
+    authorize :dash_board
   end
 end
