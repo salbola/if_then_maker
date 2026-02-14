@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, alert: "ログインしてください"
   end
   def user_not_authorized
-    redirect_to login_path, alert: "権限がありません"
+    redirect_to root_path, alert: "権限がありません"
   end
 
 
