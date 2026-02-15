@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe IfThenRulePolicy, type: :policy do
+RSpec.describe ReflectionPolicy, type: :policy do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:rule) { create(:if_then_rule, user: user) }
