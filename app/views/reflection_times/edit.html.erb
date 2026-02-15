@@ -1,4 +1,4 @@
-<%= form_with model: current_user, url: reflection_time_path do |f| %>
+<%= form_with model: @user, url: reflection_time_path do |f| %>
   <%= f.time_field :reflection_time, class: "input input-bordered" %>
 
   <%= f.submit "保存", class: "btn btn-primary mt-4" %>
