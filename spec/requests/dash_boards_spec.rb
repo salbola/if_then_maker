@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "DashBoards", type: :request do
   let (:user) { create(:user) }
+  let (:other_user) { create(:user) }
+  let!(:rule) { create(:if_then_rule, user: user, status: :active, if_condition: "my rule") }
+  let!(:other_rule) { create(:if_then_rule, user: other_user, status: :active, if_condition: "other rule") }
   include LoginHelper
   describe "GET /dash_boards" do
     context "ログインしている場合" do
@@ -12,6 +15,13 @@ RSpec.describe "DashBoards", type: :request do
       it "ダッシュボードが表示される" do
         expect(response).to have_http_status(:ok)
         expect(response.body).to include("ダッシュボード")
+      end
+      it "自分の今日の(activeの)メモは表示される" do
+        expect(response.body).to include("my rule")
+      end
+
+      it "他人の今日の(activeの)メモは表示されない" do
+        expect(response.body).not_to include("other rule")
       end
     end
     context "ログインせずにdash_boardsにアクセスする" do
