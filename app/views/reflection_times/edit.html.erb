@@ -1,3 +1,4 @@
+<% content_for :title, "振り返り時刻編集"  %>
 <%= form_with model: @user, url: reflection_time_path do |f| %>
   <%= f.time_field :reflection_time, class: "input input-bordered" %>
 
