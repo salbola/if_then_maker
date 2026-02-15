@@ -1,10 +1,10 @@
 class ReflectionTimesController < ApplicationController
   def edit
-    @user = policy_scope(User)
+    @user = current_user
     authorize @user
   end
   def update
-    @user = policy_scope(User)
+    @user = current_user
     authorize @user
     @user.update(reflection_time_params)
 

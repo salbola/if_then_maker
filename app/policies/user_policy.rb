@@ -12,11 +12,11 @@ class UserPolicy < ApplicationPolicy
   # end
 
   def edit?
-    record == user
+    own?
   end
 
   def update?
-    record == user
+    own?
   end
 
   # def destroy?
@@ -26,7 +26,14 @@ class UserPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
 
     def resolve
-      scope.find( user.id )
+      return scope.none unless user
+      scope.where(id: user.id)
     end
+  end
+
+  private
+
+  def own?
+    user.present? && record.id == user.id
   end
 end
