@@ -13,6 +13,4 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     redirect_to root_path, alert: "権限がありません"
   end
-
-
 end

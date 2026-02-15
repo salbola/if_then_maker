@@ -24,7 +24,6 @@ class UserPolicy < ApplicationPolicy
   # end
 
   class Scope < ApplicationPolicy::Scope
-
     def resolve
       return scope.none unless user
       scope.where(id: user.id)

@@ -12,7 +12,6 @@ class ReflectionPolicy < ApplicationPolicy
   end
 
   class Scope < ApplicationPolicy::Scope
-
     def resolve
       scope.where(user: user)
     end
