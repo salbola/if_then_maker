@@ -16,11 +16,11 @@ RSpec.describe "DashBoards", type: :request do
         expect(response).to have_http_status(:ok)
         expect(response.body).to include("ダッシュボード")
       end
-      it "自分の今日の(activeの)メモは表示される" do
+      it "自分の今日の(activeの)ルールは表示される" do
         expect(response.body).to include("my rule")
       end
 
-      it "他人の今日の(activeの)メモは表示されない" do
+      it "他人の今日の(activeの)ルールは表示されない" do
         expect(response.body).not_to include("other rule")
       end
     end
