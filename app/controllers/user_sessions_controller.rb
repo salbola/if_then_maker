@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
 
   def create
     user = login(session_params[:email], session_params[:password], session_params[:remember_me] == "1")
-    
+
     if user
 
       redirect_to dash_boards_path, notice: "ログインが成功しました"
