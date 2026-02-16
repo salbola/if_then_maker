@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_02_10_075234) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_16_045654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,10 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_10_075234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "reflection_time"
+    t.string "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
   add_foreign_key "if_then_rules", "memos", on_delete: :nullify
