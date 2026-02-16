@@ -5,10 +5,10 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    user = login(session_params[:email], session_params[:password], session_params[:remember_me])
+    user = login(session_params[:email], session_params[:password], session_params[:remember_me] == "1")
     
     if user
-      remember_me!
+
       redirect_to dash_boards_path, notice: "ログインが成功しました"
     else
       flash.now[:alert] = "ログインが失敗しました"
