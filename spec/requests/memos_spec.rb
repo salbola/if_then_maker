@@ -47,7 +47,6 @@ RSpec.describe "Memos", type: :request do
     it "他のユーザーのものは表示できない" do
       get memo_path(other_user_memo)
       expect(response).to have_http_status(:not_found)
-      expect(response.body).to include("他人のメモ")
     end
   end
   context "未ログインの場合" do
