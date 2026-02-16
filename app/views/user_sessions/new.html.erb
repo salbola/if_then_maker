@@ -5,14 +5,16 @@
 <div class="card w-full  shadow-xl bg-base-100">
   <div class="card-body">
 
-    <%= form_with url: login_path, local: true, class: "space-y-4" do |f| %>
+    <%= form_with scope: :session, url: login_path, local: true, class: "space-y-4" do |f| %>
 
       <!-- Email -->
       <div class="form-control">
         <%= f.label :email, "メールアドレス", class: "label" %>
         <%= f.email_field :email,
+              value: params.dig(:session, :email),
               class: "input input-bordered w-full",
-              placeholder: "example@example.com" %>
+              placeholder: "example@example.com",
+              autocomplete: "email" %>
       </div>
 
       <!-- Password -->
@@ -20,7 +22,16 @@
         <%= f.label :password, "パスワード", class: "label" %>
         <%= f.password_field :password,
               class: "input input-bordered w-full",
-              placeholder: "3文字以上" %>
+              placeholder: "3文字以上",
+              autocomplete: "current-password" %>
+      </div>
+
+      <!-- remember_me -->
+      <div class="form-control">
+        <label class="label cursor-pointer justify-start gap-2">
+          <%= f.check_box :remember_me, { checked: params.dig(:session, :remember_me).nil? ? true : params.dig(:session, :remember_me) == "1" }, "1", "0" %>
+          <span class="label-text">ログイン状態を保持する</span>
+        </label>
       </div>
 
       <!-- Submit -->
