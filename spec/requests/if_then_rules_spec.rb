@@ -92,7 +92,7 @@ RSpec.describe "IfThenRules", type: :request do
       end
       it "他人のメモにはルールを作成できない" do
         login_as(user)
-      
+
         expect {
           post if_then_rules_path, params: {
             if_then_rule_form: {
@@ -103,7 +103,7 @@ RSpec.describe "IfThenRules", type: :request do
             }
           }
         }.not_to change(IfThenRule, :count)
-      
+
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -179,7 +179,7 @@ RSpec.describe "IfThenRules", type: :request do
             status: "active"
           }
         }
-      
+
         expect(response).to have_http_status(:not_found)
       end
     end

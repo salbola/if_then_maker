@@ -39,7 +39,7 @@ RSpec.describe "Memos", type: :request do
   end
   describe "GET /memos/:id(#showのテスト)" do
   context "ログインしている場合" do
-    before {login_as(user)}
+    before { login_as(user) }
     it "memoが表示できる" do
       get memo_path(my_memo)
       expect(response.body).to include("my memo")
@@ -55,8 +55,6 @@ RSpec.describe "Memos", type: :request do
       expect(response).to redirect_to(login_path)
     end
   end
-
-
   end
   describe "GET /memos/new(#newのテスト)" do
     context "ログインしている場合" do
@@ -105,17 +103,14 @@ RSpec.describe "Memos", type: :request do
   end
   describe "GET /memos/:id(#editのテスト)" do
   context "ログインしている場合" do
-    before {login_as(user)}
+    before { login_as(user) }
     it "編集画面を表示できる" do
-
       get edit_memo_path(my_memo)
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to include("メモ編集")
     end
     it "他人のメモの編集画面を表示できない" do
-
-
       get edit_memo_path(other_user_memo)
 
       expect(response).to have_http_status(:not_found)
@@ -130,9 +125,8 @@ RSpec.describe "Memos", type: :request do
   end
   describe "PATCH /memos/:id(#updateのテスト)" do
   context "ログインしている場合" do
-    before {login_as(user)}
+    before { login_as(user) }
     it "メモを更新できる" do
-
       patch memo_path(my_memo), params: {
         memo: { title: "更新後タイトル" }
       }
@@ -141,7 +135,6 @@ RSpec.describe "Memos", type: :request do
       expect(my_memo.reload.title).to eq("更新後タイトル")
     end
     it "他人のメモは更新できない" do
-
       patch memo_path(other_user_memo), params: {
         memo: { title: "更新後タイトル" }
       }
@@ -158,10 +151,8 @@ RSpec.describe "Memos", type: :request do
   end
   describe "DELETE /memos/:id(destroyのテスト)" do
     context "ログインしている場合" do
-      before {login_as(user)}
+      before { login_as(user) }
       it "メモを削除できる" do
-
-
         expect {
           delete memo_path(my_memo)
         }.to change(Memo, :count).by(-1)
@@ -169,7 +160,6 @@ RSpec.describe "Memos", type: :request do
         expect(response).to redirect_to(memos_path)
       end
       it "memo削除によりif_then_ruleのmemo_idがnullになる" do
-
         rule = create(:if_then_rule, user: user, memo: my_memo)
 
         my_memo.destroy
@@ -181,9 +171,7 @@ RSpec.describe "Memos", type: :request do
         memo_count = Memo.count
         delete memo_path(other_user_memo)
         expect(Memo.count).to eq memo_count
-
       end
-
     end
     context "未ログインの場合" do
       it "login_pathにリダイレクトされる" do
