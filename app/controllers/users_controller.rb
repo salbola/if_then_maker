@@ -2,10 +2,12 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   before_action :redirect_if_logged_in, only: [ :new, :create ]
   def new
+    authorize User
     @user = User.new
   end
 
   def create
+    authorize User
     @user = User.new(user_params)
 
     if @user.save

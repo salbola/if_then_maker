@@ -1,7 +1,8 @@
 class IfThenRules::FlowsController < ApplicationController
   def step1
-     @memos = current_user.memos.order(created_at: :desc)
-     @step = 1
+    authorize IfThenRule, :create?
+    @memos = policy_scope(Memo).order(created_at: :desc)
+    @step = 1
   end
 
   # def step1_submit
