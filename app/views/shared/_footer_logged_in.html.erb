@@ -1,10 +1,6 @@
-<footer class="footer footer-center p-6 text-primary-content bg-primary shadow fixed bottom-0 h-14 inset-x-0">
-  <div>
-    <div class="flex gap-4 bg-configtest">
-      <%= link_to "ダッシュボード", dash_boards_path, class:"link link-hover" %>
-      <%= link_to "マイルール", if_then_rules_path, class:"link link-hover" %>
-      <%= link_to "メモ", memos_path, class:"link link-hover" %>
-      <%= link_to "振り返り", reflections_path, class:"link link-hover" %>
-    </div>
-  </div>
+<footer class="dock dock-md bg-primary text-primary-content ">
+      <%= link_to "ダッシュボード", dash_boards_path, class:"dock-label" %>
+      <%= link_to "マイルール", if_then_rules_path, class:"dock-label" %>
+      <%= link_to "メモ", memos_path, class:"dock-label" %>
+      <%= link_to "振り返り", reflections_path, class:"dock-label" %>
 </footer>
