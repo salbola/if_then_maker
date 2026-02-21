@@ -1,21 +1,21 @@
 <footer class="dock dock-md bg-primary text-primary-content ">
-  <%= link_to  dash_boards_path, class: "#{ 'dock-active' if current_page?(controller: "dash_boards", action: "index") }" do %>
+  <%= link_to  dash_boards_path, class: "#{ 'dock-active' if controller_name == 'dash_boards' }" do %>
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
   <span class="dock-label ">ダッシュボード</span>
   <% end %>
-  <%= link_to  if_then_rules_path, class: "#{ 'dock-active' if current_page?(controller: "if_then_rules", action: "index") }" do%>
+  <%= link_to  if_then_rules_path, class: "#{ 'dock-active' if controller_name == 'if_then_rules' }" do%>
 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m576-160-56-56 104-104-104-104 56-56 104 104 104-104 56 56-104 104 104 104-56 56-104-104-104 104Zm79-360L513-662l56-56 85 85 170-170 56 57-225 226ZM80-280v-80h360v80H80Zm0-320v-80h360v80H80Z"/></svg>
 
 
   <span class="dock-label">マイルール</span>
   <% end %>
-  <%= link_to memos_path, class: "#{ 'dock-active' if current_page?(controller: "memos", action: "index") }" do %>
+  <%= link_to memos_path, class: "#{ 'dock-active' if controller_name == 'memos' }" do %>
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-120v-720h720v720H120Zm600-160H240v60h480v-60Zm-480-60h480v-60H240v60Zm0-140h480v-240H240v240Zm0 200v60-60Zm0-60v-60 60Zm0-140v-240 240Zm0 80v-80 80Zm0 120v-60 60Z"/></svg>
   <span class="dock-label">メモ</span>
 
 
   <% end %>
-  <%= link_to reflections_path, class: "#{ 'dock-active' if current_page?(controller: "reflections", action: "index") }" do %>
+  <%= link_to reflections_path, class: "#{ 'dock-active' if controller_name == 'reflections' }" do %>
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-80 360-642l-88 402H80v-80h128l113-520h79l122 572 78-332h80l72 280h128v80H690l-48-188-82 348h-80Z"/></svg>
   <span class="dock-label">振り返り</span>
   <% end %>
