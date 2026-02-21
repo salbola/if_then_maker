@@ -1,9 +1,20 @@
 <div data-controller="celebrate-modal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-  <div class="bg-white rounded-xl p-6 z-[60]">
+  <div class="bg-white rounded-xl p-6 z-[60] y-4 text-center">
     <h2 class="text-xl font-bold">🎉 完了！</h2>
     <p>今日のマイルールをすべて達成しました</p>
 
+    <div class="button btn-ghost bg-black rounded-full text-white p-2 flex items-center justify-center ">
+<svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 24 24"
+       fill="currentColor"
+       class="w-5 h-5 text-white inline">
+    <path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.8l-5.34-6.99L4.7 22H1.44l8.02-9.16L1 2h6.92l4.86 6.42L18.24 2z"/>
+  </svg>
+
+          <%= link_to "で共有する","https://twitter.com/intent/tweet?url=https://ifthen-maker.onrender.com/&text=今日のルール、達成。"%>
+    </div>
     <button data-action="celebrate-modal#close" class="btn mt-4">閉じる</button>
-    <%= link_to "xで共有する","https://twitter.com/intent/tweet?url=https://ifthen-maker.onrender.com/&text=今日のルール、達成。", class:"button btn-ghost"%>
+
+      
   </div>
 </div>
