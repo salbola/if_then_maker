@@ -3,56 +3,6 @@
     <% end %>
 
 
-    <div class="bg-base-100 card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative ">
-            <!--ルールのステータス-->
-            <p class="tag <%= @if_then_rule.status_color_class %> text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
-              <%= @if_then_rule.human_status%>
-            </p>
-
-          <!--ルールのifとthenのグループ-->
-          <div class = " bg-base-100 p-4 rounded-t-lg shadow-inner ">
-            <%= render "if_then_rules/cards/rule_sentence", rule: @if_then_rule %>
-          </div>
-
-          <!--ルールのUI関係のグループ-->
-          <div >
-             
-              <!--ボタン集-->
-              <div class="card-actions justify-end mt-4">
-                <%= link_to "編集",
-                            edit_if_then_rule_path(@if_then_rule),
-                            class: "btn btn-ghost btn-sm btn-primary" %>
-                <%= link_to "削除",
-                  if_then_rule_path(@if_then_rule),
-                  data: {
-                              turbo_method: :delete,
-                              turbo_confirm: "このルールを削除しますか？" },
-                    class: "btn btn-ghost btn-error btn-sm"
-                %>
-              </div>
-        </div>
-    </div>
-
- <!--ルールの元になったメモ-->
-            <div class="bg-memo card shadow">
-              <% if @if_then_rule.memo.present? %>
-                <p class="text-[11px]  mt-1">
-                  元メモ：<%= @if_then_rule.memo.title.presence || "（無題）" %>
-                </p>
-                <p class="text-[11px] mt-1">
-                  <%= @if_then_rule.memo.body.presence || "（無題）" %>
-                </p>
-              <% else %>
-                <p class="text-[11px] text-gray-400 mt-1">
-                  元のメモがありません
-                </p>
-              <% end %>
-            </div>
-
-
-  <div>
-    <%= link_to "一覧に戻る",
-                if_then_rules_path,
-                class: "btn btn-ghost btn-sm" %>
-
-  </div>
+        <%= render "if_then_rules/cards/rule_card",  rule: @if_then_rule, bg_class: "bg-base-100" do %>
+          <%= render "if_then_rules/cards/rule_actions_show",  rule: @if_then_rule %>
+        <% end %>

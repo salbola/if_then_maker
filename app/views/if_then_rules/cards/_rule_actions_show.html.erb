@@ -1,0 +1,32 @@
+<div>
+      <!--ルールの元になったメモ-->
+    <div>
+      <% if rule.memo.present? %>
+      <div  class="bg-memo card rounded-lg shadow-sm">
+        <p class="text-[11px] text-gray-400 mt-1">
+          <%= rule.memo.title.presence || "（無題）" %>
+        </p>
+        <p class="text-[11px] text-gray-400 mt-1">
+          <%= rule.memo.body || "" %>
+        </p>
+      </div>
+      <% else %>
+        <p class="text-[11px] text-gray-400 mt-1">
+          元のメモがありません
+        </p>
+      <% end %>
+    </div>
+      <!--ボタン集-->
+      <div class="card-actions justify-end mt-4">
+        <%= link_to "編集",
+                    edit_if_then_rule_path(rule),
+                    class: "btn btn-ghost btn-sm btn-primary" %>
+        <%= link_to "削除",
+          if_then_rule_path(rule),
+          data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "このルールを削除しますか？" },
+            class: "btn btn-ghost btn-error btn-sm"
+        %>
+      </div>
+</div>
