@@ -1,7 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-require 'capybara/rails'
-require "pundit/rspec"
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -13,6 +11,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+require 'capybara/rails'
+require "pundit/rspec"
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
