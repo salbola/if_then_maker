@@ -63,3 +63,5 @@ end
 
 gem "pundit", "~> 2.5"
 gem "ransack"
+gem "sentry-ruby"
+gem "sentry-rails"
