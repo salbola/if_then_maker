@@ -1,6 +1,5 @@
 require "rails_helper"
 RSpec.describe "Rule flow", type: :system do
-
   it "ユーザーが登録し、ログインして、メモとルールを作成できる" do
     # 1. 新規登録
     visit new_user_path
@@ -25,7 +24,7 @@ RSpec.describe "Rule flow", type: :system do
     click_link "新しくマイルールを作成する"
     expect(page).to have_content("メモ選択")
 
-    #4 メモの選択or新しいメモ作成
+    # 4 メモの選択or新しいメモ作成
     click_link "新しくメモを作成する"
     fill_in "memo_title", with: "朝するといいこと"
     fill_in "memo_body", with: "筋トレ"
