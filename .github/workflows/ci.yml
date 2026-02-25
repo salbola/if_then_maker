@@ -73,6 +73,20 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install JS dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build JS 
+        run: yarn build
+
+      - name: Build CSS
+        run: yarn build:css
+
       - name: Run tests
         env:
           RAILS_ENV: test
@@ -80,6 +94,7 @@ jobs:
           # REDIS_URL: redis://localhost:6379/0
           SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
         run: |
+          bundle exec rails assets:precompile
           bin/rails db:prepare
           bundle exec rspec
 
