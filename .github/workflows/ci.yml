@@ -47,10 +47,14 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
       # redis:
       #   image: redis
       #   ports:
