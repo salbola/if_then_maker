@@ -78,7 +78,7 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
-          SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+          SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
         run: |
           bin/rails db:prepare
           bundle exec rspec
