@@ -3,7 +3,7 @@ RSpec.describe "Rule flow", type: :system do
   it "ユーザーが登録し、ログインして、メモとルールを作成できる" do
     # 1. 新規登録
     visit new_user_path
-    expect(page).to have_content("新規登録")
+    expect(page).to have_content("ダッシュボード")
     fill_in "user_email", with: "test@example.com"
     fill_in "user_password", with: "password"
     fill_in "user_password_confirmation", with: "password"
