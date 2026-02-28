@@ -17,7 +17,7 @@ class IfThenRule < ApplicationRecord
   end
 
   def reflected_today?
-  reflections.exists?(reflected_on: Date.current)
+  reflections.any? { |r| r.reflected_on == Date.current }
   end
 
   def today_reflection
