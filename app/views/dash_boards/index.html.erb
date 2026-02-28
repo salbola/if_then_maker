@@ -1,14 +1,14 @@
-  <% if @if_then_rules.active.any? %>
+  <% if @today_rules.any? %>
     <% content_for :title do %>
       今日のルール
     <% end %>
     <!--今日のルール一覧-->
     <turbo-frame id="today_rules">
-    <%= render "if_then_rules/dash_boards/today_rules", rules: @if_then_rules %>
+    <%= render "if_then_rules/dash_boards/today_rules", rules: @today_rules %>
     </turbo-frame>
     <!-- カードの下の今日やったルールなどの集計表示 -->
     <turbo-frame id="today_progress">
-    <%= render "if_then_rules/dash_boards/today_progress", progress: today_progress(@if_then_rules) %>
+    <%= render "if_then_rules/dash_boards/today_progress", progress: today_progress(@today_rules) %>
     </turbo-frame>
 
     <div class="mt-12 flex flex-col gap-3">
