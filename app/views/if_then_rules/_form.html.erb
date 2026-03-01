@@ -81,6 +81,26 @@
       <%= f.collection_select :memo_id, current_user.memos, :id, :display_for_select, include_blank: true %>
     <% end %>
 
+
+    <!--曜日ごとの繰り返しの設定など-->
+    <details>
+    <summary>
+      曜日の繰り返し設定
+    </summary>
+    <% Date::DAYNAMES.each_with_index do |day, i| %>
+      <label>
+      <%= check_box_tag(
+        "if_then_rule_form[weekdays][]",
+        i,
+        if_then_rule_form.weekdays.map(&:to_i).include?(i)
+        ) %>
+        <%= I18n.t('date.day_names')[i] %>
+        </label>
+        <% end %>
+    </details>
+        
+
+
     <!--保存ボタンなど-->
     <div class="pt-4 space-y-3">
       <% if if_then_rule_form.warnings.present? %>

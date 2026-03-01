@@ -6,6 +6,8 @@ class IfThenRuleForm
   attribute :if_condition, :string
   attribute :then_action, :string
   attribute :status, :string
+  attribute :weekdays, default: []
+
   # モデルにおいてstatusはintだがenum
   validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }, unless: -> { status == "draft" }
   validates :then_action, presence: { message: "THEN（行動）を入力してください" }, unless: -> { status == "draft" }
@@ -19,6 +21,7 @@ class IfThenRuleForm
     @warnings = []
     @if_then_rule_of_model = if_then_rule_of_model
     @current_user = user
+
   end
 
   def valid?(context = nil)
@@ -86,7 +89,8 @@ class IfThenRuleForm
       memo_id: memo_id,
       if_condition: if_condition,
       then_action: then_action,
-      status: status
+      status: status,
+      weekdays: weekdays
     )
      record.persisted?
   end
@@ -96,7 +100,8 @@ class IfThenRuleForm
       memo_id: memo_id,
       if_condition: if_condition,
       then_action: then_action,
-      status: status
+      status: status,
+      weekdays: weekdays
     )
   end
 end
