@@ -11,7 +11,7 @@ class IfThenRuleForm
   # モデルにおいてstatusはintだがenum
   validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }, unless: -> { status == "draft" }
   validates :then_action, presence: { message: "THEN（行動）を入力してください" }, unless: -> { status == "draft" }
-
+  validate :weekdays_must_be_valid_range
   attr_reader :warnings
   attr_reader :user
   attr_reader :if_then_rule_of_model
@@ -117,5 +117,12 @@ end
       weekdays: weekdays
     )
 
+  end
+
+  def weekdays_must_be_valid_range
+    invalid = weekdays.reject { |d| (0..6).include?(d) }
+    return if invalid.empty?
+
+    errors.add(:weekdays, "に不正な値が含まれています")
   end
 end
