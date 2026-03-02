@@ -24,6 +24,19 @@ class IfThenRuleForm
 
   end
 
+
+# ActiveModelのattribute :weekdaysの背後にあるセッター相当のものを上書きして入口だけ使用してparams代入に使いつつ独自の中身にする。
+# 中では並び替えとか重複削除しつつ毎日(7個分)を空配列に統一
+# ->既存データは空配列のまま毎日扱いにしつつ、毎日扱いのデータの種類を空配列のみの一種類にする
+def weekdays=(value)
+  days = Array(value).map(&:to_i).uniq.sort
+  @weekdays = days.size == 7 ? [] : days
+end
+
+def weekdays
+  @weekdays || []
+end
+
   def valid?(context = nil)
     result = super
     collect_warnings
@@ -103,5 +116,6 @@ class IfThenRuleForm
       status: status,
       weekdays: weekdays
     )
+
   end
 end
