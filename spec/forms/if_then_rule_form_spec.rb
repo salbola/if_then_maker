@@ -38,7 +38,7 @@ end
       expect(form).not_to be_valid
     end
 
-    describe "weekdaysについて" do
+    describe "weekdaysのバリデーション" do
       context "0〜6のみの場合は" do
         it "valid" do
           form = described_class.new(
@@ -60,7 +60,15 @@ end
             expect(form.errors[:weekdays]).to include("に不正な値が含まれています")
         end
       end
-
+      context  "空配列の場合" do
+        it "有効（毎日扱い）" do
+          form = described_class.new(
+            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 ,weekdays: [] },
+            user: user
+          )
+          expect(form).to be_valid
+        end
+      end
     end
 
 
