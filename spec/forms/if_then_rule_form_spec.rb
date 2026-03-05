@@ -13,7 +13,7 @@ RSpec.describe IfThenRuleForm, type: :model do
     status: "draft"
   )
 end
-  describe "#valid?の本来のバリデーションの役目" do
+  describe "#valid?について" do
     it "if_condition と then_action があれば valid" do
       form = IfThenRuleForm.new(
         { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 },
@@ -37,6 +37,33 @@ end
       )
       expect(form).not_to be_valid
     end
+
+    describe "weekdaysについて" do
+      context "0〜6のみの場合は" do
+        it "valid" do
+          form = described_class.new(
+            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 ,weekdays: %w[0 3 6] },
+            user: user
+          )
+
+          expect(form).to be_valid
+        end
+      end
+      context "0〜6以外の場合は" do
+        it "invalid" do
+            form = described_class.new(
+              { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 ,weekdays: %w[0 7] },
+              user: user
+            )
+
+            expect(form).not_to be_valid
+            expect(form.errors[:weekdays]).to include("に不正な値が含まれています")
+        end
+      end
+
+    end
+
+
   end
   describe "#valid?で追加されるwarningsの機能" do
     context "適切な値の時" do
