@@ -391,6 +391,20 @@ end
         expect(form.weekdays).to eq([1, 3])
       end
     end
+    context "重複している場合" do
+      it "重複部分が削除される" do
+        form = described_class.new(
+          {
+          if_condition: "常に",
+          then_action: "水を飲む",
+          memo_id: memo.id,
+          weekdays: %w[1 3 3] },
+          user: user
+        )
+
+        expect(form.weekdays).to eq([1, 3])
+      end
+    end
   end
 
 end
