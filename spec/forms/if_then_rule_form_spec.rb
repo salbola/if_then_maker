@@ -365,4 +365,32 @@ end
       end
     end
   end
+
+  describe "weekdaysの正規化" do
+    context "7個選択した場合" do
+      it "空配列に正規化される" do
+        form = described_class.new(
+          { weekdays: %w[0 1 2 3 4 5 6] },
+          user: user
+        )
+
+        expect(form.weekdays).to eq([])
+      end
+    end
+    context "文字列として渡された(paramsの特性)場合" do
+      it "整数配列になる" do
+        form = described_class.new(
+          {
+          if_condition: "常に",
+          then_action: "水を飲む",
+          memo_id: memo.id,
+          weekdays: %w[1 3] },
+          user: user
+        )
+
+        expect(form.weekdays).to eq([1, 3])
+      end
+    end
+  end
+
 end
