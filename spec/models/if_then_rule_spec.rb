@@ -43,7 +43,7 @@ RSpec.describe IfThenRule, type: :model do
       expect(if_then_rule.errors[:status]).to include("を入力してください")
     end
   end
-  describe "便利系メソッド関連" do
+  describe "メソッド関連" do
     let(:rule) { create(:if_then_rule, user: user, memo: memo) }
 
 
@@ -88,6 +88,35 @@ RSpec.describe IfThenRule, type: :model do
       context "今日のreflectionがない場合" do
         it "nilを返す" do
           expect(rule.today_reflection).to be nil
+        end
+      end
+    end
+
+    describe "#scheduled_for?" do
+      context "weekdays が空の場合" do
+        it "どの曜日でもtrue" do
+          rule = create(:if_then_rule, user: user, memo: memo, weekdays: [])
+
+          expect(rule.scheduled_for?(Date.new(2026,3,2))).to be true
+          expect(rule.scheduled_for?(Date.new(2026,3,3))).to be true
+        end
+      end
+      context "weekdaysを設定されている場合" do
+        context "設定と一致する日なら" do
+          it "trueを返す" do
+            rule = create(:if_then_rule, user: user, memo: memo, weekdays: [1]) # 月曜
+
+            monday = Date.new(2026,3,2) # 月曜
+            expect(rule.scheduled_for?(monday)).to be true
+          end
+        end
+        context "設定と一致しない日なら" do
+          it "falseを返す" do
+            rule = create(:if_then_rule, user: user, memo: memo, weekdays: [1]) # 月曜
+
+            tuesday = Date.new(2026,3,3)
+            expect(rule.scheduled_for?(tuesday)).to be false
+          end
         end
       end
     end
