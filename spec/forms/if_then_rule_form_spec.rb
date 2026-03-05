@@ -14,28 +14,39 @@ RSpec.describe IfThenRuleForm, type: :model do
   )
 end
   describe "#valid?について" do
-    it "if_condition と then_action があれば valid" do
-      form = IfThenRuleForm.new(
-        { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 },
-        user: user
-      )
-      expect(form).to be_valid
+  describe "正しい場合のバリデーション" do
+    context "if_condition と then_action があれば" do
+      it "valid" do
+        form = IfThenRuleForm.new(
+          { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: [] },
+          user: user
+          )
+          expect(form).to be_valid
+        end
+      end
+    end
+    describe "if_conditionのバリデーション" do
+      context "if_condition が空だと " do
+        it "invalid" do
+          form = IfThenRuleForm.new(
+            { if_condition: "", then_action: "水を飲む", memo_id: 1 },
+            user: user
+            )
+            expect(form).not_to be_valid
+        end
+      end
     end
 
-    it "if_condition が空だと invalid" do
-      form = IfThenRuleForm.new(
-        { if_condition: "", then_action: "水を飲む", memo_id: 1 },
-        user: user
-      )
-      expect(form).not_to be_valid
-    end
-
-    it "then_action が空だと invalid" do
-      form = IfThenRuleForm.new(
-        { if_condition: "朝起きたら", then_action: "", memo_id: 1 },
-        user: user
-      )
-      expect(form).not_to be_valid
+    describe "then_actionのバリデーション" do
+      context "then_action が空だと " do
+        it "invalid" do
+          form = IfThenRuleForm.new(
+            { if_condition: "朝起きたら", then_action: "", memo_id: 1 },
+            user: user
+          )
+          expect(form).not_to be_valid
+        end
+      end
     end
 
     describe "weekdaysのバリデーション" do
