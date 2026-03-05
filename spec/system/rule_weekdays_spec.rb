@@ -1,6 +1,5 @@
 require "rails_helper"
 RSpec.describe "Rule Weekdays", type: :system do
-
   let!(:user) { create(:user) }
   let!(:memo) { create(:memo, user: user) }
 
@@ -18,7 +17,6 @@ RSpec.describe "Rule Weekdays", type: :system do
 
   describe "ルール作成での曜日設定をできる" do
     it "曜日を設定できる" do
-
       visit step1_if_then_rules_flow_path
       click_link "このメモから作る"
 
@@ -35,37 +33,33 @@ RSpec.describe "Rule Weekdays", type: :system do
       visit if_then_rules_path
       expect(page).to have_content("If-Thenルール一覧")
       expect(page).to have_content("月・水")
-
     end
   end
   describe "ルール編集での曜日再設定をできる" do
     it "曜日を編集して変更できる" do
-
-      create(:if_then_rule, user:user, memo: memo, weekdays: [1,3])
+      create(:if_then_rule, user: user, memo: memo, weekdays: [ 1, 3 ])
       visit if_then_rules_path
       expect(page).to have_content("If-Thenルール一覧")
       expect(page).to have_content("月・水")
-      
+
       click_link "編集"
       expect(page).to have_content("If-Thenルール編集")
-      
+
       check "commit_type"
-      
+
       find("summary", text: "曜日の繰り返し設定").click
       check "火曜日"
       check "日曜日"
-      
+
       click_button "保存する"
-      
+
       expect(page).to have_content("編集しました")
 
       expect(page).not_to have_content("月・水")
     end
   end
   describe "表示関連" do
-
     it "未入力で毎日と表示される" do
-
       visit step1_if_then_rules_flow_path
       click_link "このメモから作る"
 
@@ -83,7 +77,6 @@ RSpec.describe "Rule Weekdays", type: :system do
       expect(page).to have_content("毎日")
     end
     it "全ての曜日入力で毎日と表示される" do
-
       visit step1_if_then_rules_flow_path
       click_link "このメモから作る"
 
@@ -109,35 +102,31 @@ RSpec.describe "Rule Weekdays", type: :system do
   end
   describe "ダッシュボードで曜日が適切に機能する" do
     context "作成したルールに特定の曜日がある場合" do
-
       it "設定曜日の日だけ表示される" do
         travel_to Date.new(2026, 3, 2) # 月曜日
-        rule = create(:if_then_rule, user:user, memo: memo, weekdays: [1], status: :active) #月曜日
+        rule = create(:if_then_rule, user: user, memo: memo, weekdays: [ 1 ], status: :active) # 月曜日
         visit dash_boards_path
         p Time.now
         expect(page).to have_content(rule.if_condition)
       end
       it "設定曜日の日ではない日だと表示されない" do
         travel_to Date.new(2026, 3, 1) # 日曜日
-        rule = create(:if_then_rule, user:user, memo: memo, weekdays: [1], status: :active) #月曜日
+        rule = create(:if_then_rule, user: user, memo: memo, weekdays: [ 1 ], status: :active) # 月曜日
         visit dash_boards_path
         p Time.now
         expect(page).not_to have_content(rule.if_condition)
       end
     end
     context "作成したルールに毎日相当の設定の場合" do
-
       it "表示される" do
         travel_to Date.new(2026, 3, 2) # 月曜日
-      
-        rule = create(:if_then_rule, user:user, memo: memo, status: :active)
-      
+
+        rule = create(:if_then_rule, user: user, memo: memo, status: :active)
+
         visit dash_boards_path
         p Time.now
         expect(page).to have_content(rule.if_condition)
       end
     end
-
   end
-
 end

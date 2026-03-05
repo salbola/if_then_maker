@@ -97,24 +97,24 @@ RSpec.describe IfThenRule, type: :model do
         it "どの曜日でもtrue" do
           rule = create(:if_then_rule, user: user, memo: memo, weekdays: [])
 
-          expect(rule.scheduled_for?(Date.new(2026,3,2))).to be true
-          expect(rule.scheduled_for?(Date.new(2026,3,3))).to be true
+          expect(rule.scheduled_for?(Date.new(2026, 3, 2))).to be true
+          expect(rule.scheduled_for?(Date.new(2026, 3, 3))).to be true
         end
       end
       context "weekdaysを設定されている場合" do
         context "設定と一致する日なら" do
           it "trueを返す" do
-            rule = create(:if_then_rule, user: user, memo: memo, weekdays: [1]) # 月曜
+            rule = create(:if_then_rule, user: user, memo: memo, weekdays: [ 1 ]) # 月曜
 
-            monday = Date.new(2026,3,2) # 月曜
+            monday = Date.new(2026, 3, 2) # 月曜
             expect(rule.scheduled_for?(monday)).to be true
           end
         end
         context "設定と一致しない日なら" do
           it "falseを返す" do
-            rule = create(:if_then_rule, user: user, memo: memo, weekdays: [1]) # 月曜
+            rule = create(:if_then_rule, user: user, memo: memo, weekdays: [ 1 ]) # 月曜
 
-            tuesday = Date.new(2026,3,3)
+            tuesday = Date.new(2026, 3, 3)
             expect(rule.scheduled_for?(tuesday)).to be false
           end
         end

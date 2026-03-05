@@ -21,7 +21,6 @@ class IfThenRuleForm
     @warnings = []
     @if_then_rule_of_model = if_then_rule_of_model
     @current_user = user
-
   end
 
 
@@ -116,7 +115,6 @@ end
       status: status,
       weekdays: weekdays
     )
-
   end
 
   def weekdays_must_be_valid_range

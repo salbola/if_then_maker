@@ -39,7 +39,7 @@ class IfThenRule < ApplicationRecord
 
   # 昨日の未達成のもののロジックを必要なら入れるただこのままだとn+1のおそれあり
   # def unfinished_yesterday?
-    # scheduled_for?(Date.yesterday) && !!rule.reflections.exists?(reflected_on: Date.yesterday)
+  # scheduled_for?(Date.yesterday) && !!rule.reflections.exists?(reflected_on: Date.yesterday)
   # end
 
   def human_status

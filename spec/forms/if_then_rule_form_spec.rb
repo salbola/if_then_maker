@@ -53,7 +53,7 @@ end
       context "0〜6のみの場合は" do
         it "valid" do
           form = described_class.new(
-            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 ,weekdays: %w[0 3 6] },
+            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: %w[0 3 6] },
             user: user
           )
 
@@ -63,7 +63,7 @@ end
       context "0〜6以外の場合は" do
         it "invalid" do
             form = described_class.new(
-              { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 ,weekdays: %w[0 7] },
+              { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: %w[0 7] },
               user: user
             )
 
@@ -71,18 +71,16 @@ end
             expect(form.errors[:weekdays]).to include("に不正な値が含まれています")
         end
       end
-      context  "空配列の場合" do
+      context "空配列の場合" do
         it "有効（毎日扱い）" do
           form = described_class.new(
-            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 ,weekdays: [] },
+            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: [] },
             user: user
           )
           expect(form).to be_valid
         end
       end
     end
-
-
   end
   describe "#valid?で追加されるwarningsの機能" do
     context "適切な値の時" do
@@ -388,7 +386,7 @@ end
           user: user
         )
 
-        expect(form.weekdays).to eq([1, 3])
+        expect(form.weekdays).to eq([ 1, 3 ])
       end
     end
     context "重複している場合" do
@@ -402,9 +400,8 @@ end
           user: user
         )
 
-        expect(form.weekdays).to eq([1, 3])
+        expect(form.weekdays).to eq([ 1, 3 ])
       end
     end
   end
-
 end
