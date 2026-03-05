@@ -17,12 +17,30 @@ class IfThenRule < ApplicationRecord
   end
 
   def reflected_today?
-  reflections.exists?(reflected_on: Date.current)
+  reflections.any? { |r| r.reflected_on == Date.current }
   end
 
   def today_reflection
     reflections.find_by(reflected_on: Date.current)
   end
+
+
+  # 引数の曜日が設定された曜日にあるのか？
+  def scheduled_for?(date)
+    return true if weekdays.empty? # 空なら毎日扱い
+
+    weekdays.include?(date.wday)
+  end
+
+  # 今日用
+  def scheduled_today?
+    scheduled_for?(Date.current)
+  end
+
+  # 昨日の未達成のもののロジックを必要なら入れるただこのままだとn+1のおそれあり
+  # def unfinished_yesterday?
+  # scheduled_for?(Date.yesterday) && !!rule.reflections.exists?(reflected_on: Date.yesterday)
+  # end
 
   def human_status
     case status

@@ -1,6 +1,6 @@
 class DashBoardsController < ApplicationController
   def index
-    @if_then_rules = policy_scope(IfThenRule)
+    @today_rules = policy_scope(IfThenRule).includes(:reflections).active.select(&:scheduled_today?)
     authorize :dash_board
   end
 end

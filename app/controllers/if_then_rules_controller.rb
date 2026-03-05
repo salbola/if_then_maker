@@ -23,6 +23,7 @@ class IfThenRulesController < ApplicationController
   end
 
   def create
+    # binding.b
     authorize IfThenRule
     sanitized_params = if_then_rule_params_with_permitted_memo
     @if_then_rule_form = IfThenRuleForm.new(sanitized_params, user: current_user)
@@ -78,7 +79,7 @@ class IfThenRulesController < ApplicationController
 
   def if_then_rule_params
     params.require(:if_then_rule_form)
-          .permit(:memo_id, :if_condition, :then_action, :status)
+          .permit(:memo_id, :if_condition, :then_action, :status, weekdays: [])
   end
 
   # 現在ユーザーがアクセス可能なメモのみを返す（memo_id の認可）

@@ -13,13 +13,13 @@ class ReflectionsController < ApplicationController
     streams << turbo_stream.replace(
       "today_rules",
       partial: "if_then_rules/dash_boards/today_rules",
-      locals: { rules: policy_scope(IfThenRule) }
+      locals: { rules: policy_scope(IfThenRule).active.includes(:reflections).select(&:scheduled_today?) }
     )
 
     streams << turbo_stream.replace(
       "today_progress",
       partial: "if_then_rules/dash_boards/today_progress",
-      locals: { progress: today_progress(policy_scope(IfThenRule)) }
+      locals: { progress: today_progress(policy_scope(IfThenRule).active.includes(:reflections).select(&:scheduled_today?)) }
     )
 
     if current_user.all_rules_completed_today?
@@ -46,13 +46,13 @@ class ReflectionsController < ApplicationController
     streams << turbo_stream.replace(
       "today_rules",
       partial: "if_then_rules/dash_boards/today_rules",
-      locals: { rules: policy_scope(IfThenRule) }
+      locals: { rules: policy_scope(IfThenRule).active.includes(:reflections).select(&:scheduled_today?) }
     )
 
         streams << turbo_stream.replace(
       "today_progress",
       partial: "if_then_rules/dash_boards/today_progress",
-      locals: { progress: today_progress(policy_scope(IfThenRule)) }
+      locals: { progress: today_progress(policy_scope(IfThenRule).active.includes(:reflections).select(&:scheduled_today?)) }
     )
   render turbo_stream: streams, notice: "チェックを取り消ししました"
   end

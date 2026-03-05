@@ -6,10 +6,12 @@ class IfThenRuleForm
   attribute :if_condition, :string
   attribute :then_action, :string
   attribute :status, :string
+  attribute :weekdays, default: []
+
   # モデルにおいてstatusはintだがenum
   validates :if_condition, presence: { message: "IF（きっかけ）を入力してください" }, unless: -> { status == "draft" }
   validates :then_action, presence: { message: "THEN（行動）を入力してください" }, unless: -> { status == "draft" }
-
+  validate :weekdays_must_be_valid_range
   attr_reader :warnings
   attr_reader :user
   attr_reader :if_then_rule_of_model
@@ -20,6 +22,19 @@ class IfThenRuleForm
     @if_then_rule_of_model = if_then_rule_of_model
     @current_user = user
   end
+
+
+# ActiveModelのattribute :weekdaysの背後にあるセッター相当のものを上書きして入口だけ使用してparams代入に使いつつ独自の中身にする。
+# 中では並び替えとか重複削除しつつ毎日(7個分)を空配列に統一
+# ->既存データは空配列のまま毎日扱いにしつつ、毎日扱いのデータの種類を空配列のみの一種類にする
+def weekdays=(value)
+  days = Array(value).map(&:to_i).uniq.sort
+  @weekdays = days.size == 7 ? [] : days
+end
+
+def weekdays
+  @weekdays || []
+end
 
   def valid?(context = nil)
     result = super
@@ -86,7 +101,8 @@ class IfThenRuleForm
       memo_id: memo_id,
       if_condition: if_condition,
       then_action: then_action,
-      status: status
+      status: status,
+      weekdays: weekdays
     )
      record.persisted?
   end
@@ -96,7 +112,15 @@ class IfThenRuleForm
       memo_id: memo_id,
       if_condition: if_condition,
       then_action: then_action,
-      status: status
+      status: status,
+      weekdays: weekdays
     )
+  end
+
+  def weekdays_must_be_valid_range
+    invalid = weekdays.reject { |d| (0..6).include?(d) }
+    return if invalid.empty?
+
+    errors.add(:weekdays, "に不正な値が含まれています")
   end
 end

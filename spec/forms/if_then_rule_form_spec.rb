@@ -13,29 +13,73 @@ RSpec.describe IfThenRuleForm, type: :model do
     status: "draft"
   )
 end
-  describe "#valid?の本来のバリデーションの役目" do
-    it "if_condition と then_action があれば valid" do
-      form = IfThenRuleForm.new(
-        { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1 },
-        user: user
-      )
-      expect(form).to be_valid
+  describe "#valid?について" do
+  describe "正しい場合のバリデーション" do
+    context "if_condition と then_action があれば" do
+      it "valid" do
+        form = IfThenRuleForm.new(
+          { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: [] },
+          user: user
+          )
+          expect(form).to be_valid
+        end
+      end
+    end
+    describe "if_conditionのバリデーション" do
+      context "if_condition が空だと " do
+        it "invalid" do
+          form = IfThenRuleForm.new(
+            { if_condition: "", then_action: "水を飲む", memo_id: 1 },
+            user: user
+            )
+            expect(form).not_to be_valid
+        end
+      end
     end
 
-    it "if_condition が空だと invalid" do
-      form = IfThenRuleForm.new(
-        { if_condition: "", then_action: "水を飲む", memo_id: 1 },
-        user: user
-      )
-      expect(form).not_to be_valid
+    describe "then_actionのバリデーション" do
+      context "then_action が空だと " do
+        it "invalid" do
+          form = IfThenRuleForm.new(
+            { if_condition: "朝起きたら", then_action: "", memo_id: 1 },
+            user: user
+          )
+          expect(form).not_to be_valid
+        end
+      end
     end
 
-    it "then_action が空だと invalid" do
-      form = IfThenRuleForm.new(
-        { if_condition: "朝起きたら", then_action: "", memo_id: 1 },
-        user: user
-      )
-      expect(form).not_to be_valid
+    describe "weekdaysのバリデーション" do
+      context "0〜6のみの場合は" do
+        it "valid" do
+          form = described_class.new(
+            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: %w[0 3 6] },
+            user: user
+          )
+
+          expect(form).to be_valid
+        end
+      end
+      context "0〜6以外の場合は" do
+        it "invalid" do
+            form = described_class.new(
+              { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: %w[0 7] },
+              user: user
+            )
+
+            expect(form).not_to be_valid
+            expect(form.errors[:weekdays]).to include("に不正な値が含まれています")
+        end
+      end
+      context "空配列の場合" do
+        it "有効（毎日扱い）" do
+          form = described_class.new(
+            { if_condition: "朝起きたら", then_action: "水を飲む", memo_id: 1, weekdays: [] },
+            user: user
+          )
+          expect(form).to be_valid
+        end
+      end
     end
   end
   describe "#valid?で追加されるwarningsの機能" do
@@ -316,6 +360,47 @@ end
           form.valid?
           expect(form.warnings).to be_empty
         end
+      end
+    end
+  end
+
+  describe "weekdaysの正規化" do
+    context "7個選択した場合" do
+      it "空配列に正規化される" do
+        form = described_class.new(
+          { weekdays: %w[0 1 2 3 4 5 6] },
+          user: user
+        )
+
+        expect(form.weekdays).to eq([])
+      end
+    end
+    context "文字列として渡された(paramsの特性)場合" do
+      it "整数配列になる" do
+        form = described_class.new(
+          {
+          if_condition: "常に",
+          then_action: "水を飲む",
+          memo_id: memo.id,
+          weekdays: %w[1 3] },
+          user: user
+        )
+
+        expect(form.weekdays).to eq([ 1, 3 ])
+      end
+    end
+    context "重複している場合" do
+      it "重複部分が削除される" do
+        form = described_class.new(
+          {
+          if_condition: "常に",
+          then_action: "水を飲む",
+          memo_id: memo.id,
+          weekdays: %w[1 3 3] },
+          user: user
+        )
+
+        expect(form.weekdays).to eq([ 1, 3 ])
       end
     end
   end

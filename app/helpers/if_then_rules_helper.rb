@@ -1,7 +1,7 @@
 module IfThenRulesHelper
   # ダッシュボードの"今日の達成率"で使用するヘルパー
-  def today_progress(if_then_rules)
-    active = if_then_rules.active
+  def today_progress(today_rules)
+    active = today_rules
     total  = active.count
     done   = active.count(&:reflected_today?)
 
