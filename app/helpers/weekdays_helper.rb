@@ -2,13 +2,13 @@ module WeekdaysHelper
   # 毎日か設定されている曜日を配列に入れて返す
   # 空配列の場合"毎日"というところも対応
   def weekdays_labels(weekdays)
-    return ["毎日"] if weekdays.blank?
+    return [ "毎日" ] if weekdays.blank?
 
     t_names = I18n.t("date.abbr_day_names")
 
-    weekdays.map {|i| t_names[i]}
+    weekdays.map { |i| t_names[i] }
   end
-# 曜日の色の管理するハッシュから対応するクラス文字列を返す
+  # 曜日の色の管理するハッシュから対応するクラス文字列を返す
   def weekdays_bg_color(day)
     {
       "日" => "bg-red-100 text-red-700",
@@ -21,7 +21,7 @@ module WeekdaysHelper
       "毎日" => "bg-slate-500 text-white"
     }.fetch(day, "bg-base-200")
   end
-# フォームの曜日設定のフィールドのチェック時のクラス
+  # フォームの曜日設定のフィールドのチェック時のクラス
   def checked_weekday_class(index)
     [
       "peer-checked:bg-red-100 peer-checked:text-red-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-red-400 peer-checked:font-semibold",

@@ -50,5 +50,4 @@ class IfThenRule < ApplicationRecord
     when "habituated" then "定着済み"
     end
   end
-
 end

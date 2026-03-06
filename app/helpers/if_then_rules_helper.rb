@@ -21,7 +21,7 @@ module IfThenRulesHelper
     active_if_then_rules.length >= 3 ? "draft" : "active"
   end
 
-# ステータスのバッジ表示においてその色をステータスごとに変えるヘルパー
+  # ステータスのバッジ表示においてその色をステータスごとに変えるヘルパー
   def status_color_class(status)
     case status
     when "draft" then " bg-teal-500 "
