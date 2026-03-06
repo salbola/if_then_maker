@@ -2,11 +2,16 @@
 <div class ="space-y-6">
   <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6" do |f| %>
     <%= f.hidden_field :memo_id %>
+    <div class=" bg-base-100 shadow space-y-3 p-2 rounded-lg">
+    <p class="text-sm font-semibold text-gray-600">
+      IF-THENルール
+    </p>
+    <!--IF_CONDITION入力-->
     <div class="p-4 rounded-lg bg-blue-50 border border-blue-100">
       <div class="form-control">
         <%= f.label :if_condition, "もし", class: "label block text-left" %>
         <%= f.text_field :if_condition,
-                        class: "input input-bordered",
+                        class: "input input-bordered w-full",
                         placeholder: "例：朝7時に起きたら" %>
         <% if if_then_rule_form.errors[:if_condition].any? %>
           <p class="text-sm text-red-600 mt-1">
@@ -31,11 +36,15 @@
 
 
     </div>
+
+
+
+    <!--THEN_ACTION入力-->
     <div class="p-4 rounded-lg bg-green-50 border border-green-100">
       <div class="form-control">
-        <%= f.label :then_action, "その時は", class: "label block text-left" %>
+        <%= f.label :then_action, "その時は", class: "label block text-left " %>
         <%= f.text_field :then_action,
-                        class: "input input-bordered",
+                        class: "input input-bordered w-full",
                         placeholder: "例：コップ一杯の水を飲む" %>
         <% if if_then_rule_form.errors[:then_action].any? %>
           <p class="text-sm text-red-600 mt-1">
@@ -57,34 +66,47 @@
         </div>
       </details>
     </div>
-    <%= f.label :status, "状態", class: "label" %>
-    <%= f.select :status, [ ["実行中", "active"],["下書き", "draft"],["停止中", "inactive"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,set_status:if_then_rule_form.status)} %>
+    </div>
 
-    <!--statusのwarning_message-->
-    <%= render "if_then_rules/warning_messages", if_then_rule_form: if_then_rule_form, field: :status %>
-    <p class="text-sm text-gray-500 mt-1">
-      現在、実行中のルールは <%= @active_if_then_rules.length %> 件です
-    </p>
+    <details class=" space-y-6 pt-4 bg-base-100 text-left p-2">
+    <summary class="text-gray-800 text-sm pl-2">
+      詳細設定
+    </summary>
 
-    <!--warning確認を無視するトグル-->
-    <%= hidden_field_tag :commit_type, "" %>
-
-    <label class="flex items-center gap-2">
-      <%= check_box_tag :commit_type,
-            "ignore_warnings",
-            controller.action_name == "edit" ? true : false,
-            class: "toggle toggle-primary" %>
-      <span class="text-sm">ヒントの自動チェックをしない</span>
-    </label>
+    <!--statusの入力-->
+    <%= render "status_field", form: f %>
+    
+    
+    
+    <!--メモの設定-->
+    <div>
     <% if controller.action_name == "edit" %>
-      <p class="text-xs text-gray-400 mb-1">メモを変更する</p>
-      <%= f.collection_select :memo_id, current_user.memos, :id, :display_for_select, include_blank: true %>
-    <% end %>
+    <p class="text-sm text-gray-400 mb-1">メモを変更する</p>
+    <%= f.collection_select :memo_id, current_user.memos, :id, :display_for_select,   { include_blank: "(未選択)" },
+    class:"select select-bordered"%>
+      <% end %>
+    </div>
 
-
+    
     <!--曜日ごとの繰り返しの設定など-->
     <%= render "weekday_fields", form: f %>
+    
+    </details>
 
+    <!--warning確認を無視するトグル-->
+    <div class="space-y-1">
+    <%= hidden_field_tag :commit_type, "" %>
+
+    <label class="flex items-center justify-center gap-2">
+    <%= check_box_tag :commit_type,
+    "ignore_warnings",
+    controller.action_name == "edit" ? true : false,
+    class: "toggle toggle-primary" %>
+      <span class="text-sm">ヒントの自動チェックをしない</span>
+      </label>
+      <p class="text-xs text-gray-500">チェックするとどのような内容でもエラーがなければそのまま保存できます</p>
+
+    </div>
 
     <!--保存ボタンなど-->
     <div class="pt-4 space-y-3">

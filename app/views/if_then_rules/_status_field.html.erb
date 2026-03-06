@@ -1,0 +1,16 @@
+<div>
+
+      <p class="text-sm text-gray-400 mb-1">状態</p>
+      <%= form.select :status, [ ["実行中", "active"],["下書き", "draft"],["停止中", "inactive"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,set_status:form.object.status)},class: "select select-bordered " %>
+      
+
+
+      
+      <!--statusのwarning_message-->
+      <%= render "if_then_rules/warning_messages", if_then_rule_form: form.object, field: :status %>
+      <p class="text-xs text-gray-500 mt-1">
+      現在、実行中のルールは <span class="text-sm"><%= @active_if_then_rules.length %></span> 件です
+      </p>
+
+    
+    </div>

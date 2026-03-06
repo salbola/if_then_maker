@@ -1,36 +1,31 @@
-<details>
-<summary>
-  曜日の繰り返し設定
-</summary>
+<div>
+<p class="text-sm text-gray-400 mb-1">曜日の繰り返し</p>
+  <div class="flex gap-2 flex-wrap ">
 
-    <div class="form-control">
+  <% Date::DAYNAMES.each_with_index do |day, i| %>
 
-    <div class="flex gap-2 flex-wrap justify-center">
+    <label class="cursor-pointer">
 
-    <% Date::DAYNAMES.each_with_index do |day, i| %>
-  
-      <label class="cursor-pointer">
-  
-        <%= check_box_tag(
-          "if_then_rule_form[weekdays][]",
-          i,
-          form.object.weekdays.map(&:to_i).include?(i),
-          class: "peer hidden"
-        ) %>
-  
-        <span class="badge px-3 py-2 border rounded-lg text-gray-500 transition <%= checked_weekday_class(i) %> hover:bg-base-300 ">
-          <%= I18n.t("date.abbr_day_names")[i] %>
-        </span>
-  
-      </label>
-  
-    <% end %>
-  
+      <%= check_box_tag(
+        "if_then_rule_form[weekdays][]",
+        i,
+        form.object.weekdays.map(&:to_i).include?(i),
+        class: "peer hidden"
+      ) %>
+
+      <span class="badge px-3 py-2 border rounded-lg text-gray-500 transition <%= checked_weekday_class(i) %> hover:bg-base-300 ">
+        <%= I18n.t("date.abbr_day_names")[i] %>
+      </span>
+
+    </label>
+
+  <% end %>
+
   </div>
 
-      <p class="text-xs text-gray-500 ">
-        未指定の場合は毎日実行されます
-      </p>
-  </div>
-</details>
-    
+  <p class="text-xs text-gray-500 ">
+    未指定の場合は毎日実行されます
+  </p>
+</div>
+
+
