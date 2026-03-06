@@ -15,6 +15,6 @@
   <!--ルールのUI関係のグループ ブロックをわたす。-->
  
     <%= yield %>
-    <%=  rule.weekdays.blank? ? "毎日" : rule.weekdays.map { |i| I18n.t('date.abbr_day_names')[i] }.join("・") %>
+    <%=   weekdays_label(rule.weekdays) %>
 
 </div>
