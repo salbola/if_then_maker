@@ -1,0 +1,7 @@
+<div class="flex flex-wrap gap-1 text-sm">
+  <% weekdays_labels(weekdays).each do |day| %>
+    <span class="badge rounded-lg <%= weekdays_bg_color(day) %>">
+      <%= day %>
+    </span>
+  <% end %>
+</div>
