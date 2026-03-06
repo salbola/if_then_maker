@@ -25,22 +25,24 @@ RSpec.describe "Rule Weekdays", type: :system do
       check "commit_type"
 
       find("summary", text: "曜日の繰り返し設定").click
-      check "月曜日"
-      check "水曜日"
+      find("label", text: "月").click
+      find("label", text: "水").click
 
       click_button "保存する"
       expect(page).to have_content("作成しました")
       visit if_then_rules_path
       expect(page).to have_content("If-Thenルール一覧")
-      expect(page).to have_content("月・水")
+      expect(page).to have_content("月")
+      expect(page).to have_content("水")
     end
   end
-  describe "ルール編集での曜日再設定をできる" do
+  describe "ルール編集での曜日再設定できる(追加)" do
     it "曜日を編集して変更できる" do
       create(:if_then_rule, user: user, memo: memo, weekdays: [ 1, 3 ])
       visit if_then_rules_path
       expect(page).to have_content("If-Thenルール一覧")
-      expect(page).to have_content("月・水")
+      expect(page).to have_content("月")
+      expect(page).to have_content("水")
 
       click_link "編集"
       expect(page).to have_content("If-Thenルール編集")
@@ -48,14 +50,15 @@ RSpec.describe "Rule Weekdays", type: :system do
       check "commit_type"
 
       find("summary", text: "曜日の繰り返し設定").click
-      check "火曜日"
-      check "日曜日"
+      find("label", text: "火").click
+      find("label", text: "日").click
 
       click_button "保存する"
 
       expect(page).to have_content("編集しました")
 
-      expect(page).not_to have_content("月・水")
+      expect(page).to have_content("火")
+      expect(page).to have_content("日")
     end
   end
   describe "表示関連" do
@@ -85,13 +88,13 @@ RSpec.describe "Rule Weekdays", type: :system do
       check "commit_type"
 
       find("summary", text: "曜日の繰り返し設定").click
-      check "月曜日"
-      check "火曜日"
-      check "水曜日"
-      check "木曜日"
-      check "金曜日"
-      check "土曜日"
-      check "日曜日"
+      find("label", text: "月").click
+      find("label", text: "火").click
+      find("label", text: "水").click
+      find("label", text: "木").click
+      find("label", text: "金").click
+      find("label", text: "土").click
+      find("label", text: "日").click
 
       click_button "保存する"
 

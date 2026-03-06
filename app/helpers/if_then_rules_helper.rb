@@ -20,4 +20,14 @@ module IfThenRulesHelper
     # activeなルールの個数が3つ以上あれば初期値をdraftにする
     active_if_then_rules.length >= 3 ? "draft" : "active"
   end
+
+  # ステータスのバッジ表示においてその色をステータスごとに変えるヘルパー
+  def status_color_class(status)
+    case status
+    when "draft" then " bg-teal-500 "
+    when "inactive" then " bg-gray-500 "
+    when "active" then " bg-sky-500 "
+    when "habituated" then " bg-slate-900 "
+    end
+  end
 end

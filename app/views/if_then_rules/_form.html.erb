@@ -83,22 +83,7 @@
 
 
     <!--曜日ごとの繰り返しの設定など-->
-    <details>
-    <summary>
-      曜日の繰り返し設定
-    </summary>
-    <% Date::DAYNAMES.each_with_index do |day, i| %>
-      <label>
-      <%= check_box_tag(
-        "if_then_rule_form[weekdays][]",
-        i,
-        if_then_rule_form.weekdays.map(&:to_i).include?(i)
-        ) %>
-        <%= I18n.t('date.day_names')[i] %>
-        </label>
-        <% end %>
-    </details>
-        
+    <%= render "weekday_fields", form: f %>
 
 
     <!--保存ボタンなど-->
