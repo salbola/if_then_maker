@@ -50,12 +50,5 @@ class IfThenRule < ApplicationRecord
     when "habituated" then "定着済み"
     end
   end
-  def status_color_class
-    case status
-    when "draft" then " bg-teal-500 "
-    when "inactive" then " bg-gray-500 "
-    when "active" then " bg-sky-500 "
-    when "habituated" then " bg-slate-900 "
-    end
-  end
+
 end
