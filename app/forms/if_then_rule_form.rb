@@ -65,6 +65,7 @@ end
       self.if_condition = if_then_rule_of_model.if_condition
       self.then_action  = if_then_rule_of_model.then_action
       self.status  = if_then_rule_of_model.status
+      self.weekdays  = if_then_rule_of_model.weekdays
   end
 
   # ↓ビュー(_form.html.erb)で使うwarningメッセージ集を取得するためのメソッド。
