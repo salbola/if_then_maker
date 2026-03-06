@@ -21,4 +21,16 @@ module WeekdaysHelper
       "毎日" => "bg-slate-500 text-white"
     }.fetch(day, "bg-base-200")
   end
+# フォームの曜日設定のフィールドのチェック時のクラス
+  def checked_weekday_class(index)
+    [
+      "peer-checked:bg-red-100 peer-checked:text-red-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-red-400 peer-checked:font-semibold",
+      "peer-checked:bg-blue-100 peer-checked:text-blue-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-blue-400 peer-checked:font-semibold",
+      "peer-checked:bg-orange-100 peer-checked:text-orange-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-orange-400 peer-checked:font-semibold",
+      "peer-checked:bg-cyan-100 peer-checked:text-cyan-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-cyan-400 peer-checked:font-semibold",
+      "peer-checked:bg-emerald-100 peer-checked:text-emerald-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-emerald-400 peer-checked:font-semibold",
+      "peer-checked:bg-yellow-100 peer-checked:text-yellow-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-yellow-400 peer-checked:font-semibold",
+      "peer-checked:bg-purple-100 peer-checked:text-purple-700 peer-checked:outline peer-checked:outline-2 peer-checked:outline-purple-400 peer-checked:font-semibold"
+    ][index]
+  end
 end
