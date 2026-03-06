@@ -37,7 +37,8 @@
 
   <!--statusのwarning_message-->
   <%= render "if_then_rules/warning_messages", if_then_rule_form: form.object, field: :status %>
-  <p class="text-xs text-gray-500 mt-1">
-  現在、実行中のルールは <span class="text-sm"><%= @active_if_then_rules.length %></span> 件です
+  <p class="text-xs text-gray-500 mt-1">実行中状態のルールは3つまでを推奨しています</p>
+  <p class="text-xs text-gray-500 ">
+  現在、実行中のルールは <span class="text-sm text-gray-800"><%= @active_if_then_rules.length %></span> 件です
   </p>
 </div>
