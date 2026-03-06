@@ -2,7 +2,7 @@
 <div class=" <%= bg_class %>  card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative">
     <!--ルールのステータス(表示したくない時はローカル引数show_statusをfalseへ)-->
     <% if local_assigns.fetch(:show_status, true) %>
-      <p class="tag <%= rule.status_color_class %>text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
+      <p class="tag <%= status_color_class(rule.status) %>text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
         <%= rule.human_status%>
       </p>
     <% end %>
@@ -15,6 +15,12 @@
   <!--ルールのUI関係のグループ ブロックをわたす。-->
  
     <%= yield %>
-    <%=   weekdays_label(rule.weekdays) %>
+    <div class="flex flex-wrap gap-1 text-sm">
+      <% weekdays_labels(rule.weekdays).each do |day| %>
+        <span class="badge rounded-lg <%= weekdays_bg_color(day) %>">
+          <%= day %>
+        </span>
+      <% end %>
+    </div>
 
 </div>
