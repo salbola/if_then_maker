@@ -1,8 +1,8 @@
 <!--if_then_rule_formはフォームオブジェクト-->
 <div class ="space-y-6">
-  <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-md mx-auto space-y-6" do |f| %>
+  <%= form_with model: if_then_rule_form, url: url, method: method, class: "max-w-xl lg:max-w-full mx-auto space-y-6" do |f| %>
     <%= f.hidden_field :memo_id %>
-    <div class=" bg-base-100 shadow space-y-3 p-2 rounded-lg">
+    <div class=" bg-base-100 shadow space-y-3 p-2 rounded-lg flex flex-col lg:flex-row lg:gap-2">
     <p class="text-sm font-semibold text-gray-600">
       IF-THENルール
     </p>
@@ -65,10 +65,10 @@
           <%= render "if_then_rules/hint", target: :then %>
         </div>
       </details>
-    </div>
+      </div>
     </div>
 
-    <details class=" space-y-6 pt-4 bg-base-100 text-left p-2">
+    <details class=" space-y-6 pt-4 bg-base-100 text-left p-2 flex flex-col items-center">
     <summary class="text-gray-800 text-sm pl-2">
       詳細設定
     </summary>
@@ -126,10 +126,12 @@
 
     <% end %>
     <!--フォームここまで-->
+
+    <div class="divider max-w-xl lg:max-w-full mx-auto px-2"></div>
     <!--選択されているメモの表示-->
     <% if @memo %>
-      <div class="bg-memo p-3 rounded text-sm">
-        <p class="text-xs text-gray-400 mb-1">現在のメモ</p>
+    <p class="text-xs text-gray-400 mb-1">現在のメモ</p>
+      <div class="bg-memo p-3 rounded text-sm max-w-xl lg:max-w-full mx-auto min-h-32">
         <%= @memo.title %>
         <%= @memo.body %>
       </div>
