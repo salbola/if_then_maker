@@ -1,0 +1,27 @@
+<details>
+<summary>
+  曜日の繰り返し設定
+</summary>
+
+    <div class="form-control">
+
+      <div class="flex gap-2 flex-wrap justify-center">
+        <% Date::DAYNAMES.each_with_index do |day, i| %>
+          <label class="flex items-center gap-1">
+            <%= check_box_tag(
+              "if_then_rule_form[weekdays][]",
+              i,
+              form.object.weekdays.map(&:to_i).include?(i),
+              {}
+            ) %>
+            <span><%= I18n.t('date.abbr_day_names')[i] %></span>
+          </label>
+        <% end %>
+      </div>
+
+      <p class="text-xs text-gray-500">
+        未指定の場合は毎日実行されます
+      </p>
+  </div>
+</details>
+    
