@@ -24,7 +24,7 @@ RSpec.describe "Rule Weekdays", type: :system do
       fill_in "if_then_rule_form_then_action", with: "腕立て伏せ3回する"
       check "commit_type"
 
-      find("summary", text: "曜日の繰り返し設定").click
+      find("summary", text: "詳細設定").click
       find("label", text: "月").click
       find("label", text: "水").click
 
@@ -49,7 +49,7 @@ RSpec.describe "Rule Weekdays", type: :system do
 
       check "commit_type"
 
-      find("summary", text: "曜日の繰り返し設定").click
+      find("summary", text: "詳細設定").click
       find("label", text: "火").click
       find("label", text: "日").click
 
@@ -70,7 +70,7 @@ RSpec.describe "Rule Weekdays", type: :system do
       fill_in "if_then_rule_form_then_action", with: "腕立て伏せ3回する"
       check "commit_type"
 
-      find("summary", text: "曜日の繰り返し設定").click
+      find("summary", text: "詳細設定").click
 
 
       click_button "保存する"
@@ -87,7 +87,7 @@ RSpec.describe "Rule Weekdays", type: :system do
       fill_in "if_then_rule_form_then_action", with: "腕立て伏せ3回する"
       check "commit_type"
 
-      find("summary", text: "曜日の繰り返し設定").click
+      find("summary", text: "詳細設定").click
       find("label", text: "月").click
       find("label", text: "火").click
       find("label", text: "水").click

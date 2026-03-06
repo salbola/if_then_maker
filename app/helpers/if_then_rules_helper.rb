@@ -24,10 +24,20 @@ module IfThenRulesHelper
   # ステータスのバッジ表示においてその色をステータスごとに変えるヘルパー
   def status_color_class(status)
     case status
-    when "draft" then " bg-teal-500 "
-    when "inactive" then " bg-gray-500 "
-    when "active" then " bg-sky-500 "
-    when "habituated" then " bg-slate-900 "
+    when "draft" then "bg-teal-500 "
+    when "inactive" then "bg-gray-500 "
+    when "active" then "bg-sky-500 "
+    when "habituated" then "bg-slate-900 "
+    end
+  end
+
+
+  def checked_status_class(status)
+    case status
+    when "draft" then "has-[:checked]:bg-teal-500 has-[:checked]:outline-teal-500 has-[:checked]:font-semibold has-[:checked]:text-white"
+    when "inactive" then "has-[:checked]:bg-gray-500 has-[:checked]:outline-gray-500 has-[:checked]:font-semibold has-[:checked]:text-white"
+    when "active" then "has-[:checked]:bg-sky-500 has-[:checked]:outline-sky-500 has-[:checked]:font-semibold has-[:checked]:text-white"
+    when "habituated" then "has-[:checked]:bg-slate-900 has-[:checked]:outline-slate-900 has-[:checked]:font-semibold  has-[:checked]:text-white"
     end
   end
 end

@@ -1,10 +1,14 @@
-<ul class="space-y-3 list-disc list-inside bg-white-100">
+<ul class="space-y-3 list-none text-left">
   <% WarningConcepts.hints_for(target).each do |concept| %>
-    <li class="list-none">
+    <li>
     <!--セルフチェック用として一応チェック-->
-    <input type="checkbox" class="checkbox checkbox-info cursor-pointer checkbox-sm""  />
-    <span class="ml-1 text-sm "><%= concept.definition.dig(:hint, :content) %></span>
+    <label class="flex">
+    <input type="checkbox" class="checkbox checkbox-info cursor-pointer checkbox-sm "  />
+    <div>
+    <span class="ml-1 text-sm block lg:inline"><%= concept.definition.dig(:hint, :content) %></span>
     <span class="hint-label text-xs text-gray-400"><%= concept.definition[:label] %></span>
+    </div>
+    </label>
     </li>
   <% end %>
 </ul>
