@@ -1,16 +1,43 @@
 <div>
+  <div>
+    <p class="text-sm text-gray-400 mb-2">状態</p>
 
-      <p class="text-sm text-gray-400 mb-1">状態</p>
-      <%= form.select :status, [ ["実行中", "active"],["下書き", "draft"],["停止中", "inactive"],["定着済み", "habituated"]], {selected: change_default_status(@active_if_then_rules,set_status:form.object.status)},class: "select select-bordered " %>
-      
+    <div class="flex flex-row  join">
 
+      <label class="flex items-center gap-2 btn join-item font-normal <%=checked_status_class("active")%> ">
+        <%= form.radio_button :status, "active",
+            checked: change_default_status(@active_if_then_rules, set_status: form.object.status) == "active",
+            class: "radio radio-primary  hidden" %>
+        <span>実行中</span>
+      </label>
 
-      
-      <!--statusのwarning_message-->
-      <%= render "if_then_rules/warning_messages", if_then_rule_form: form.object, field: :status %>
-      <p class="text-xs text-gray-500 mt-1">
-      現在、実行中のルールは <span class="text-sm"><%= @active_if_then_rules.length %></span> 件です
-      </p>
+      <label class="flex items-center gap-2 btn join-item font-normal <%=checked_status_class("draft")%>">
+        <%= form.radio_button :status, "draft",
+            checked: change_default_status(@active_if_then_rules, set_status: form.object.status) == "draft",
+            class: "radio radio-primary  hidden" %>
+        <span>下書き</span>
+      </label>
 
-    
+      <label class="flex items-center gap-2 btn join-item font-normal <%=checked_status_class("inactive")%>">
+        <%= form.radio_button :status, "inactive",
+            checked: change_default_status(@active_if_then_rules, set_status: form.object.status) == "inactive",
+            class: "radio radio-primary  hidden" %>
+        <span>停止中</span>
+      </label>
+
+      <label class="flex items-center gap-2 btn join-item font-normal <%=checked_status_class("habituated")%>">
+        <%= form.radio_button :status, "habituated",
+            checked: change_default_status(@active_if_then_rules, set_status: form.object.status) == "habituated",
+            class: "radio radio-primary  hidden" %>
+        <span>定着済み</span>
+      </label>
+
     </div>
+  </div>
+
+  <!--statusのwarning_message-->
+  <%= render "if_then_rules/warning_messages", if_then_rule_form: form.object, field: :status %>
+  <p class="text-xs text-gray-500 mt-1">
+  現在、実行中のルールは <span class="text-sm"><%= @active_if_then_rules.length %></span> 件です
+  </p>
+</div>
