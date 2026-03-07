@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [ :remember_me ]
+Rails.application.config.sorcery.submodules = [:remember_me, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -88,7 +88,15 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:google]
+
+  # Google OAuth (CLIENT_ID, CLIENT_SECRET は .env から取得)
+  # 本番環境では BASE_URL を .env に設定してください（例: https://yourdomain.com）
+  config.google.key = ENV.fetch("GOOGLE_CLIENT_ID", "")
+  config.google.secret = ENV.fetch("GOOGLE_CLIENT_SECRET", "")
+  config.google.callback_url = "#{ENV.fetch('BASE_URL', 'http://localhost:3000')}/oauth/callback?provider=google"
+  config.google.user_info_mapping = { email: "email" }
+  config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -557,7 +565,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`

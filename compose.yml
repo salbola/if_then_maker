@@ -35,6 +35,9 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
       SENTRY_DSN: ${SENTRY_DSN}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      BASE_URL: ${BASE_URL}
     ports:
       - "3000:3000"
     depends_on:
