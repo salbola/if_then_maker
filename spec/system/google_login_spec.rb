@@ -17,7 +17,10 @@ RSpec.describe "Google Login", type: :system do
 
     before do
       # 2. login_from をスタブ: 外部API呼び出しを行わず、ダミーユーザーを返す
-      allow_any_instance_of(OauthsController).to receive(:login_from).with("google").and_return(user)
+      allow_any_instance_of(OauthsController).to receive(:login_from).with("google") do |controller|
+        controller.auto_login(user) # 飛ばすべきではないログイン処理をおこなってセッションが作られる
+        user # 戻り値として user を返す(整合性)
+      end
     end
 
     it "Google連携でログインできること" do
