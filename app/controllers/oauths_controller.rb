@@ -14,8 +14,8 @@ class OauthsController < ApplicationController
       # ユーザーがGoogleの認証の許可画面でキャンセルした時の処理
       redirect_to login_path, alert: "#{provider.titleize}からのログインをキャンセルしました"
     else
-    # ユーザーが普通に認証許可した場合は通常の処理へ
-    # login_fromは外部認証のユーザが見当たらない場合nilやfalseを返すらしい->新規登録の可能性があるためエラーを返さない設計。
+      # ユーザーが普通に認証許可した場合は通常の処理へ
+      # login_fromは外部認証のユーザが見当たらない場合nilやfalseを返すらしい->新規登録の可能性があるためエラーを返さない設計。
       if @user = login_from(provider)
         # 普通にoauthでのログインができた場合はダッシュボードへ
         redirect_to dash_boards_path, notice: "#{provider.titleize}でログインしました！"
