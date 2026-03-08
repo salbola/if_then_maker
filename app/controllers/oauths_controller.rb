@@ -3,7 +3,7 @@ class OauthsController < ApplicationController
 
   # プロバイダーへの認証リダイレクト
   def oauth
-    #これによりユーザーがgoogleへリダイレクトして本人確認の同意とかをする
+    # これによりユーザーがgoogleへリダイレクトして本人確認の同意とかをする
     login_at(params[:provider])
   end
 
