@@ -45,7 +45,7 @@
 </div>
 
 
-<div class="divider max-w-xl lg:max-w-full mx-auto px-2"></div>
+<div class="divider  mx-auto px-2  text-gray-500">履歴</div>
 <!--日毎にグループ分けされた実行記録-->
   <% if  @reflections.any?%>
     <ul>
@@ -53,8 +53,10 @@
           <h2 class="text-lg font-semibold mt-4 mb-2"><%= date.strftime("%Y年%-m月%-d日") %></h2>
           <ul class="space-y-2">
             <% reflections.each do |reflection| %>
-              <li class="bg-base-100 card shadow-md rounded-lg p-4">
-                <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
+              <li class="bg-base-100 card shadow-md rounded-lg p-4 hover:bg-base-200 ">
+                <%= link_to if_then_rule_path(reflection.if_then_rule) do %>
+                  <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
+                <% end  %>
               </li>
             <% end %>
           </ul>
