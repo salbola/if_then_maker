@@ -15,7 +15,7 @@
 
       <div class="card bg-base-100 shadow">
         <div class="card-body items-center text-center">
-          <p class="text-sm text-gray-500">今日</p>
+          <p class="text-sm text-gray-500">🔥今日</p>
           <p class="text-3xl font-bold">
             <%= @reflections.where(reflected_on: Date.current).count %>
             <span class="text-sm ">回</span>
@@ -25,7 +25,7 @@
 
       <div class="card bg-base-100 shadow">
         <div class="card-body items-center text-center">
-          <p class="text-sm text-gray-500">合計実行</p>
+          <p class="text-sm text-gray-500">📊合計実行</p>
           <p class="text-3xl font-bold">
             <%= @reflections.count %>
             <span class="text-sm ">回</span>
@@ -35,7 +35,7 @@
 
       <div class="card bg-base-100 shadow">
         <div class="card-body items-center text-center">
-          <p class="text-sm text-gray-500">今週</p>
+          <p class="text-sm text-gray-500">📅今週</p>
           <p class="text-3xl font-bold">
             <%= @reflections.where(reflected_on: Time.current.all_week).count %>
             <span class="text-sm ">回</span>
@@ -57,7 +57,7 @@
             <div class="divider max-w-xl lg:max-w-full mx-auto px-2  text-gray-500"><%= date.strftime("%Y年%-m月%-d日") %></div>
             <ul class="space-y-2">
               <% reflections.each do |reflection| %>
-                <%= link_to if_then_rule_path(reflection.if_then_rule), class:"bg-base-100 card shadow-md rounded-lg p-4  hover:scale-105" do %>
+                <%= link_to if_then_rule_path(reflection.if_then_rule), class:"bg-base-100 card shadow-md rounded-lg p-4  hover:-translate-y-1" do %>
                   <li>
                     <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
                   </li>
