@@ -9,7 +9,7 @@
 <!--集計のグリッド-->
     実行記録
   </h2>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
 
     <div class="card bg-base-100 shadow">
@@ -44,6 +44,8 @@
 
 </div>
 
+
+<div class="divider max-w-xl lg:max-w-full mx-auto px-2"></div>
 <!--日毎にグループ分けされた実行記録-->
   <% if  @reflections.any?%>
     <ul>

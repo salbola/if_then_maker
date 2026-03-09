@@ -1,8 +1,18 @@
 <turbo-frame id="today_progress">
+<!--progressが持つハッシュからデータを取得する感じ-->
 <div>
-  <div>
-    <%= "今日やったルールの数:#{progress[:done]}" %>
+
+  <%= link_to  reflections_path,data: { turbo_frame: "_top" } do%>
+  <div class="card bg-base-100 shadow">
+    <div class="card-body items-center text-center">
+      <p class="text-sm text-gray-500">今日やったルールの数</p>
+      <p class="text-3xl font-bold">
+        <%= progress[:done] %>
+        <span class="text-sm ">回</span>
+      </p>
+    </div>
   </div>
+  <% end %>
 
   <div class="w-full bg-gray-300 rounded-full h-2 mt-2">
     <div
