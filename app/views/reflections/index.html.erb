@@ -57,11 +57,11 @@
             <div class="divider max-w-xl lg:max-w-full mx-auto px-2  text-gray-500"><%= date.strftime("%Y年%-m月%-d日") %></div>
             <ul class="space-y-2">
               <% reflections.each do |reflection| %>
-                <li class="bg-base-100 card shadow-md rounded-lg p-4 hover:bg-base-200 ">
-                  <%= link_to if_then_rule_path(reflection.if_then_rule) do %>
-                      <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
-                  <% end  %>
-                </li>
+                <%= link_to if_then_rule_path(reflection.if_then_rule), class:"bg-base-100 card shadow-md rounded-lg p-4  hover:scale-105" do %>
+                  <li>
+                    <%= render "if_then_rules/cards/rule_sentence", rule: reflection.if_then_rule %>
+                  </li>
+                <% end  %>
               <% end %>
             </ul>
             <% end %>
