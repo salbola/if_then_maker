@@ -40,7 +40,7 @@
       <%= link_to memo_path(@memo),
           class:"cursor-pointer hover:bg-base-200 transition group",
           data:{turbo_frame: "_top"} do %>
-        <div  class="bg-memo card rounded-lg shadow-sm group-hover:bg-base-200">
+        <div  class="bg-memo card rounded-lg shadow-sm group-hover:bg-base-200 min-h-32">
           <p class="text-[11px] text-gray-400 mt-1">
             <%= @memo.title.presence || "（無題）" %>
           </p>
