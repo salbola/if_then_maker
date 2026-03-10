@@ -1,4 +1,9 @@
 <ul class="steps">
+
+  <%  if step==1.5 %>
+  <li  class="step <%= "step-primary" if step >= 1 %> ">1.メモの作成</li>
+  <%  else  %>
   <li class="step <%= "step-primary" if step >= 1 %> ">1.メモ選択</li>
-  <li class="step <%= "step-primary" if step >= 2 %>">2.if-thenでルールの作成</li>
+  <% end %>
+  <li data-content="2" class="step <%= "step-primary" if step >= 2 %>">2.if-thenでルールの作成</li>
 </ul>

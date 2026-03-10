@@ -132,12 +132,12 @@
     <% if @memo %>
     <p class="text-xs text-gray-400 mb-1">現在のメモ</p>
       <div class="bg-memo p-3 rounded text-sm max-w-xl lg:max-w-full mx-auto min-h-32">
-        <%= @memo.title %>
-        <%= @memo.body %>
+        <%= @memo.display_title %>
+        <%= @memo.display_body %>
       </div>
     <% else %>
-      <p class="text-xs text-gray-400">
-        元メモなし
+      <p class="text-[11px] text-gray-400 mt-1">
+      元のメモがありません
       </p>
     <% end %>
 </div>

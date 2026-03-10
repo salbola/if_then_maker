@@ -17,12 +17,12 @@
   <div class="card bg-memo shadow-sm ">
     <div class="card-body">
       <h2 class="card-title text-base">
-        <%= memo.title %>
+        <%= memo.display_title %>
       </h2>
 
       <% if memo.body.present? %>
         <p class="text-sm text-gray-500 line-clamp-3">
-          <%= memo.body %>
+          <%= memo.display_body %>
         </p>
       <% end %>
 
