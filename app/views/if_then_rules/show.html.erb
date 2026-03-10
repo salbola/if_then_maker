@@ -1,7 +1,7 @@
     <% content_for :title do %>
       If-Thenルール詳細
     <% end %>
-<div>
+<div class="space-y-12">
 <!--ルールの表示-->
   <%= render "if_then_rules/cards/rule_card",  rule: @if_then_rule, bg_class: "bg-base-100" do %>
       <!--ルールのifとthenのグループ-->
@@ -29,7 +29,30 @@
 
 
 
-
+  <!--ルールの元になったメモ-->
+  <div>
+    <h2 class="font-bold text-lg ">
+    元になったメモ
+    </h2>
+    <% if @memo.present? %>
+      <%= link_to memo_path(@memo),
+          class:"cursor-pointer hover:bg-base-200 transition group",
+          data:{turbo_frame: "_top"} do %>
+        <div  class="bg-memo card rounded-lg shadow-sm group-hover:bg-base-200">
+          <p class="text-[11px] text-gray-400 mt-1">
+            <%= @memo.title.presence || "（無題）" %>
+          </p>
+          <p class="text-[11px] text-gray-400 mt-1">
+            <%= @memo.body || "" %>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-[11px] text-gray-400 mt-1">
+        元のメモがありません
+      </p>
+    <% end %>
+  </div>
 
 
 </div>
