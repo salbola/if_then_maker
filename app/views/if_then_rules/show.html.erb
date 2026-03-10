@@ -19,7 +19,8 @@
   <!--集計のグリッド-->
 
       <%= render "shared/reflection_card", title:"📊合計実行",value: @rule_cnt , unit:"回" %>
-      <%= render "shared/reflection_card", title:"📊最後の実行日",value: @last_reflection_date , unit:"" %>
+      <%= render "shared/reflection_card", title:"📆最後の実行日",value: I18n.l(@last_reflection_date, format: :short) , unit:"" %>
+      <%= render "shared/reflection_card", title:"📆次回実行日",value: next_schedule_label(@if_then_rule) , unit:"" %>
 
 
   <!--集計のグリッドここまで-->

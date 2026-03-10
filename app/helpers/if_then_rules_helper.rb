@@ -40,4 +40,19 @@ module IfThenRulesHelper
     when "habituated" then "has-[:checked]:bg-slate-900 has-[:checked]:outline-slate-900 has-[:checked]:font-semibold  has-[:checked]:text-white"
     end
   end
+
+# そのルールの設定曜日に基づいた次回曜日のヘルパー
+    def next_schedule_label(rule)
+      date = rule.next_scheduled_date
+      return "ステータスが実行中ではありません" unless rule.status == "active"
+      return "予定なし" unless date #何かしらの理由でnext_scheduled_dateがnilになる場合
+
+      today = Date.current
+
+      return "今日" if date == today
+      return "明日" if date == today + 1
+      # それ以降はその日付を返す
+      I18n.l(date, format: :short)
+
+  end
 end

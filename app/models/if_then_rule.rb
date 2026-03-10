@@ -50,4 +50,16 @@ class IfThenRule < ApplicationRecord
     when "habituated" then "定着済み"
     end
   end
+
+  def next_scheduled_date
+    today = Date.current
+    wdays = weekdays # [1,3,5] などの曜日データ
+    return Date.tomorrow if wdays==[] #正規化により空配列が毎日なので次回の実行日は明日
+    0.upto(7) do |i|
+      date = today + i #今日を基準として１日づつ増やして、データの曜日との一致を検証する
+      return date if wdays.include?(date.wday) # 曜日の数字で検証して、一致したらその日を返す
+    end
+
+    nil
+  end
 end
