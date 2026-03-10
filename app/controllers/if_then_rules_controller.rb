@@ -13,7 +13,6 @@ class IfThenRulesController < ApplicationController
     @if_then_rule = policy_scope(IfThenRule).find(params[:id])
     @rule_cnt = @if_then_rule.reflections.count
     @memo = @if_then_rule.memo
-    @last_reflection_date = @if_then_rule.reflections.maximum(:reflected_on)
     authorize @if_then_rule
     authorize @memo
   end

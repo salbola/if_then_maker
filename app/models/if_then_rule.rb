@@ -24,6 +24,10 @@ class IfThenRule < ApplicationRecord
     @today_reflection ||= reflections.today.first
   end
 
+  def last_reflected_day
+    reflections.maximum(:reflected_on)
+  end
+
 
   # 引数の曜日が設定された曜日にあるのか？
   def scheduled_for?(date)

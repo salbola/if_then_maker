@@ -58,4 +58,10 @@ module IfThenRulesHelper
       # それ以降はその日付を返す
       I18n.l(date, format: :short)
     end
+
+    def last_reflected_day(rule)
+      last_day = rule.last_reflected_day
+      return "まだ実行記録がありません" if last_day == nil
+      I18n.l(last_day, format: :short)
+    end
 end
