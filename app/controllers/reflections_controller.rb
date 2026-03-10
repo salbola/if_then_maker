@@ -35,6 +35,9 @@ class ReflectionsController < ApplicationController
   def index
     authorize Reflection
     @reflections = policy_scope(Reflection).includes(:if_then_rule).order(reflected_on: :desc)
+    @total_reflections_cnt = @reflections.count
+    @today_reflections_cnt = @reflections.where(reflected_on: Date.current).count
+    @week_reflections_cnt = @reflections.where(reflected_on: Time.current.all_week).count
   end
 
   def destroy

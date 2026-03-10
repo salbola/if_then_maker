@@ -12,36 +12,10 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
   <!--集計のグリッド-->
 
+      <%= render "shared/reflection_card", title:"🔥今日",value: @today_reflections_cnt , unit:"回" %>
+      <%= render "shared/reflection_card", title:"📊合計実行",value: @total_reflections_cnt , unit:"回" %>
+      <%= render "shared/reflection_card", title:"📅今週",value: @week_reflections_cnt  , unit:"回" %>
 
-      <div class="card bg-base-100 shadow">
-        <div class="card-body items-center text-center">
-          <p class="text-sm text-gray-500">🔥今日</p>
-          <p class="text-3xl font-bold">
-            <%= @reflections.where(reflected_on: Date.current).count %>
-            <span class="text-sm ">回</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="card bg-base-100 shadow">
-        <div class="card-body items-center text-center">
-          <p class="text-sm text-gray-500">📊合計実行</p>
-          <p class="text-3xl font-bold">
-            <%= @reflections.count %>
-            <span class="text-sm ">回</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="card bg-base-100 shadow">
-        <div class="card-body items-center text-center">
-          <p class="text-sm text-gray-500">📅今週</p>
-          <p class="text-3xl font-bold">
-            <%= @reflections.where(reflected_on: Time.current.all_week).count %>
-            <span class="text-sm ">回</span>
-          </p>
-        </div>
-      </div>
   <!--集計のグリッドここまで-->
     </div>
   </div>
