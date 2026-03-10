@@ -1,5 +1,5 @@
-<div class="bg-memo card shadow-md rounded-lg p-4 relative <%= "hover:-translate-y-1" if local_assigns[:show_link] %>">
-        <% if local_assigns[:show_link] %>
+<div class="bg-memo card shadow-md rounded-lg p-4 relative <%= "hover:-translate-y-1" if local_assigns.fetch(:show_link, nil) %>">
+        <% if local_assigns.fetch(:show_link, nil)%>
           <%= link_to memo_path(memo),
           class:"cursor-pointer group absolute inset-0",
           data:{turbo_frame: "_top"} do end%>
