@@ -31,7 +31,7 @@ class MemosController < ApplicationController
   end
 
   def show
-    @memo = policy_scope(Memo).find(params[:id])
+    @memo = policy_scope(Memo).includes(:if_then_rules).find(params[:id])
     authorize @memo
     @from_rule_flow = params[:from] == "rule_flow"
   end
