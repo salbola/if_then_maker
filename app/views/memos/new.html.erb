@@ -10,6 +10,12 @@
   <p class="text-sm ">
     ルール作成フロー中（step1）
   </p>
+  <%else%>
+    <div class="relative">
+  <%= link_to '← メモ一覧へ戻る',
+      memos_path,
+      class: 'btn btn-ghost btn-sm ' %>
+  </div>
   <%end%>
 
 <div class="card bg-memo shadow">
@@ -57,9 +63,6 @@
         <% else %>
             <!--ルール作成のフローではない通常のmemo作成-->
           <div class="flex justify-end gap-3">
-            <%= link_to "キャンセル",
-                  memos_path,
-                  class: "btn btn-ghost" %>
             <%= f.submit "保存する",
                   class: "btn btn-primary" %>
           </div>
