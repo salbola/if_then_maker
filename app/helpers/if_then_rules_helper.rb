@@ -43,16 +43,20 @@ module IfThenRulesHelper
 
 # そのルールの設定曜日に基づいた次回曜日のヘルパー
     def next_schedule_label(rule)
-      date = rule.next_scheduled_date
-      return "ステータスが実行中ではありません" unless rule.status == "active"
-      return "予定なし" unless date #何かしらの理由でnext_scheduled_dateがnilになる場合
+      next_schedule = rule.next_schedule
+      date = next_schedule[:date]
+      return "ステータスが実行中ではありません" if next_schedule[:label] == :not_active
+      return "予定なし" if next_schedule[:label] == :no_schedule
 
       today = Date.current
 
-      return "今日" if date == today
-      return "明日" if date == today + 1
+      return "毎日(実行済み)" if next_schedule[:label] == :everyday_reflected
+      return "毎日" if next_schedule[:label] == :everyday
+      return "今日(実行済み)" if next_schedule[:label] == :today_reflected
+      return "今日" if next_schedule[:label] == :today
+      return "明日" if next_schedule[:label] == :tomorrow
       # それ以降はその日付を返す
       I18n.l(date, format: :short)
 
-  end
+    end
 end
