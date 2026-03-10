@@ -8,11 +8,9 @@
     <% end %>
 
   <!--ルールのifとthenのグループ-->
-  <%= link_to if_then_rule_path(rule), class:"font-semibold
-  cursor-pointer
-  hover:underline
-  hover:text-primary
-  transition", data:{turbo_frame: "_top"} do%>
+  <%= link_to if_then_rule_path(rule),
+  class:"cursor-pointer hover:bg-base-200 transition",
+  data:{turbo_frame: "_top"} do %>
     <div class = "  p-4 rounded-t-lg ">
     <%= render "if_then_rules/cards/rule_sentence", rule: rule %>
     </div>
