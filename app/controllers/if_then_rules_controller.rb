@@ -14,7 +14,6 @@ class IfThenRulesController < ApplicationController
     @rule_cnt = @if_then_rule.reflections.count
     @memo = @if_then_rule.memo
     authorize @if_then_rule
-    authorize @memo
   end
 
   def new
