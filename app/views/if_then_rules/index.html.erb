@@ -36,17 +36,8 @@
   <% if @searched_rules.any? %>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <% @searched_rules.each do |rule| %>
-        <%= render "if_then_rules/cards/rule_card",  rule: rule, bg_class: "bg-base-100" do %>
-          <!--ルールのifとthenのグループ-->
-          <%= link_to if_then_rule_path(rule),
-          class:"cursor-pointer hover:bg-base-200 transition group",
-          data:{turbo_frame: "_top"} do %>
-            <div class = "  p-4 rounded-t-lg ">
-            <%= render "if_then_rules/cards/rule_sentence", rule: rule %>
-            </div>
-          <% end %>
-          <%= render "if_then_rules/cards/rule_actions_index",  rule: rule %>
-        <% end %>
+        <%= render "if_then_rules/cards/rule_card",  rule: rule, bg_class: "bg-base-100",absolute_link: if_then_rule_path(rule), show_weeks: true, card_actions: :index %>
+
       <% end %>
     </div>
   <% elsif @if_then_rules.any? %>
