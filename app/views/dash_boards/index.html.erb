@@ -3,24 +3,36 @@
       今日のルール
     <% end %>
     <!--今日のルール一覧-->
-    <turbo-frame id="today_rules">
-    <%= render "if_then_rules/dash_boards/today_rules", rules: @today_rules %>
-    </turbo-frame>
-    <!-- カードの下の今日やったルールなどの集計表示 -->
-    <turbo-frame id="today_progress">
-    <%= render "if_then_rules/dash_boards/today_progress", progress: today_progress(@today_rules) %>
-    </turbo-frame>
 
-    <div class="mt-12 flex flex-col gap-3">
+<div class="space-y-16">
+    <div class="space-y-12">
+      <div>
+        <turbo-frame id="today_rules">
+        <%= render "if_then_rules/dash_boards/today_rules", rules: @today_rules %>
+        </turbo-frame>
+      </div>
+      <div>
+        <!-- カードの下の今日やったルールなどの集計表示 -->
+        <turbo-frame id="today_progress">
+        <%= render "if_then_rules/dash_boards/today_progress", progress: today_progress(@today_rules) %>
+        </turbo-frame>
+      </div>
+    </div>
+
+
+<!--作成ボタン類-->
+    <div>
+      <div class=" flex flex-col gap-3">
       <%= link_to "新しくマイルールを作成する", step1_if_then_rules_flow_path, class:"btn btn-primary " %>
-    </div>
-    <div class="mt-4 flex flex-col gap-3">
+      </div>
+      <div class="mt-4 flex flex-col gap-3">
       <%= link_to "新しくメモを作成する",
-          new_memo_path,
-          class: "btn btn-secondary" %>
+      new_memo_path,
+      class: "btn btn-secondary" %>
+      </div>
     </div>
-    
-    <div class="card bg-base-100 shadow p-4 mt-16 ">
+      
+    <div class="card bg-base-100 shadow p-4">
       <p class="text-sm text-gray-500">振り返りタイミング</p>
 
       <div class="flex items-center justify-between mt-1">
@@ -30,7 +42,7 @@
 
         <%= link_to "変更", edit_reflection_time_path, class: "btn btn-sm" %>
       </div>
-</div>
+    </div>
 
 
   <% else %>
@@ -42,7 +54,9 @@
     <div class="mt-12 flex flex-col gap-3">
       <%= link_to "新しくマイルールを作成する", step1_if_then_rules_flow_path, class:"btn btn-primary" %>
     </div>
-  <% end %>
+    <% end %>
+
+</div>
 
 
 
