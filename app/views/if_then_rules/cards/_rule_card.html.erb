@@ -1,5 +1,7 @@
 
-<div class=" <%= bg_class %>  card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative <%= " hover:-translate-y-1 " if local_assigns.fetch(:absolute_link, nil) %>">
+<div class=" <%= bg_class %>  card shadow-md rounded-lg  space-y-2 relative
+  <%= " grid grid-rows-[1fr_0.6fr] " if local_assigns.fetch(:card_actions, false) %>
+  <%= " hover:-translate-y-1 " if local_assigns.fetch(:absolute_link, nil) %>">
 
 
     <!-- absolute_linkを入れることでカードの全体を覆う透明なリンクを追加する -->
