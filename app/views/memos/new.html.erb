@@ -19,58 +19,15 @@
   </div>
   <%end%>
 
-<div class="card bg-memo shadow">
-  <div class="card-body">
-    <%= form_with model: @memo, local: true do |f| %>
-      <!-- タイトル -->
-      <div class="form-control mb-4">
-        <%= f.label :title, "タイトル", class: "label font-semibold" %>
-        <%= f.text_field :title,
-              class: "input input-bordered w-full",
-              placeholder: "タイトル" %>
-
-        <% if @memo.errors[:title].any? %>
-          <p class="text-error text-sm mt-1">
-            <%= @memo.errors[:title].first %>
-          </p>
-        <% end %>
-      </div>
-
-      <!-- 本文 -->
-      <div class="form-control mb-6">
-        <%= f.label :body, "メモ内容", class: "label font-semibold" %>
-        <%= f.text_area :body,
-              rows: 6,
-              class: "textarea textarea-bordered w-full",
-              placeholder: "目標やこうすると良いことがあるという工夫などを自由に書いてください これは後で'マイルール'を作るきっかけとして使います" %>
-
-        <% if @memo.errors[:body].any? %>
-          <p class="text-error text-sm mt-1">
-            <%= @memo.errors[:body].first %>
-          </p>
-        <% end %>
-      </div>
-
-
 
       <!-- ボタン -->
         <% if @from_rule_flow %>
           <!--ルール作成のフローの場合-->
-          <%= f.hidden_field :from, value: "rule_flow" %>
-          <div class="flex justify-end gap-3">
-            <%= f.submit "保存する",
-                  class: "btn btn-primary" %>
-          </div>
-        <% else %>
-            <!--ルール作成のフローではない通常のmemo作成-->
-          <div class="flex justify-end gap-3">
-            <%= f.submit "保存する",
-                  class: "btn btn-primary" %>
-          </div>
+          <%= render "memo_form", memo: @memo, url: memos_path, method: :post, on_rule_flow: true  %>
+
+            <% else %>
+            <%= render "memo_form", memo: @memo, url: memos_path, method: :post %>
 
         <% end %>
 
 
-    <% end %>
-  </div>
-</div>

@@ -10,35 +10,4 @@
 
     
     
-    <%= form_with model: @memo, local: true do |f| %>
-      <div class="card bg-memo shadow">
-        <div class="card-body">
-          <!-- タイトル -->
-          <div class="form-control mb-4">
-            <%= f.label :title, "タイトル", class: "label" %>
-            <%= f.text_field :title,
-                  class: "input input-bordered w-full" %>
-
-            <% if @memo.errors[:title].any? %>
-              <p class="text-error text-sm mt-1">
-                <%= @memo.errors[:title].first %>
-              </p>
-            <% end %>
-          </div>
-
-          <!-- 本文 -->
-          <div class="form-control mb-6">
-            <%= f.label :body, "内容", class: "label" %>
-            <%= f.text_area :body,
-                  rows: 6,
-                  class: "textarea textarea-bordered w-full" %>
-          </div>
-
-        </div>
-      </div>
-      <!-- ボタン -->
-      <div class="pt-4">
-        <%= f.submit "更新する", class: "btn btn-primary w-full" %>
-      </div>
-
-      <% end %>
+<%= render "memo_form", memo: @memo, url: memo_path(@memo), method: :patch %>
