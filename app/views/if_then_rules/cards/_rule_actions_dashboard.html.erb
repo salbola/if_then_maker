@@ -1,19 +1,17 @@
 <div>
-
-
   <div class="px-4 pb-4 space-y-2">
     <% if rule.reflected_today? %>
       <p class="text-gray-700">完了済み！</p>
       <%= button_to "取り消す",
         if_then_rule_reflection_path(rule,rule.today_reflection.id),
         method: :delete,
-        class: "btn btn-xs btn-ghost"
+        class: "btn btn-xs btn-ghost z-10 relative"
       %>
     <% else %>
       <%= button_to "実行済み！",
         if_then_rule_reflections_path(rule),
         method: :post,
-        class: "btn btn-lg btn-success shadow-sm"
+        class: "btn btn-lg btn-success shadow-sm z-10 relative"
       %>
     <% end %>
   </div>
@@ -21,10 +19,8 @@
     <div class="flex justify-end ">
     <%= link_to "編集",
       edit_if_then_rule_path(rule),
-      class: "btn btn-ghost btn-sm text-xs",
+      class: "btn btn-ghost btn-sm text-xs z-10",
       data: { turbo_frame: "_top" }
     %>
   </div>
-
-
 </div>

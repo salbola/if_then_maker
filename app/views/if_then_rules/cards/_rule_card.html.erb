@@ -1,5 +1,19 @@
 
-<div class=" <%= bg_class %>  card shadow-md rounded-lg  space-y-2 grid grid-rows-[1fr_0.6fr] relative">
+<div class=" <%= bg_class %>  card shadow-md rounded-lg  space-y-2 relative
+  <%= " grid grid-rows-[1fr_0.6fr] " if local_assigns.fetch(:card_actions, false) %>
+  <%= " hover:-translate-y-1 " if local_assigns.fetch(:absolute_link, nil) %>">
+
+
+    <!-- absolute_linkを入れることでカードの全体を覆う透明なリンクを追加する -->
+    <!-- 他のuiで押したいボタンなどはz-10などにより手前に持ってくること。-->
+    <% if local_assigns.fetch(:absolute_link, nil) %>
+        <%= link_to absolute_link,
+          class:"cursor-pointer transition group absolute inset-0",
+          data:{turbo_frame: "_top"} do end%>
+    <% end %>
+
+
+
     <!--ルールのステータス(表示したくない時はローカル引数show_statusをfalseへ)-->
     <% if local_assigns.fetch(:show_status, true) %>
       <p class="tag <%= status_color_class(rule.status) %>text-white inline-block  px-2.5 py-0.5 text-[10px] absolute top-2 right-2 rounded-lg opacity-80">
@@ -7,10 +21,23 @@
       </p>
     <% end %>
 
-    <!--ルールそのものやUI関係のグループ それぞれの場所でルールsentenceなどのブロックをわたす。-->
+    <!--ルールそのものやUI関係のグループ。-->
+    <div class = "  p-4 rounded-t-lg ">
+      <%= render "if_then_rules/cards/rule_sentence", rule: rule %>
+    </div>
 
-    <%= yield %>
+
+    <% if local_assigns.fetch(:card_actions, false) == :index%>
+      <%= render "if_then_rules/cards/rule_actions_index",  rule: rule %>
+    <% elsif local_assigns.fetch(:card_actions, false) == :dash_board%>
+      <%= render "if_then_rules/cards/rule_actions_dashboard",  rule: rule %>
+    <% elsif local_assigns.fetch(:card_actions, false) == :show%>
+      <%= render "if_then_rules/cards/rule_actions_show",  rule: @if_then_rule %>
+    <% end %>
+
+<!--ルールの繰り返し曜日(表示したくない時はローカル引数show_weeksをfalseへ)-->
+  <% if local_assigns.fetch(:show_weeks, false) %>
     <%= render "if_then_rules/cards/rule_weekdays", weekdays: rule.weekdays %>
-
+  <% end %>
 
 </div>

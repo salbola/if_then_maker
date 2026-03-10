@@ -1,15 +1,15 @@
     <% content_for :title do %>
       If-Thenルール詳細
     <% end %>
+
+    <div class="relative">
+    <%= link_to '← ルール一覧へ戻る',
+        if_then_rules_path,
+        class: 'btn btn-ghost btn-sm ' %>
+    </div>
 <div class="space-y-12">
 <!--ルールの表示-->
-  <%= render "if_then_rules/cards/rule_card",  rule: @if_then_rule, bg_class: "bg-base-100" do %>
-      <!--ルールのifとthenのグループ-->
-      <div class = "  p-4 rounded-t-lg ">
-      <%= render "if_then_rules/cards/rule_sentence", rule: @if_then_rule %>
-      </div>
-    <%= render "if_then_rules/cards/rule_actions_show",  rule: @if_then_rule %>
-  <% end %>
+  <%= render "if_then_rules/cards/rule_card",  rule: @if_then_rule, bg_class: "bg-base-100", card_actions: :show, show_weeks: true  %>
 
   <div>
     <h2 class="font-bold text-lg ">
@@ -27,10 +27,6 @@
     </div>
   </div>
 
-
-
-
-
   <!--ルールの元になったメモ-->
   <div>
     <h2 class="font-bold text-lg ">
@@ -38,9 +34,9 @@
     </h2>
     <% if @memo.present? %>
       <%= link_to memo_path(@memo),
-          class:"cursor-pointer hover:bg-base-200 transition group",
+          class:"cursor-pointer hover:-translate-y-1 transition group",
           data:{turbo_frame: "_top"} do %>
-        <div  class="bg-memo card rounded-lg shadow-sm group-hover:bg-base-200 min-h-32">
+        <div  class="bg-memo card rounded-lg shadow-sm hover:-translate-y-1 min-h-32">
           <p class="text-[11px] text-gray-400 mt-1">
             <%= @memo.title.presence || "（無題）" %>
           </p>

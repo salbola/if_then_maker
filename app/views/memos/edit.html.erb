@@ -2,6 +2,12 @@
       メモ編集
     <% end %>
 
+    <div class="relative">
+    <%= link_to '← メモ詳細へ戻る',
+        memo_path(@memo),
+        class: 'btn btn-ghost btn-sm ' %>
+    </div>
+
   <div class="card bg-memo shadow">
     <div class="card-body">
 
@@ -29,8 +35,7 @@
         </div>
 
         <!-- ボタン -->
-        <div class="flex justify-between">
-          <%= link_to "一覧へ", memos_path, class: "btn btn-ghost" %>
+        <div class="flex justify-end">
 
           <div class="flex gap-2">
             <%= f.submit "更新する", class: "btn btn-primary" %>

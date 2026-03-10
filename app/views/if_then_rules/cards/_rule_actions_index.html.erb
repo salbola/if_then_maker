@@ -13,18 +13,16 @@
     </div>
       <!--ボタン集-->
       <div class="card-actions justify-end mt-4">
-        <%= link_to "詳細",
-                    if_then_rule_path(rule),
-                    class: "btn btn-ghost btn-sm " %>
+
         <%= link_to "編集",
                     edit_if_then_rule_path(rule),
-                    class: "btn btn-ghost btn-sm btn-primary" %>
+                    class: "btn btn-ghost btn-sm btn-primary z-10" %>
         <%= link_to "削除",
           if_then_rule_path(rule),
           data: {
                       turbo_method: :delete,
                       turbo_confirm: "このルールを削除しますか？" },
-            class: "btn btn-ghost btn-error btn-sm"
+            class: "btn btn-ghost btn-error btn-sm z-10"
         %>
       </div>
 </div>

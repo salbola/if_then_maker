@@ -1,6 +1,7 @@
     <% content_for :title do %>
       <%= @memo.title.presence ||  "(無題)" %>
     <% end %>
+
 <% if @from_rule_flow %>
   <div class="relative">
   <%= link_to '← step1メモ選択へ戻る',
@@ -10,7 +11,14 @@
   <p class="text-sm ">
     ルール作成フロー中（step1）
   </p>
- <%end%>
+ <% else %>
+  <div class="relative">
+  <%= link_to '← メモ一覧へ戻る',
+      memos_path,
+      class: 'btn btn-ghost btn-sm ' %>
+  </div>
+
+  <% end %>
 
 <div class=" px-4 py-8 bg-memo ">
 
@@ -45,8 +53,27 @@
     </div>
   </div>
 </div>
+
+
+
 <% if !@from_rule_flow %>
   <div>
-  <%= link_to "一覧に戻る", memos_path, class: "btn btn-ghost btn-sm" %>
+    <h2 class="font-bold text-lg ">
+      ルール
+    </h2>
+    <% if @memo.if_then_rules.any? %>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <!--メモに対応するルールのグリッド-->
+        <% @memo.if_then_rules.each do |rule| %>
+            <!--ルールのifとthenのグループ-->
+                <%= render "if_then_rules/cards/rule_card",  rule: rule, bg_class: "bg-base-100", show_status: false, absolute_link: if_then_rule_path( rule )  %>
+        <% end %>
+        <!--グリッドここまで-->
+        </div>
+      <% else %>
+        <p class="text-gray-500">
+          まだこのメモからのIf-Thenルールはありません。
+        </p>
+      <% end %>
   </div>
 <% end %>

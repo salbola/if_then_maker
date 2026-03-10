@@ -2,4 +2,9 @@
     <% content_for :title do %>
       If-Thenルール編集
     <% end %>
+    <div class="relative">
+    <%= link_to '← ルール詳細へ戻る',
+        if_then_rule_path(@if_then_rule),
+        class: 'btn btn-ghost btn-sm ' %>
+    </div>
 <%= render "form", if_then_rule_form: @if_then_rule_form, url:if_then_rule_path(@if_then_rule), method: :patch %>
