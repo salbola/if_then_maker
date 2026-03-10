@@ -70,6 +70,22 @@ class IfThenRule < ApplicationRecord
     { date: date, label: :later }
   end
 
+
+  def display_if(limit: 30)
+    return "（空欄）" if if_condition.blank?
+    return if_condition if limit.nil?
+
+    if_condition.truncate(limit)
+
+  end
+
+  def display_then(limit: 30)
+    return "（空欄）" if then_action.blank?
+    return then_action if limit.nil?
+
+    then_action.truncate(limit)
+
+  end
 private
 
   def next_scheduled_date
