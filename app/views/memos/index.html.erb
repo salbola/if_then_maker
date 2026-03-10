@@ -1,7 +1,9 @@
     <% content_for :title do %>
       メモ一覧
     <% end %>
+
     <% if @memos.any? %>
+    <!--検索ボックス-->
       <div>
         <%= search_form_for @q do |f| %>
           <div class="flex gap-2 sm:flex-row flex-col">
@@ -33,29 +35,41 @@
         <%= link_to "未整理メモ", stale_memos_path, class: "btn btn-ghost btn-sm" %>
       </div>
     <% end %>
+<!--検索ボックス系ここまで-->
 
-  <% if @searched_memos.any? %>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <% @searched_memos.each do |memo| %>
-        <div class="bg-memo card shadow-md rounded-lg p-4">
-          <div>
-            <h2 class="card-title">
-              <%= memo.display_title %>
-            </h2>
 
-            <div class="card-body">
-              <% if memo.body.present? %>
-                <p class="text-sm text-base-content/80 line-clamp-3">
-                  <%= memo.body %>
-                </p>
-              <% else %>
-                <p class="text-sm text-base-content/50 italic">
-                  本文はありません
-                </p>
-              <% end %>
+<!--メモ一覧-->
+<% if @searched_memos.any? %>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <% @searched_memos.each do |memo| %>
+        <!--メモ一つ一つ-->
+      <div class="bg-memo card shadow-md rounded-lg p-4">
+
+          <%= link_to memo_path(memo),
+          class:"cursor-pointer bg-base-200 transition group",
+          data:{turbo_frame: "_top"} do %>
+            <!--メモの内容の領域-->
+            <div class="hover:bg-base-200">
+              <h2 class="card-title">
+              <!--無題に対応している-->
+                <%= memo.display_title %>
+              </h2>
+
+              <div class="card-body">
+                <% if memo.body.present? %>
+                  <p class="text-sm text-base-content/80 line-clamp-3">
+                    <%= memo.body %>
+                  </p>
+                <% else %>
+                  <p class="text-sm text-base-content/50 italic">
+                    本文はありません
+                  </p>
+                <% end %>
+              </div>
             </div>
-
+            <!--メモのボタン等の領域-->
             <div class="card-actions justify-end mt-4">
               <%= link_to "詳細",
                     memo_path(memo),
@@ -72,31 +86,39 @@
                       turbo_confirm: "このメモを削除しますか？" },
                     class: "btn btn-sm btn-ghost btn-error" %>
             </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-      <div class="mt-12 flex flex-col gap-3">
-        <%= link_to "新しくメモを作成する",
-            new_memo_path,
-            class: "btn btn-primary" %>
+            
+            <% end %>
+
+
       </div>
 
-  <% elsif @memos.any? %>
-    <p class="text-gray-500">検索に一致するメモはありませんでした。</p>
-  <% else %>
-    <div class="text-center text-base-content/60">
 
-      <p class="mb-4">メモでは日々の生活の"うまく行く工夫"や"気づき"を書いておきます</p>
-      <p class="mb-2 text-xs">	
-      ex:朝水を飲むと頭がスッキリする</p>
-      <p class="mb-4 text-xs">	
-	    作業前に5分準備すると集中できる など</p>
-      <p class="mb-4">そのメモをもとにマイルールを作ります</p>
-      <p class="mb-4">まだメモがありません</p>
-      <%= link_to "最初のメモを作成する",
-            new_memo_path,
-            class: "btn btn-primary " %>
-    </div>
-  <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="mt-12 flex flex-col gap-3">
+    <%= link_to "新しくメモを作成する",
+        new_memo_path,
+        class: "btn btn-primary" %>
+  </div>
+
+<!--if @searched_memos.any?ここまで-->
+<% elsif @memos.any? %>
+  <p class="text-gray-500">検索に一致するメモはありませんでした。</p>
+<% else %>
+  <div class="text-center text-base-content/60">
+
+    <p class="mb-4">メモでは日々の生活の"うまく行く工夫"や"気づき"を書いておきます</p>
+    <p class="mb-2 text-xs">	
+    ex:朝水を飲むと頭がスッキリする</p>
+    <p class="mb-4 text-xs">	
+    作業前に5分準備すると集中できる など</p>
+    <p class="mb-4">そのメモをもとにマイルールを作ります</p>
+    <p class="mb-4">まだメモがありません</p>
+    <%= link_to "最初のメモを作成する",
+          new_memo_path,
+          class: "btn btn-primary " %>
+  </div>
+<% end %>
 
