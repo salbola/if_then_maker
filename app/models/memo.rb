@@ -24,7 +24,7 @@ class Memo < ApplicationRecord
 
   #値がない場合に対応したメモの本文を表示するメソッド limitがnilなら全文
   def display_body(limit: 30)
-    return "（内容なし）" if body.blank?
+    return "（本文がありません）" if body.blank?
     return body if limit.nil?
 
     body.truncate(limit)

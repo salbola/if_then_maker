@@ -12,55 +12,27 @@
   <p class="text-sm ">
     ルール作成フロー中（step1）
   </p>
- <% else %>
+<% else %>
   <div class="relative">
   <%= link_to '← メモ一覧へ戻る',
       memos_path,
       class: 'btn btn-ghost btn-sm ' %>
   </div>
+<% end %>
 
+
+<!--メモの表示-->
+  <% if @from_rule_flow %>
+    <%= render "memo_card", memo: @memo, card_actions: :show_on_flow%>
+    <% else %>
+    <%= render "memo_card", memo: @memo, card_actions: :show%>
   <% end %>
-
-<div class=" px-4 py-8 bg-memo ">
-
-
-  <!-- 本文 -->
-  <div class="prose max-w-none mb-1">
-    <%= simple_format(@memo.body) %>
-  </div>
-
-  <!-- 操作ボタン群 -->
-  <div class="flex flex-col gap-6 items-center ">
-    <% if !@from_rule_flow %>
-      <!-- 編集・削除 -->
-      <div class="flex gap-4">
-        <%= link_to "編集",
-                    edit_memo_path(@memo),
-                    class: "btn btn-outline btn-primary" %>
-
-        <%= link_to "削除",
-                      memo_path(@memo),
-                      data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "このメモを削除しますか？" },
-                      class: "btn btn-outline btn-error" %>
-      </div>
-    <% end %>
-    <!-- マイルール化ボタン -->
-    <div>
-      <%= link_to "このメモで新しいマイルールを作る",
-                    new_if_then_rule_path(memo_id: @memo.id) ,
-                    class: "btn btn-primary w-full" %>
-    </div>
-  </div>
-</div>
-
 
 
 
 <div class="divider max-w-xl lg:max-w-full mx-auto px-2"></div>
 <% if !@from_rule_flow %>
-  <div>
+  <div class="max-w-xl lg:max-w-full mx-auto">
     <h2 class="font-bold text-lg ">
       ルール
     </h2>
@@ -74,7 +46,7 @@
         <!--グリッドここまで-->
         </div>
       <% else %>
-        <p class="text-gray-500">
+        <p class="text-[11px] text-gray-400 mt-1">
           まだこのメモからのIf-Thenルールはありません。
         </p>
       <% end %>

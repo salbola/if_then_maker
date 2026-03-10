@@ -14,17 +14,20 @@
               <div class="card-body">
                 <% if memo.body.present? %>
                   <p class="text-sm text-base-content/80 line-clamp-3">
-                    <%= memo.body %>
+                    <%= memo.display_body %>
                   </p>
                 <% else %>
+                  <!--本文がない旨の表示だが一応見た目を変える-->
                   <p class="text-sm text-base-content/50 italic">
-                    本文はありません
+                    <%= memo.display_body %>
                   </p>
                 <% end %>
               </div>
             </div>
 
             <!--メモのボタン等の領域-->
+            <div class="flex flex-col gap-6 items-center ">
+            <% if local_assigns.fetch(:card_actions, false) == :index%>
             <div class="card-actions justify-end mt-4 ">
 
               <%= link_to "編集",
@@ -38,4 +41,36 @@
                       turbo_confirm: "このメモを削除しますか？" },
                     class: "btn btn-sm btn-ghost btn-error z-10" %>
             </div>
+            <% elsif local_assigns.fetch(:card_actions, false) == :show_on_flow%>
+            <div class="flex flex-col gap-6 items-center ">
+              <!-- マイルール化ボタン -->
+              <div>
+                <%= link_to "このメモで新しいマイルールを作る",
+                              new_if_then_rule_path(memo_id: @memo.id) ,
+                              class: "btn btn-primary w-full" %>
+              </div>
+            </div>
+            <% elsif local_assigns.fetch(:card_actions, false) == :show %>
+                  <!-- 編集・削除 -->
+                  <div class="flex gap-4">
+                    <%= link_to "編集",
+                                edit_memo_path(@memo),
+                                class: "btn btn-outline btn-primary" %>
+
+                    <%= link_to "削除",
+                                  memo_path(@memo),
+                                  data: {
+                                    turbo_method: :delete,
+                                    turbo_confirm: "このメモを削除しますか？" },
+                                  class: "btn btn-outline btn-error" %>
+                  </div>
+                <!-- マイルール化ボタン -->
+                <div>
+                  <%= link_to "このメモで新しいマイルールを作る",
+                                new_if_then_rule_path(memo_id: @memo.id) ,
+                                class: "btn btn-primary w-full" %>
+                </div>
+              </div>
+              <% end %>
+              </div>
       </div>

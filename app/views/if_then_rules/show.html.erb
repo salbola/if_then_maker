@@ -33,18 +33,9 @@
     元になったメモ
     </h2>
     <% if @memo.present? %>
-      <%= link_to memo_path(@memo),
-          class:"cursor-pointer hover:-translate-y-1 transition group",
-          data:{turbo_frame: "_top"} do %>
-        <div  class="bg-memo card rounded-lg shadow-sm hover:-translate-y-1 min-h-32">
-          <p class="text-[11px] text-gray-400 mt-1">
-            <%= @memo.title.presence || "（無題）" %>
-          </p>
-          <p class="text-[11px] text-gray-400 mt-1">
-            <%= @memo.body || "" %>
-          </p>
-        </div>
-      <% end %>
+    <div class="max-w-xl  mx-auto">
+      <%= render "memos/memo_card", memo: @memo, absolute_link: memo_path(@memo)%>
+    </div>
     <% else %>
       <p class="text-[11px] text-gray-400 mt-1">
         元のメモがありません
