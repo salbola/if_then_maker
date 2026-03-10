@@ -9,7 +9,7 @@
     </div>
 <div class="space-y-12">
 <!--ルールの表示-->
-  <%= render "if_then_rules/cards/rule_card",  rule: @if_then_rule, bg_class: "bg-base-100", card_actions: :show  %>
+  <%= render "if_then_rules/cards/rule_card",  rule: @if_then_rule, bg_class: "bg-base-100", card_actions: :show, show_weeks: true  %>
 
   <div>
     <h2 class="font-bold text-lg ">
@@ -26,10 +26,6 @@
   <!--集計のグリッドここまで-->
     </div>
   </div>
-
-
-
-
 
   <!--ルールの元になったメモ-->
   <div>
