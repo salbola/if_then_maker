@@ -76,7 +76,6 @@ class IfThenRule < ApplicationRecord
     return if_condition if limit.nil?
 
     if_condition.truncate(limit)
-
   end
 
   def display_then(limit: 30)
@@ -84,7 +83,6 @@ class IfThenRule < ApplicationRecord
     return then_action if limit.nil?
 
     then_action.truncate(limit)
-
   end
 private
 
