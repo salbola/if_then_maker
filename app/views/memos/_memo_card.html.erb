@@ -55,14 +55,14 @@
                   <div class="flex gap-4">
                     <%= link_to "編集",
                                 edit_memo_path(@memo),
-                                class: "btn btn-outline btn-primary" %>
+                                class: "btn  btn-primary btn-ghost" %>
 
                     <%= link_to "削除",
                                   memo_path(@memo),
                                   data: {
                                     turbo_method: :delete,
                                     turbo_confirm: "このメモを削除しますか？" },
-                                  class: "btn btn-outline btn-error" %>
+                                  class: "btn  btn-error btn-ghost" %>
                   </div>
                 <!-- マイルール化ボタン -->
                 <div>
