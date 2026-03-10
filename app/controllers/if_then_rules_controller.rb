@@ -11,6 +11,7 @@ class IfThenRulesController < ApplicationController
 
   def show
     @if_then_rule = policy_scope(IfThenRule).find(params[:id])
+    @rule_cnt = @if_then_rule.reflections.count
     authorize @if_then_rule
   end
 
