@@ -1,21 +1,4 @@
 <div>
-      <!--ルールの元になったメモ-->
-    <div>
-      <% if rule.memo.present? %>
-      <div  class="bg-memo card rounded-lg shadow-sm">
-        <p class="text-[11px] text-gray-400 mt-1">
-          <%= rule.memo.title.presence || "（無題）" %>
-        </p>
-        <p class="text-[11px] text-gray-400 mt-1">
-          <%= rule.memo.body || "" %>
-        </p>
-      </div>
-      <% else %>
-        <p class="text-[11px] text-gray-400 mt-1">
-          元のメモがありません
-        </p>
-      <% end %>
-    </div>
       <!--ボタン集-->
       <div class="card-actions justify-end mt-4">
         <%= link_to "編集",
