@@ -17,11 +17,11 @@ class IfThenRule < ApplicationRecord
   end
 
   def reflected_today?
-    @reflected_today ||= reflections.any? { |r| r.reflected_on == Date.current }
+    @reflected_today ||= reflections.today.any?
   end
 
   def today_reflection
-    @today_feflection ||= reflections.find_by(reflected_on: Date.current)
+    @today_reflection ||= reflections.today.first
   end
 
 
