@@ -7,16 +7,7 @@
       </p>
     <% end %>
 
-  <!--ルールのifとthenのグループ-->
-  <%= link_to if_then_rule_path(rule),
-  class:"cursor-pointer hover:bg-base-200 transition group",
-  data:{turbo_frame: "_top"} do %>
-    <div class = "  p-4 rounded-t-lg ">
-    <%= render "if_then_rules/cards/rule_sentence", rule: rule %>
-    </div>
-  <% end %>
-
-    <!--ルールのUI関係のグループ ブロックをわたす。-->
+    <!--ルールそのものやUI関係のグループ それぞれの場所でルールsentenceなどのブロックをわたす。-->
 
     <%= yield %>
     <%= render "if_then_rules/cards/rule_weekdays", weekdays: rule.weekdays %>
