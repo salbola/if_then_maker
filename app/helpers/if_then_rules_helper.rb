@@ -41,7 +41,7 @@ module IfThenRulesHelper
     end
   end
 
-# そのルールの設定曜日に基づいた次回曜日のヘルパー
+    # そのルールの設定曜日に基づいた次回曜日のヘルパー
     def next_schedule_label(rule)
       next_schedule = rule.next_schedule
       date = next_schedule[:date]
@@ -57,6 +57,5 @@ module IfThenRulesHelper
       return "明日" if next_schedule[:label] == :tomorrow
       # それ以降はその日付を返す
       I18n.l(date, format: :short)
-
     end
 end

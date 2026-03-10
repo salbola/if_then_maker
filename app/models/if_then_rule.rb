@@ -53,17 +53,17 @@ class IfThenRule < ApplicationRecord
   def next_schedule
     date = next_scheduled_date
 
-    return {date: date, label: :not_active} unless active?
-    return {date: date, label: :no_schedule} unless date #何かしらの理由でnext_scheduled_dateがnilになる場合
+    return { date: date, label: :not_active } unless active?
+    return { date: date, label: :no_schedule } unless date # 何かしらの理由でnext_scheduled_dateがnilになる場合
 
     today = Date.current
     return { label: :everyday_reflected } if weekdays.empty? && reflected_today?
     return { label: :everyday } if weekdays.empty?
-    return {date: date, label: :today_reflected} if date == today && reflected_today?
-    return {date: date, label: :today} if date == today
-    return {date: date, label: :tomorrow} if date == today + 1
+    return { date: date, label: :today_reflected } if date == today && reflected_today?
+    return { date: date, label: :today } if date == today
+    return { date: date, label: :tomorrow } if date == today + 1
     # それ以降
-    {date: date, label: :later}
+    { date: date, label: :later }
   end
 
 private
@@ -71,9 +71,9 @@ private
   def next_scheduled_date
     today = Date.current
     wdays = weekdays # [1,3,5] などの曜日データ
-    return today if wdays.empty? #正規化により空配列が毎日なので一応todayを返す
+    return today if wdays.empty? # 正規化により空配列が毎日なので一応todayを返す
     0.upto(7) do |i|
-      date = today + i #今日を基準として１日づつ増やして、データの曜日との一致を検証する
+      date = today + i # 今日を基準として１日づつ増やして、データの曜日との一致を検証する
       return date if wdays.include?(date.wday) # 曜日の数字で検証して、一致したらその日を返す
     end
 
