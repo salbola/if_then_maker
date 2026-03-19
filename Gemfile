@@ -24,7 +24,7 @@ gem "jbuilder"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.22"
 gem "sorcery", "~> 0.18.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
